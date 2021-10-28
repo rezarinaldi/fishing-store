@@ -17,7 +17,6 @@ class CreateProfilesTable extends Migration
             $table->id();
             $table->foreignId("user_id")->references("id")->on("users");
             $table->bigInteger('phone_number')->nullable();
-            $table->string('country')->nullable();
             $table->string('city')->nullable();
             $table->text('address')->nullable();
             $table->integer('postal_code')->nullable();
