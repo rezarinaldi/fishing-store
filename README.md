@@ -1,10 +1,10 @@
-<p align="center"><img src="public/images/logo.png" width="400"></p>
-
-<p align="center">
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+<img src="https://github.com/rezarinaldi/fishing-store/raw/main/public/images/logo.png" width="200px" align="left"/>
+<br><br>
+<p align="left">
+  <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+<p>Webstite toko alat pancing untuk toko yang ada di daerah saya, yakni bernama DK Pancing. Project ini juga sebagai tugas mata kuliah Proyek 3 & Manajemen Proyek IT.</p>
+<br><br>
 </p>
-
-# Fishing Store - DK Pancing
 
 ## Set up,
 
