@@ -22,7 +22,8 @@
 
 Laravel Valet configures your PC to always run Nginx in the background when your machine starts. Then, using DnsMasq, Valet proxies all requests on the \*.test domain to point to sites installed on your local machine.
 
-Example: fishing-store.test in your browser
+Example,
+Type **fishing-store.test** in your browser
 
 Documentation for Valet can be found on the [Laravel website](https://laravel.com/docs/valet)
 
