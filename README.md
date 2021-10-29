@@ -22,11 +22,11 @@
 
 Laravel Valet configures your PC to always run Nginx in the background when your machine starts. Then, using DnsMasq, Valet proxies all requests on the \*.test domain to point to sites installed on your local machine.
 
-Example: fishing-store.test
+Example: fishing-store.test in your browser
 
 Documentation for Valet can be found on the [Laravel website](https://laravel.com/docs/valet)
 
-13. Users log in:
+12. Users log in:
 
 -   Admin Email/Password: admin@gmail.com/admin123456
 -   User Email/Password: bella@gmail.com/bella123456
