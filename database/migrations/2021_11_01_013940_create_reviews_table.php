@@ -17,7 +17,7 @@ class CreateReviewsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('item_id')->references('id')->on('items');
-            $table->integer('rate')->nullable();
+            $table->integer('rate')->default(0);
             $table->longText('comment')->nullable();
             $table->timestamps();
         });
