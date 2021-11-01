@@ -20,6 +20,9 @@ class CreateOrdersTable extends Migration
             $table->datetime("date");
             $table->integer("quantity");
             $table->integer("total_price");
+            $table->enum('payment_method', ['pick up', 'sending']);
+            $table->enum('payment_status', ['paid', 'unpaid']);
+            $table->enum('status', ['new', 'process', 'delivered', 'cancel']);
             $table->timestamps();
         });
     }
