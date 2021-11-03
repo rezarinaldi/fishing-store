@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('admin123456'),
                 'role' => 'admin',
+                'gender' => 'male',
                 'created_at' => date("Y-m-d H:i:s")
 
             ),
@@ -26,6 +27,7 @@ class UserSeeder extends Seeder
                 'email' => 'bella@gmail.com',
                 'password' => Hash::make('bella123456'),
                 'role' => 'user',
+                'gender' => 'female',
                 'created_at' => date("Y-m-d H:i:s")
             ),
         );
