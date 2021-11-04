@@ -14,7 +14,7 @@ Log In | DK Pancing
                     <img src="/images/login-placeholder.jpg" alt="" class="w-50 mb-4 mb-lg-none rounded" />
                 </div>
                 <div class="col-lg-5">
-                    <h2>
+                    <h2 class="font-weight-bold">
                         Belanja kebutuhan <br />
                         alat pancing, menjadi <br />
                         lebih mudah 😊
@@ -46,10 +46,10 @@ Log In | DK Pancing
                             @enderror
                         </div>
                         <button type="submit" class="btn btn-success btn-block w-75 mt-4">
-                            Log In to My Account
+                            <i class="fas fa-sign-in-alt"></i> Log In to My Account
                         </button>
                         <a href="{{ route('register') }}" class="btn btn-signup btn-block w-75 mt-2">
-                            Register
+                            <i class="far fa-registered"></i> Register
                         </a>
                     </form>
                 </div>

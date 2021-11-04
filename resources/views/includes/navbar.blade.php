@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light navbar-store fixed-top navbar-fixed-top" data-aos="fade-down">
     <div class="container">
         <a href="{{ route('home') }}" class="navbar-brand">
-            {{-- <img src="/images/logo.svg" alt="Logo" /> --}}
-            DK Pancing
+            <img src="/images/logo.png" alt="Logo" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
             <span class="navbar-toggler-icon"></span>
@@ -26,7 +25,8 @@
                     <a href="{{ route('register') }}" class="nav-link">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{  route('login') }}" class="btn btn-success nav-link px-4 text-white">Log In</a>
+                    <a href="{{  route('login') }}" class="btn btn-success nav-link px-4 text-white"><i
+                            class="fas fa-sign-in-alt"></i> Log In</a>
                 </li>
                 @endguest
             </ul>
@@ -40,12 +40,12 @@
                         Hi, {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">Admin Panel</a>
-                        <a href="#" class="dropdown-item">Settings</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-user-cog"></i> Admin Panel</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Log Out
+                            <i class="fas fa-sign-out-alt"></i> Log Out
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf

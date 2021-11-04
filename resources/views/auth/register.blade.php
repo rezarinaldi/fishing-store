@@ -14,7 +14,7 @@ Register | DK Pancing
                     <img src="/images/login-placeholder.jpg" alt="" class="w-50 mb-4 mb-lg-none rounded" />
                 </div>
                 <div class="col-lg-5">
-                    <h2>
+                    <h2 class="font-weight-bold">
                         Buat akun Anda 😊
                     </h2>
                     <form class="mt-3" method="POST" action="{{ route('register') }}">
@@ -82,10 +82,10 @@ Register | DK Pancing
                                 name="password_confirmation" required autocomplete="new-password">
                         </div>
                         <button type="submit" class="btn btn-success btn-block mt-4">
-                            Register Now
+                            <i class="far fa-registered"></i> Register Now
                         </button>
                         <a href="{{ route('login') }}" class="btn btn-signup btn-block mt-2 mb-5">
-                            Back to Log In
+                            <i class="fas fa-sign-in-alt"></i> Back to Log In
                         </a>
                     </form>
                 </div>

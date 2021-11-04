@@ -2,7 +2,7 @@
 <br><br>
 <p align="left">
   <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-<p>Webstite toko alat pancing untuk toko yang ada di daerah saya, yakni bernama DK Pancing. Project ini juga sebagai tugas mata kuliah Proyek 3 & Manajemen Proyek IT.</p>
+<p>Webstite toko alat pancing untuk toko yang ada di daerah saya, yakni bernama DK Pancing. Project ini juga sebagai tugas matkul Proyek 3 & Manajemen Proyek IT.</p>
 <br><br>
 </p>
 
