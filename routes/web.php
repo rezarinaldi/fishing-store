@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Ap\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,15 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
 
 Auth::routes();
+
+Route::group(
+    [
+        'prefix' => 'ap',
+        'middleware' => 'isAdmin',
+        'as' => 'ap.'
+    ],
+    function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        // Route::resource('blogs', 'App\Http\Controllers\Ap\BlogController');
+    }
+);
