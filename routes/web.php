@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ap\DashboardController;
+use App\Http\Controllers\Ap\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::group(
         'as' => 'ap.'
     ],
     function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        // Route::resource('blogs', 'App\Http\Controllers\Ap\BlogController');
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('categories', 'Ap\CategoryController');
     }
 );
