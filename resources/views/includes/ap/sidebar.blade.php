@@ -7,7 +7,7 @@
             </a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link {{ (strpos(Route::currentRouteName(), 'categories') == 0) ? '' : 'active' }}" href="{{ url('ap/categories') }}">
                 <i class="menu-icon fas fa-book"></i>
                 <span class="menu-title">Kategori</span>
             </a>
