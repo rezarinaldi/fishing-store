@@ -17,6 +17,10 @@ use App\Http\Controllers\Ap\CategoryController;
 
 Route::get('/', 'HomeController@index')->name('home');
 
+
+
+Route::get('/details', 'DetailController@index')->name('detail');
+
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
 
 Auth::routes();

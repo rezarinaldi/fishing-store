@@ -43,8 +43,8 @@ Home | DK Pancing
                         <figcaption class="pt-3">
                             <h5 class="title">Free Shipping</h5>
                         </figcaption>
-                    </figure> <!-- iconbox // -->
-                </div><!-- col // -->
+                    </figure>
+                </div>
                 <div class="col-md-3">
                     <figure class="item-feature">
                         <span><i class="fa fa-2x fa-clock"></i></span>
@@ -52,27 +52,27 @@ Home | DK Pancing
                             <h5 class="title">24 Hour Online</h5>
                             </p>
                         </figcaption>
-                    </figure> <!-- iconbox // -->
-                </div><!-- col // -->
+                    </figure>
+                </div>
                 <div class="col-md-3">
                     <figure class="item-feature">
                         <span><i class="fa fa-2x fa-hand-holding-usd"></i></span>
                         <figcaption class="pt-3">
                             <h5 class="title">Money Return</h5>
                         </figcaption>
-                    </figure> <!-- iconbox // -->
-                </div> <!-- col // -->
+                    </figure>
+                </div>
                 <div class="col-md-3">
                     <figure class="item-feature">
                         <span><i class="fa fa-2x fa-percent"></i></span>
                         <figcaption class="pt-3">
                             <h5 class="title">Order Discount</h5>
                         </figcaption>
-                    </figure> <!-- iconbox // -->
-                </div> <!-- col // -->
+                    </figure>
+                </div>
             </div>
         </article>
-    </div> <!-- container .//  -->
+    </div>
 </section>
 
 <section class="store-trend-categories">
@@ -143,7 +143,7 @@ Home | DK Pancing
         </div>
         <div class="row">
             <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                <a class="component-products d-block" href="/details.html">
+                <a class="component-products d-block" href="{{ route('detail') }}">
                     <div class="products-thumbnail">
                         <div class="products-image" style="
                       background-image: url('/images/product-joran1.jpg');
@@ -158,7 +158,7 @@ Home | DK Pancing
                 </a>
             </div>
             <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                <a class="component-products d-block" href="/details.html">
+                <a class="component-products d-block" href="{{ route('detail') }}">
                     <div class="products-thumbnail">
                         <div class="products-image" style="
                       background-image: url('/images/product-lure1.jpg');
@@ -173,7 +173,7 @@ Home | DK Pancing
                 </a>
             </div>
             <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                <a class="component-products d-block" href="/details.html">
+                <a class="component-products d-block" href="{{ route('detail') }}">
                     <div class="products-thumbnail">
                         <div class="products-image" style="
                       background-image: url('/images/product-reel1.jpg');
