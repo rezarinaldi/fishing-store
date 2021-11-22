@@ -12,3 +12,6 @@
 <script src="{{ asset('ap/js/todolist.js') }}"></script>
 <script src="{{ asset('ap/js/dashboard.js') }}"></script>
 <script src="{{ asset('ap/js/Chart.roundedBarCharts.js') }}"></script>
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>

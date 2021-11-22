@@ -1,19 +1,19 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link {{ (strpos(Route::currentRouteName(), 'dashboard') == 0) ? '' : 'active' }}" href="{{ url('ap/dashboard') }}">
+            <a href="{{ route('ap.dashboard') }}" class="nav-link {{ (strpos(Route::currentRouteName(), 'dashboard') == 0) ? '' : 'active' }}">
                 <i class="menu-icon fas fa-tachometer-alt"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
         <li class="nav-item">
-        <a class="nav-link {{ (strpos(Route::currentRouteName(), 'categories') == 0) ? '' : 'active' }}" href="{{ url('ap/categories') }}">
+        <a href="{{ route('ap.categories.index') }}" class="nav-link {{ (strpos(Route::currentRouteName(), 'categories') == 0) ? '' : 'active' }}">
                 <i class="menu-icon fas fa-book"></i>
                 <span class="menu-title">Kategori</span>
             </a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a href="{{ route('ap.items.index') }}" class="nav-link {{ (strpos(Route::currentRouteName(), 'items') == 0) ? '' : 'active' }}">
                 <i class="menu-icon fab fa-product-hunt"></i>
                 <span class="menu-title">Alat Pancing</span>
             </a>

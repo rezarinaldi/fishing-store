@@ -6,4 +6,7 @@
 <link rel="stylesheet" href="{{ asset('ap/vendors/ti-icons/css/themify-icons.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('ap/js/select.dataTables.min.css') }}">
 <link rel="stylesheet" href="{{ asset('ap/css/vertical-layout-light/style.css') }}">
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
 <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" />
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
