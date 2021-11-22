@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Ap;
 
 use App\Category;
+use App\Http\Controllers\Controller;
 use App\Item;
 use App\Picture;
 use Illuminate\Http\Request;
@@ -22,6 +23,7 @@ class ItemController extends Controller
         })
             ->orderby("created_at", "desc")
             ->paginate(10);
+
         return view('pages\Ap.items.index', compact('items'));
     }
 
@@ -83,10 +85,9 @@ class ItemController extends Controller
                     'item_id' => $item->id,
                     'value' => $nmFile
                 ]);
-
-                return redirect()->route('ap.items.index')->with('success', 'Sukses menambahkan produk.');
             }
         }
+        return redirect()->route('ap.items.index')->with('success', 'Sukses menambahkan produk.');
     }
 
     /**
@@ -157,7 +158,14 @@ class ItemController extends Controller
 
             $images = $request->images;
             if ($request->has('images[]') == "") {
-                # not do anything
+                // foreach ($images as $image) {
+                //     $nmFile = $image->getClientOriginalName();
+                //     $value = $image->move(public_path('/images/items/'), $nmFile);
+                //     Picture::create([
+                //         'item_id' => $item->id,
+                //         'value' => $nmFile
+                //     ]);
+                // }
             } else {
                 foreach ($images as $image) {
                     $nmFile = $image->getClientOriginalName();
@@ -166,8 +174,6 @@ class ItemController extends Controller
                         'item_id' => $item->id,
                         'value' => $nmFile
                     ]);
-    
-                    return redirect()->route('ap.items.index')->with('success', 'Sukses menambahkan produk.');
                 }
             }
             return redirect()->route('ap.items.edit', $item)->with('success', 'Sukses merubah produk !');
