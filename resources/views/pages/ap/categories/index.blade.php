@@ -91,11 +91,11 @@ Admin | Kategori DK Pancing
                                             <td>{{ $c->slug }} </td>
                                             <td>
                                                 <div class="d-flex centered">
-                                                    <a href="{{ route('ap.categories.edit', $c->id) }}" class="btn btn-warning mr-2" type="button">
+                                                    <a href="{{ route('ap.categories.edit', $c->id) }}" class="btn btn-outline-warning mr-2" type="button" style="color: #404040;" onmouseover="this.style.color='white'" onMouseOut="this.style.color='#404040'">
                                                         <i class="fas fa-pencil-alt"></i> Edit
                                                     </a>
 
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_categories_{{ $c->id }}">
+                                                    <button type="button" class="btn btn-outline-danger" style="color: #404040;" onmouseover="this.style.color='white'" onMouseOut="this.style.color='#404040'" data-toggle="modal" data-target="#delete_categories_{{ $c->id }}">
                                                         <i class="fas fa-trash"></i> Hapus
                                                     </button>
 
