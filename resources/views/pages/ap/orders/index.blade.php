@@ -46,9 +46,9 @@ Admin | Pesanan DK Pancing
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <p class="card-description">
-                            <a href="{{ route('ap.orders.create') }}"><button type="button" class="btn btn-outline-primary"><i class="fas fa-plus"></i> Tambah Data Baru</button></a>
-                        </p>
+                        <!-- <p class="card-description">
+                            <a href="{{-- route('ap.orders.create') --}}"><button type="button" class="btn btn-outline-primary"><i class="fas fa-plus"></i> Tambah Data Baru</button></a>
+                        </p> -->
                         <div class="card-tools">
                             <div class="mx-auto pull-right">
                                 <div class="">
