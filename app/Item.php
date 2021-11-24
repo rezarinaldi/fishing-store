@@ -19,4 +19,9 @@ class Item extends Model
     {
         return $this->hasMany(Picture::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
