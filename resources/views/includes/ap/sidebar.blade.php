@@ -19,7 +19,7 @@
             </a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link {{ (strpos(Route::currentRouteName(), 'orders') == 0) ? '' : 'active' }}" href="{{ route('ap.orders.index') }}">
                 <i class="menu-icon fas fa-shopping-basket"></i>
                 <span class="menu-title"> Pesanan</span>
             </a>
