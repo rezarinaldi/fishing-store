@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ap\DashboardController;
 use App\Http\Controllers\Ap\UploadImageController;
-use App\Http\Controllers\Ap\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +35,7 @@ Route::group(
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('categories', 'Ap\CategoryController');
         Route::resource('items', 'Ap\ItemController');
+        Route::resource('orders', 'Ap\OrderController');
         Route::post('imgupload', [UploadImageController::class, 'imgupload'])->name('image.upload');
         Route::delete('delete-image', [App\Http\Controllers\Ap\DeleteImageController::class, 'deleteImg'])->name('delete-image');
     }
