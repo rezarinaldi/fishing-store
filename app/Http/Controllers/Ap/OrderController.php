@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Ap;
 
+use App\Http\Controllers\Controller;
+use App\Item;
 use App\Order;
+use App\User;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -12,9 +15,15 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $item = Item::all();
+        $orders = Order::when($request->keyword != NULL, function ($query) use($request){
+            $query->where('date', 'like', '%' . $request->keyword . '%');
+        })->orderBy('created_at', 'desc')
+        ->paginate(10);
+
+        return view('pages\Ap.orders.index', compact('item', 'orders'));
     }
 
     /**
@@ -24,7 +33,8 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $item = Item::all();
+        return view('pages\Ap.orders.create', compact('item'));
     }
 
     /**
@@ -35,7 +45,26 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'date' => 'required',
+            'quantity' => 'required'
+        ],[
+            'date.required' => 'Tanggal harus diisi!',
+            'quantity.required' => 'Banyak pembelian produk harus diisi!'
+        ]);
+
+        Order::create([
+            'user_id' => $request->user_id,
+            'product_id' => $request->product_id,
+            'date' => $request->date,
+            'quantity' => $request->quantity,
+            'total_price' => $request->total_price,
+            'payment_method' => $request->payment_method,
+            'payment_status' => $request->payment_status,
+            'status' => $request->status
+        ]);
+
+        return redirect()->route('ap.orders.index')->with('success', 'Sukses menambahkan order');
     }
 
     /**
@@ -46,7 +75,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $item = Item::all();
+        return view('pages\Ap.orders.show', compact('item','order'));
     }
 
     /**
@@ -57,7 +87,11 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        $item = Item::all();
+        $user = User::all();
+        $payment = $order->payment_method;
+        $status = $order->status;
+        return view('pages\Ap.orders.edit', compact('item', 'order', 'user', 'payment', 'status'));
     }
 
     /**
@@ -69,7 +103,26 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $request->validate([
+            'date' => 'required',
+            'quantity' => 'required'
+        ],[
+            'date.required' => 'Tanggal harus diisi!',
+            'quantity.required' => 'Banyak pembelian produk harus diisi!'
+        ]);
+
+        $order->update([
+            'user_id' => $request->user_id,
+            'product_id' => $request->product_id,
+            'date' => $request->date,
+            'quantity' => $request->quantity,
+            'total_price' => $request->total_price,
+            'payment_method' => $request->payment_method,
+            'payment_status' => $request->payment_status,
+            'status' => $request->status
+        ]);
+
+        return redirect()->route('ap.orders.edit')->with('success', 'Sukses Mengubah order');
     }
 
     /**
@@ -80,6 +133,8 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+
+        return view('pages\Ap.orders.index')->with('success', 'Sukses menghapus pesanan!');
     }
 }
