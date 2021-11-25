@@ -33,11 +33,6 @@ Admin | Pesanan DK Pancing
                             <h3 class="card-title text-white">
                                 Pesanan:
                                 {{ $order->user['name'] }} |
-                                @if($order->payment_status == 'unpaid')
-                                <span class="badge badge-outline-danger p-3">Belum Bayar</span>
-                                @elseif($order->payment_status == 'paid')
-                                <span class="badge badge-outline-success p-3">SUdah Bayar</span>
-                                @endif |
                                 @if($order->status == 'new')
                                 <span class="badge badge-outline-light badge-pill p-3">New</span>
                                 @elseif($order->status == 'process')
@@ -46,6 +41,11 @@ Admin | Pesanan DK Pancing
                                 <span class="badge badge-outline-success badge-pill p-3">Mengirim</span>
                                 @elseif($order->status == 'cancel')
                                 <span class="badge badge-outline-danger badge-pill p-3">Batal</span>
+                                @endif |
+                                @if($order->payment_status == 'unpaid')
+                                <span class="badge badge-outline-danger p-3">Belum Bayar</span>
+                                @elseif($order->payment_status == 'paid')
+                                <span class="badge badge-outline-success p-3">SUdah Bayar</span>
                                 @endif
                             </h3>
                         </div>
