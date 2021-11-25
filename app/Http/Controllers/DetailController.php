@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
 use Illuminate\Http\Request;
 
 class DetailController extends Controller
 {
 
-    public function index(Request $request)
+    public function index($slug)
     {
-        return view('pages.detail');
+        
+        $item= Item::where('slug', $slug)->first();
+        return view('pages.detail', compact('item'),  [
+            'items' => Item::orderBy('created_at', 'DESC')
+                ->take(3)
+                ->get()
+        ]);
     }
 }
