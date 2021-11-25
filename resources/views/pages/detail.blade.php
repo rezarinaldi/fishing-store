@@ -29,20 +29,19 @@ Detail Products | DK Pancing
         <div class="container">
             <div class="row">
                 <div class="col-lg-8" data-aos="zoom-in">
-                    <transition name="slide-fade" mode="out-in">
-                        <img :src="photos[activePhoto].url" :key="photos[activePhoto].id" class="w-100 main-image"
-                            alt="" />
+                    <transition name="slide-fade fade show active" mode="out-in">
+                        <img src="{{ asset('images/items/'.$item->pictures[0]->value) }}" class="w-100 main-image" alt=""/>
                     </transition>
                 </div>
                 <div class="col-lg-2">
                     <div class="row">
-                        <div class="col-3 col-lg-12 mt-2 mt-lg-0" v-for="(photo, index) in photos" :key="photo.id"
-                            data-aos="zoom-in" data-aos-delay="100">
-                            <a href="#" @click="changeActive(index)">
-                                <img :src="photo.url" class="w-100 thumbnail-image"
-                                    :class="{ active: index == activePhoto }" alt="" />
+                        @foreach($item->pictures as $picture)
+                        <div class="col-3 col-lg-12 mt-2 mt-lg-0 tab-pane fade {{ $loop->first ? 'active' : '' }}" data-aos="zoom-in" data-aos-delay="100">
+                            <a href="#">
+                                <img src="{{ asset('images/items/'.$picture->value) }}" class="w-100 thumbnail-image" :class="{ active: index == activePhoto }" alt="" />
                             </a>
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -54,18 +53,27 @@ Detail Products | DK Pancing
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <h1>Yellow Fish Lure</h1>
-                        <div class="price">Rp22.500</div>
+                        <h1>{{ $item->nm_items }}</h1>
+                        <div class="price">
+                            @php $total = 0 @endphp
+                            @if($item->discount > 0)
+                            @php $total += $item['price'] - $item['discount'] @endphp
+                            <s>@currency($item->price)</s>
+                            @else($item->discount = 0)
+                            @php $total += $item['price'] @endphp
+                            @endif
+                            <p><b>@currency($total)</p></b>
+                        </div>
                     </div>
                     <div class="col-lg-2" data-aos="zoom-in">
                         @auth
                         {{-- <form action="{{ route('detail-add', $product->id) }}" method="POST"
-                            enctype="multipart/form-data"> --}}
-                            @csrf
-                            <button type="submit" class="btn btn-success px-4 text-white btn-block mb-3">
-                                <i class="fas fa-shopping-cart"></i> Add Cart
-                            </button>
-                            {{--
+                        enctype="multipart/form-data"> --}}
+                        @csrf
+                        <button type="submit" class="btn btn-success px-4 text-white btn-block mb-3">
+                            <i class="fas fa-shopping-cart"></i> Add Cart
+                        </button>
+                        {{--
                         </form> --}}
                         @else
                         <a href="{{ route('login') }}" class="btn btn-success px-4 text-white btn-block mb-3">
@@ -80,9 +88,7 @@ Detail Products | DK Pancing
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-8">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis, accusantium ratione magnam ut
-                        modi distinctio id nobis error alias atque doloremque,
-                        est non mollitia dolores pariatur voluptatem dolor beatae eligendi?
+                        {!! html_entity_decode($item->description) !!}
                     </div>
                 </div>
             </div>
@@ -136,36 +142,35 @@ Detail Products | DK Pancing
 <script src="/vendor/vue/vue.js"></script>
 <script>
     var gallery = new Vue({
-          el: "#gallery",
-          mounted() {
+        el: "#gallery",
+        mounted() {
             AOS.init();
-          },
-          data: {
+        },
+        data: {
             activePhoto: 3,
-            photos: [
-              {
-                id: 1,
-                url: "/images/detail-lure1.jpg",
-              },
-              {
-                id: 2,
-                url: "/images/detail-lure2.jpg",
-              },
-              {
-                id: 3,
-                url: "/images/detail-lure3.jpg",
-              },
-              {
-                id: 4,
-                url: "/images/detail-lure4.jpg",
-              },
+            photos: [{
+                    id: 1,
+                    url: "/images/detail-lure1.jpg",
+                },
+                {
+                    id: 2,
+                    url: "/images/detail-lure2.jpg",
+                },
+                {
+                    id: 3,
+                    url: "/images/detail-lure3.jpg",
+                },
+                {
+                    id: 4,
+                    url: "/images/detail-lure4.jpg",
+                },
             ],
-          },
-          methods: {
+        },
+        methods: {
             changeActive(id) {
-              this.activePhoto = id;
+                this.activePhoto = id;
             },
-          },
-        });
+        },
+    });
 </script>
 @endpush
