@@ -25,7 +25,7 @@
             </a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link {{ (strpos(Route::currentRouteName(), 'contacts') == 0) ? '' : 'active' }}" href="{{ route('ap.contacts.index') }}">
                 <i class="menu-icon fas fa-inbox"></i>
                 <span class="menu-title">Kotak Pesan</span>
             </a>
@@ -41,7 +41,7 @@
             </a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link {{ (strpos(Route::currentRouteName(), 'change-password') == 0) ? '' : 'active' }}" href="{{ route('ap.change-password.index') }}">
                 <i class="menu-icon fas fa-user-cog"></i>
                 <span class="menu-title"> Reset Password</span>
             </a>
