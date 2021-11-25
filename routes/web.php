@@ -17,9 +17,7 @@ use App\Http\Controllers\Ap\UploadImageController;
 
 Route::get('/', 'HomeController@index')->name('home');
 
-
-
-Route::get('/details', 'DetailController@index')->name('detail');
+Route::get('/detail/{slug}', 'DetailController@index')->name('detail');
 
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
 
@@ -36,6 +34,8 @@ Route::group(
         Route::resource('categories', 'Ap\CategoryController');
         Route::resource('items', 'Ap\ItemController');
         Route::resource('orders', 'Ap\OrderController');
+        Route::resource('contacts', 'Ap\ContactController');
+        Route::resource('change-password', 'Ap\ResetPasswordController');
         Route::post('imgupload', [UploadImageController::class, 'imgupload'])->name('image.upload');
         Route::delete('delete-image', [App\Http\Controllers\Ap\DeleteImageController::class, 'deleteImg'])->name('delete-image');
     }
