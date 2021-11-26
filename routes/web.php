@@ -36,6 +36,7 @@ Route::group(
         Route::resource('orders', 'Ap\OrderController');
         Route::resource('contacts', 'Ap\ContactController');
         Route::resource('change-password', 'Ap\ResetPasswordController');
+        Route::resource('settings', 'Ap\SettingController');
         Route::post('imgupload', [UploadImageController::class, 'imgupload'])->name('image.upload');
         Route::delete('delete-image', [App\Http\Controllers\Ap\DeleteImageController::class, 'deleteImg'])->name('delete-image');
     }
