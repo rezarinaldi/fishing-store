@@ -25,7 +25,7 @@ Detail Products | DK Pancing
         </div>
     </section>
 
-    <section class="store-gallery mb-3" id="gallery">
+    <section class="store-gallery mb-3" id="picture">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8" data-aos="zoom-in">
@@ -141,29 +141,20 @@ Detail Products | DK Pancing
 @push('addon-script')
 <script src="/vendor/vue/vue.js"></script>
 <script>
-    var gallery = new Vue({
-        el: "#gallery",
+    var picture = new Vue({
+        el: "#picture",
         mounted() {
             AOS.init();
         },
         data: {
             activePhoto: 3,
-            photos: [{
-                    id: 1,
-                    url: "/images/detail-lure1.jpg",
-                },
-                {
-                    id: 2,
-                    url: "/images/detail-lure2.jpg",
-                },
-                {
-                    id: 3,
-                    url: "/images/detail-lure3.jpg",
-                },
-                {
-                    id: 4,
-                    url: "/images/detail-lure4.jpg",
-                },
+            photos: [
+                @foreach ($item->pictures as $picture)
+            {
+              id: {{ $picture->id }},
+              url: "{{ asset('images/items/'.$picture->value) }}",
+            },
+            @endforeach
             ],
         },
         methods: {

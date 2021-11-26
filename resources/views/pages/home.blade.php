@@ -81,39 +81,9 @@ Home | DK Pancing
             </div>
         </div>
         <div class="row">
-            <!-- <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
-                <a class="component-categories d-block" href="#">
-                    <div class="categories-image">
-                        <img src="/images/favicon.png" alt="Jaron Categories" class="w-100" />
-                    </div>
-                    <p class="categories-text">
-                        Jaron
-                    </p>
-                </a>
-            </div>
-            <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="200">
-                <a class="component-categories d-block" href="#">
-                    <div class="categories-image">
-                        <img src="/images/favicon.png" alt="Reel Categories" class="w-100" />
-                    </div>
-                    <p class="categories-text">
-                        Reel
-                    </p>
-                </a>
-            </div>
-            <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="300">
-                <a class="component-categories d-block" href="#">
-                    <div class="categories-image">
-                        <img src="/images/favicon.png" alt="Lure Categories" class="w-100" />
-                    </div>
-                    <p class="categories-text">
-                        Lure
-                    </p>
-                </a>
-            </div> -->
-
-            @foreach ($categories as $category)
-            <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up">
+            @php $incrementCategory = 0 @endphp
+            @forelse ($categories as $category)
+            <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="{{ $incrementCategory+= 100 }}">
                 <a href="{{-- route('categories-detail', $category->slug) --}}" class="component-categories d-block">
                     <div class="categories-image">
                         <img src="{{  asset('images/favicon.png') }}" alt="" class="w-100" />
@@ -123,7 +93,15 @@ Home | DK Pancing
                     </p>
                 </a>
             </div>
-            @endforeach
+            @empty
+            <div
+                class="col-12 text-center py-5"
+                data-aos="fade-up"
+                data-aos-delay="100"
+                >
+                    No Categories Found
+            </div>
+            @endforelse
         </div>
     </div>
 </section>
@@ -136,52 +114,8 @@ Home | DK Pancing
             </div>
         </div>
         <div class="row">
-            <!-- <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                <a class="component-products d-block" href="{{-- route('detail') --}}">
-                    <div class="products-thumbnail">
-                        <div class="products-image" style="
-                      background-image: url('/images/product-joran1.jpg');
-                    "></div>
-                    </div>
-                    <div class="products-text">
-                        Joran Pancing Black
-                    </div>
-                    <div class="products-price">
-                        Rp149.300
-                    </div>
-                </a>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                <a class="component-products d-block" href="{{-- route('detail') --}}">
-                    <div class="products-thumbnail">
-                        <div class="products-image" style="
-                      background-image: url('/images/product-lure1.jpg');
-                    "></div>
-                    </div>
-                    <div class="products-text">
-                        Lure Minow Lure Trible
-                    </div>
-                    <div class="products-price">
-                        Rp22.500
-                    </div>
-                </a>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                <a class="component-products d-block" href="{{-- route('detail') --}}">
-                    <div class="products-thumbnail">
-                        <div class="products-image" style="
-                      background-image: url('/images/product-reel1.jpg');
-                    "></div>
-                    </div>
-                    <div class="products-text">
-                        Yumoshi 3000 Series Reel
-                    </div>
-                    <div class="products-price">
-                        Rp50.300
-                    </div>
-                </a>
-            </div> -->
-            @foreach ($items as $product)
+            @php $incrementProduct = 0 @endphp
+            @forelse ($items as $product)
             <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="{{--  $incrementProduct += 100 --}}">
                 <a href="/detail/{{ $product->slug }}" class="component-products d-block">
                     <div class="products-thumbnail">
@@ -208,7 +142,15 @@ Home | DK Pancing
                     </div>
                 </a>
             </div>
-            @endforeach
+            @empty
+            <div
+                class="col-12 text-center py-5"
+                data-aos="fade-up"
+                data-aos-delay="100"
+                >
+                    No Products Found
+                </div>
+            @endforelse
         </div>
     </div>
 </section>

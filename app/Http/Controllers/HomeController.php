@@ -16,42 +16,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view(
-            'pages.home',
-            [
-                'items' => Item::orderBy('created_at', 'DESC')
-                    ->take(5)
-                    ->get(),
-                'categories' => Category::get()
-            ]
-        );
-    }
+        $categories = Category::take(6)->get();
+        $items = Item::with('pictures')->take(8)->get();
 
-    public function item()
-    {
-        return view(
-            'pages.product',
-            [
-                'items' => Item::orderBy('created_at', 'DESC')
-                    ->get()
-            ]
-        );
-    }
-
-    public function detailItem($slug)
-    {
-        $item= Item::where('slug', $slug)->first();
-        return view('pages.detail_product', compact('item'),  [
-            'items' => Item::orderBy('created_at', 'DESC')
-                ->take(3)
-                ->get()
+        return view('pages.home',[
+            'categories' => $categories,
+            'items' => $items
         ]);
-    }
-    
-    public function contactus()
-    {
-        return view(
-            'pages.contact'
-        );
     }
 }
