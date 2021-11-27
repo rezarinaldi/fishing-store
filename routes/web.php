@@ -17,6 +17,9 @@ use App\Http\Controllers\Ap\UploadImageController;
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('/categories', 'CategoryController@index')->name('categories');
+Route::get('/categories/{id}', 'CategoryController@detail')->name('categories-detail');
+
 Route::get('/detail/{slug}', 'DetailController@index')->name('detail');
 
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
