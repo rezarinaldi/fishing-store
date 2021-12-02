@@ -12,7 +12,8 @@ Home | DK Pancing
                 <div class="col-xxl-8 px-4 py-5" data-aos="zoom-in">
                     <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                         <div class="col-10 col-sm-8 col-lg-6">
-                            <img src="/images/banner.jpg" class="d-block mx-lg-auto img-fluid rounded" alt="banner" width="700" height="500" loading="lazy">
+                            <img src="/images/banner.jpg" class="d-block mx-lg-auto img-fluid rounded" alt="banner"
+                                width="700" height="500" loading="lazy">
                         </div>
                         <div class="col-lg-6">
                             <h1 class="display-5 font-weight-bold lh-1 mb-3">Toko alat pancing terlengkap, semua yang
@@ -21,7 +22,8 @@ Home | DK Pancing
                             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec sagittis
                                 dolor. Maecenas quam nunc, tincidunt quis facilisis ut, faucibus eget lacus</p>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                                <button type="button" class="btn btn-success nav-link px-4 text-white"><i class="fas fa-shopping-cart"></i> Buy Now</button>
+                                <a href="#buy-now" class="btn btn-success nav-link px-4 text-white"><i
+                                        class="fas fa-shopping-cart"></i> Buy Now</a>
                             </div>
                         </div>
                     </div>
@@ -85,28 +87,21 @@ Home | DK Pancing
             @forelse ($categories as $category)
             <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="{{ $incrementCategory+= 100 }}">
                 <a href="{{-- route('categories-detail', $category->slug) --}}" class="component-categories d-block">
-                    <div class="categories-image">
-                        <img src="{{  asset('images/favicon.png') }}" alt="" class="w-100" />
-                    </div>
                     <p class="categories-text">
                         {{ $category->nm_category }}
                     </p>
                 </a>
             </div>
             @empty
-            <div
-                class="col-12 text-center py-5"
-                data-aos="fade-up"
-                data-aos-delay="100"
-                >
-                    No Categories Found
+            <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
+                No Categories Found
             </div>
             @endforelse
         </div>
     </div>
 </section>
 
-<section class="store-new-products">
+<section class="store-new-products" id="buy-now">
     <div class="container">
         <div class="row">
             <div class="col-12" data-aos="fade-up">
@@ -116,7 +111,8 @@ Home | DK Pancing
         <div class="row">
             @php $incrementProduct = 0 @endphp
             @forelse ($items as $product)
-            <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="{{--  $incrementProduct += 100 --}}">
+            <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up"
+                data-aos-delay="{{--  $incrementProduct += 100 --}}">
                 <a href="/detail/{{ $product->slug }}" class="component-products d-block">
                     <div class="products-thumbnail">
                         <div class="products-image" style="
@@ -143,13 +139,9 @@ Home | DK Pancing
                 </a>
             </div>
             @empty
-            <div
-                class="col-12 text-center py-5"
-                data-aos="fade-up"
-                data-aos-delay="100"
-                >
-                    No Products Found
-                </div>
+            <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
+                No Products Found
+            </div>
             @endforelse
         </div>
     </div>

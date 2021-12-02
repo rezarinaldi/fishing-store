@@ -10,7 +10,7 @@ class CartController extends Controller
 {
     public function index()
     {
-        return view('cart', [
+        return view('pages.cart', [
             'item' => Item::get()
         ]);
     }
@@ -21,7 +21,7 @@ class CartController extends Controller
         $disc = $item->discount;
 
         $cart = session()->get('cart', []);
-        
+
         if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
         } else {
@@ -63,8 +63,8 @@ class CartController extends Controller
     {
         $data = [];
         $cart = session()->get('cart');
-        
-        foreach($cart as $detail) {
+
+        foreach ($cart as $detail) {
             // dd($c);
             // $data['details'] = [
             //     [
@@ -79,8 +79,7 @@ class CartController extends Controller
                 'date' => $request->date,
                 'quantity' => $request->quantity,
                 'total_price' => $request->total_price,
-                'payment_method' => $request->payment_method,
-                'payment_status' => $request->payment_status,
+                'shipping_method' => $request->payment_method,
                 'status' => $request->status
             ]);
         }
