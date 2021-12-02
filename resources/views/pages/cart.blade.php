@@ -35,6 +35,7 @@ Cart | DK Pancing
                             <tr>
                                 <td>Image</td>
                                 <td>Product Name</td>
+                                <td>Qty</td>
                                 <td>Price</td>
                                 <td>Menu</td>
                             </tr>
@@ -43,15 +44,30 @@ Cart | DK Pancing
                             {{-- @php $totalPrice = 0 @endphp
                             @forelse ($carts as $cart) --}}
                             <tr>
-                                <td style="width: 20%;">
+                                <td style="width: 25%;">
                                     {{-- @if($cart->product->galleries) --}}
                                     <img src="/images/detail-lure4.jpg" alt="" class="cart-image" />
                                     {{-- @endif --}}
                                 </td>
-                                <td style="width: 35%;">
+                                <td style="width: 25%;">
                                     <div class="product-title">Yellow Fish Lure</div>
                                 </td>
-                                <td style="width: 35%;">
+                                <td style="width: 25%;">
+                                    <div class="col">
+                                        <div class="input-group input-spinner">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-light" type="button" id="button-plus"> <i
+                                                        class="fa fa-minus"></i> </button>
+                                            </div>
+                                            <input type="text" class="form-control" value="1">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-light" type="button" id="button-minus"> <i
+                                                        class="fa fa-plus"></i> </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="width: 25%;">
                                     <div class="product-title">Rp110.000</div>
                                 </td>
                                 <td style="width: 20%;">

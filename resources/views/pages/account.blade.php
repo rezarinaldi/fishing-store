@@ -32,7 +32,7 @@ Account Settings | DK Pancing
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="email">Your Email</label>
+                                            <label for="email">Your E-mail</label>
                                             <input type="email" class="form-control" id="email" name="email"
                                                 value="{{ $user->email }}" />
                                         </div>
