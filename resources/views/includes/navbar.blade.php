@@ -15,10 +15,10 @@
                     <a href="{{ route('categories') }}" class="nav-link">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">About</a>
+                    <a href="{{ route('about') }}" class="nav-link">About</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="{{ route('contact') }}" class="nav-link">Contact</a>
                 </li>
                 @guest
                 <li class="nav-item">
@@ -44,7 +44,7 @@
                         <a href="{{ url('ap\dashboard') }}" class="dropdown-item"><i class="fas fa-user-cog"></i> Admin
                             Panel</a>
                         @endif
-                        <a href="#" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="{{ route('account') }}" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -56,7 +56,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link d-inline-block mt-2">
+                    <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
                         {{-- @php
                         $carts = \App\Cart::where('users_id', Auth::user()->id)->count();
                         @endphp --}}
@@ -73,12 +73,12 @@
 
             <ul class="navbar-nav d-block d-lg-none">
                 <li class="nav-item">
-                    <a href="{{ route('home') }}" class="nav-link">
+                    <a href="{{ route('account') }}" class="nav-link">
                         Hi, {{ Auth::user()->name }}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link d-inline-block">
+                    <a href="{{ route('cart') }}" class="nav-link d-inline-block">
                         Cart
                     </a>
                 </li>

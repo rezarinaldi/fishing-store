@@ -18,13 +18,36 @@ use App\Http\Controllers\Ap\UploadImageController;
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/categories', 'CategoryController@index')->name('categories');
-Route::get('/categories/{id}', 'CategoryController@detail')->name('categories-detail');
+Route::get('/categories/{slug}/{id}', 'CategoryController@detail')->name('categories-detail');
 
 Route::get('/detail/{slug}', 'DetailController@index')->name('detail');
 
+Route::get('/about', 'AboutController@index')->name('about');
+
+Route::get('/contact', 'ContactController@index')->name('contact');
+
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
 
-Auth::routes();
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/cart', 'CartController@index')->name('cart');
+    // Route::delete('/cart/{id}', 'CartController@delete')->name('cart-delete');
+
+    // Route::post('/checkout', 'CheckoutController@process')->name('checkout');
+
+    Route::get('/setting/transactions', 'TransactionController@index')
+        ->name('transaction');
+    Route::get('/setting/transaction-details', 'TransactionController@details') // mek gae nampilne
+        ->name('transaction-detail');
+    // Route::get('/setting/transactions/{id}', 'TransactionController@details')
+    //     ->name('transaction-detail');
+    // Route::post('/setting/transactions/{id}', 'TransactionController@update')
+    //     ->name('transaction-update');
+
+    Route::get('/setting/account', 'AccountController@index')
+        ->name('account');
+    Route::post('/setting/update/{redirect}', 'AccountController@update')
+        ->name('settings-redirect');
+});
 
 Route::group(
     [
@@ -44,3 +67,5 @@ Route::group(
         Route::delete('delete-image', [App\Http\Controllers\Ap\DeleteImageController::class, 'deleteImg'])->name('delete-image');
     }
 );
+
+Auth::routes();
