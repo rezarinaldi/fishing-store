@@ -40,11 +40,7 @@
     <ul class="nav">
         <hr>
         <li class="nav-item">
-<<<<<<< HEAD
         <a class="nav-link {{ (strpos(Route::currentRouteName(), 'settings') == 0) ? '' : 'active' }}" href="{{ route('ap.settings.index') }}">
-=======
-            <a class="nav-link" href="#">
->>>>>>> 515c4670522bfdac49917156d9f559168f1e0a97
                 <i class="menu-icon  fas fa-cog"></i>
                 <span class="menu-title"> Pengaturan</span>
             </a>
