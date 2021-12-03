@@ -35,7 +35,7 @@
     <ul class="nav">
         <hr>
         <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link {{ (strpos(Route::currentRouteName(), 'settings') == 0) ? '' : 'active' }}" href="{{ route('ap.settings.index') }}">
                 <i class="menu-icon  fas fa-cog"></i>
                 <span class="menu-title"> Setting</span>
             </a>
