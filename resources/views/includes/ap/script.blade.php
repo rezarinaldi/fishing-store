@@ -15,3 +15,5 @@
 <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('ap/js/select2.js') }}"></script>
+<script src="{{asset('ap/vendors/select2/select2.min.js')}}"></script>
