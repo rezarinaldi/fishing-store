@@ -101,7 +101,7 @@ Cart | DK Pancing
                 </div>
             </div>
             <form action="#" method="POST" enctype="multipart/form-data">
-                {{-- <form action="{{ route('checkout') }}" method="POST" enctype="multipart/form-data"> --}}
+                {{-- <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data"> --}}
                     @csrf
                     <input type="hidden" name="total_price">
                     {{-- <input type="hidden" name="total_price" value="{{ $totalPrice }}"> --}}
