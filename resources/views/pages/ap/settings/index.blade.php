@@ -45,31 +45,31 @@ Admin | Setting DK Pancing
                                         <tr>
                                             <th> Nama Website</th>
                                             <td>
-                                                <input type="text" class="form-control" id="name" name="setting[name]" value="{{ $setting['name'] }}">
+                                                <input type="text" class="form-control" id="name" name="setting[name]" value="{{ config('settings.name') }}">
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Deskripsi</th>
                                             <td>
-                                                <textarea class="form-control" id="description" name="setting[description]" value="{{ $setting['description'] }}"> {{ $setting['description'] }} </textarea>
+                                                <textarea class="form-control" id="description" name="setting[description]" value="{{ config('settings.description') }}"> {{ $setting['description'] }} </textarea>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Alamat</th>
                                             <td>
-                                                <textarea class="form-control" id="address" name="setting[address]" value="{{ $setting['address'] }}"> {{ $setting['address'] }} </textarea>
+                                                <textarea class="form-control" id="address" name="setting[address]" value="{{ config('settings.address') }}"> {{ $setting['address'] }} </textarea>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Telephone</th>
                                             <td>
-                                                <input type="number" class="form-control" id="telphone" name="setting[telphone]" value="{{ $setting['telphone'] }}">
+                                                <input type="number" class="form-control" id="telphone" name="setting[telphone]" value="{{ config('settings.telphone') }}">
                                             </td>
                                         </tr>
                                         <tr>
                                             <th> E-mail</th>
                                             <td>
-                                                <input type="email" class="form-control" id="email" name="setting[email]" value="{{ $setting['email'] }}">
+                                                <input type="email" class="form-control" id="email" name="setting[email]" value="{{ config('settings.email') }}">
                                             </td>
                                         </tr>
                                         <tr>

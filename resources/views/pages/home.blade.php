@@ -19,8 +19,7 @@ Home | DK Pancing
                             <h1 class="display-5 font-weight-bold lh-1 mb-3">Toko alat pancing terlengkap, semua yang
                                 anda
                                 butuhkan ada disini</h1>
-                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec sagittis
-                                dolor. Maecenas quam nunc, tincidunt quis facilisis ut, faucibus eget lacus</p>
+                            <p class="lead">{{ config('settings.description') }}</p>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                                 <a href="#buy-now" class="btn btn-success nav-link px-4 text-white"><i
                                         class="fas fa-shopping-cart"></i> Buy Now</a>

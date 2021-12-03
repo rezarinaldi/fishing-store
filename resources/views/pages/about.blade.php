@@ -15,13 +15,13 @@ About | DK Pancing
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <p>DK Pancing adalah toko alat pancing yang ada di daerah Wendit *baca Mendit, alamat lengkapnya di
-                        Jl. Wendit Utara, RT.4/RW.8, Krajan, Mangliawan, Kec. Pakis, Malang, Jawa Timur 65154 atau bisa
+                    <p>{{ config('settings.name') }} adalah toko alat pancing yang ada di daerah Wendit *baca Mendit, alamat lengkapnya di
+                    {{ config('settings.address') }} atau bisa
                         klik <a href="https://goo.gl/maps/tcMxZBw6xAKah3eQ7">di sini</a> untuk detailnya.</p>
                     <p>Toko ini masih bergerak dan melayani secara offline, untuk operasional toko secara offline, buka
-                        pada jam 7 pagi - 9 malam. Nomor handphone yang ada di link google map, kami tidak mengetahui
+                        pada jam 7 pagi - 9 malam. Nomor handphone yang ada di link google map ( {{ config('settings.telphone') }} ), kami tidak mengetahui
                         apakah masih menggunakan nomor tersebut atau sudah ganti. Karena owner dari toko alat pancing
-                        tersebut sudah lama tidak mengupdate data-data di google map.</p>
+                        tersebut sudah lama tidak mengupdate data-data di google map. Tau bisa menghubungi di E-mamil ini : <b>{{ config('settings.email') }}</b></p>
                     <p>Developed by:</p>
                     <ol type='1'>
                         <a href="https://github.com/b-bella99">
