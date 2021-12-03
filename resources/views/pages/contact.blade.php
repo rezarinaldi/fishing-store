@@ -9,12 +9,13 @@ Contact | DK Pancing
     <section class="contact" id="contact">
         <div class="container">
             <div class="row">
-                <div class="col-12 my-3" data-aos="fade-up">
-                    <h3>Contact Us</h5>
+                <div class="col-6 my-3" data-aos="fade-up">
+                    <h3>Contact Us</h3>
+                    <p>Nice to meet you 😊. Have a question or just want to get in touch? Let's message.</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 contact-form">
+                <div class="col-md-6 contact-form" data-aos="zoom-in">
                     <form action="#" method="post">
                         <div class="form-group">
                             <label for="name">Your Name</label>
@@ -41,7 +42,8 @@ Contact | DK Pancing
                             @endif
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-success px-4">Sending</button>
+                            <button type="submit" class="btn btn-success px-4"><i class="fas fa-comment-dots"></i> Send
+                                Message</button>
                         </div>
                     </form>
                 </div>

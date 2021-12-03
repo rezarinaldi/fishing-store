@@ -13,11 +13,12 @@ About | DK Pancing
                     <h3>About Us</h5>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" data-aos="zoom-in">
                 <div class="col-md-12">
                     <p>{{ config('settings.name') }} adalah toko alat pancing yang berlokasi di Wendit *baca Mendit,
                         Kabupaten Malang. Alamat lengkapnya di <i>{{ config('settings.address') }}</i> atau bisa klik
-                        <b><a href="https://goo.gl/maps/tcMxZBw6xAKah3eQ7">di sini</a></b> untuk detailnya.</p>
+                        <b><a href="https://goo.gl/maps/tcMxZBw6xAKah3eQ7">di sini</a></b> untuk detailnya.
+                    </p>
                     <p>Toko ini masih bergerak dan melayani secara offline, untuk operasional toko secara offline, buka
                         pada jam 7 pagi - 9 malam. Nomor handphone yang ada di link google map (<b><a href="tel:+{{
                             config('settings.telephone') }}">{{ config('settings.telephone') }}</a></b>), kami tidak
