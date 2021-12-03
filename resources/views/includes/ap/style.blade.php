@@ -10,3 +10,7 @@
 <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
 <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" />
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="https://www.gstatic.com/charts/51/loader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<link rel="stylesheet" href="{{asset('ap/vendors/select2/select2.min.css')}}">
+<link rel="stylesheet" href="{{asset('ap/vendors/select2-bootstrap-theme/select2-bootstrap.min.css')}}">
