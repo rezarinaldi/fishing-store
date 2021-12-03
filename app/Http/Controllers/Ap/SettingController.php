@@ -41,14 +41,14 @@ class SettingController extends Controller
                     $file->move($destinationPath, $value);
                 }
             }
-            if ($key == 'icon') {
+            if ($key == 'favicon') {
                 // dd($request->file());
-                if ($request->hasFile('setting.icon')) {
+                if ($request->hasFile('setting.favicon')) {
                     $setting = Setting::where('key', $key)->firstOrFail();
                     if ($setting->value) {
                         unlink(public_path('images/setting/' . $setting->value));
                     }
-                    $file = $request->file('setting.icon');
+                    $file = $request->file('setting.favicon');
                     $destinationPath = public_path('/images/setting/');
                     $value = $file->getClientOriginalName();
                     $file->move($destinationPath, $value);
