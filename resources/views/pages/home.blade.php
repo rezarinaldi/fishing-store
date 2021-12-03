@@ -16,13 +16,12 @@ Home | DK Pancing
                                 width="700" height="500" loading="lazy">
                         </div>
                         <div class="col-lg-6">
-                            <h1 class="display-5 font-weight-bold lh-1 mb-3">Toko alat pancing terlengkap, semua yang
-                                anda
-                                butuhkan ada disini</h1>
+                            <h1 class="display-5 font-weight-bold mb-3">{{ config('settings.name') }}, toko alat
+                                pancing terlengkap, semua yang dibutuhkan ada disini</h1>
                             <p class="lead">{{ config('settings.description') }}</p>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                                 <a href="#buy-now" class="btn btn-success nav-link px-4 text-white"><i
-                                        class="fas fa-shopping-cart"></i> Buy Now</a>
+                                        class="fas fa-shopping-cart"></i> Beli Sekarang</a>
                             </div>
                         </div>
                     </div>

@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class SettingTableSeeder extends Seeder
+class SettingSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,36 +12,41 @@ class SettingTableSeeder extends Seeder
      */
     public function run()
     {
-        
         $data = array(
             array(
                 'key' => 'name',
-                'value' => ''
-
+                'value' => '',
+                'created_at' => date("Y-m-d H:i:s")
             ),
             array(
                 'key' => 'description',
-                'value' => ''
+                'value' => '',
+                'created_at' => date("Y-m-d H:i:s")
             ),
             array(
                 'key' => 'address',
-                'value' => ''
+                'value' => '',
+                'created_at' => date("Y-m-d H:i:s")
             ),
             array(
-                'key' => 'telphone',
-                'value' => ''
+                'key' => 'telephone',
+                'value' => '',
+                'created_at' => date("Y-m-d H:i:s")
             ),
             array(
                 'key' => 'email',
-                'value' => ''
+                'value' => '',
+                'created_at' => date("Y-m-d H:i:s")
             ),
             array(
                 'key' => 'logo',
-                'value' => ''
+                'value' => '',
+                'created_at' => date("Y-m-d H:i:s")
             ),
             array(
                 'key' => 'favicon',
-                'value' => ''
+                'value' => '',
+                'created_at' => date("Y-m-d H:i:s")
             )
         );
 

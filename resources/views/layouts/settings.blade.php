@@ -8,7 +8,7 @@
     <meta name="author" content="" />
 
     <title>@yield('title')</title>
-    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('images/'.config('settings.favicon')) }}" />
 
     @stack('prepend-style')
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
@@ -24,7 +24,7 @@
             <div class="border-right" id="sidebar-wrapper">
                 <div class="sidebar-heading text-center">
                     <a href="{{ route('home') }}">
-                        <img src="{{ asset('images/logo.png') }}" alt="" class="my-4" />
+                        <img src="{{ asset('images/'.config('settings.logo')) }}" alt="Logo" class="my-4" />
                     </a>
                 </div>
                 <div class="list-group list-group-flush">
