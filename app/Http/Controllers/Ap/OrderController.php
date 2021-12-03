@@ -89,9 +89,7 @@ class OrderController extends Controller
     {
         $item = Item::all();
         $user = User::all();
-        $payment = $order->payment_method;
-        $status = $order->status;
-        return view('pages\Ap.orders.edit', compact('item', 'order', 'user', 'payment', 'status'));
+        return view('pages\Ap.orders.edit', compact('item', 'order', 'user'));
     }
 
     /**
@@ -119,10 +117,11 @@ class OrderController extends Controller
             'total_price' => $request->total_price,
             'payment_method' => $request->payment_method,
             'payment_status' => $request->payment_status,
+            'transfers_slip' => $request->transfers_slip,
             'status' => $request->status
         ]);
 
-        return redirect()->route('ap.orders.edit')->with('success', 'Sukses Mengubah order');
+        return redirect()->route('ap.orders.edit', $order)->with('success', 'Sukses Mengubah Pesanan');
     }
 
     /**
