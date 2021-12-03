@@ -94,8 +94,8 @@ Admin | Pesanan DK Pancing
                                             <td>
                                                 @if($o->payment_status == 'unpaid')
                                                 <span class="badge badge-outline-danger p-3">Belum Bayar</span>
-                                                @elseif($o->status == 'paid')
-                                                <span class="badge badge-outline-success p-3">SUdah Bayar</span>
+                                                @else
+                                                <span class="badge badge-outline-success p-3">Sudah Bayar</span>
                                                 @endif
                                             </td>
                                             <td>
