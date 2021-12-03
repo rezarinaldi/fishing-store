@@ -1,35 +1,35 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
-        <li class="nav-item">
+        <li class="nav-item {{ (strpos(Route::currentRouteName(), 'dashboard') == 0) ? '' : 'active' }}">
             <a href="{{ route('ap.dashboard') }}"
-                class="nav-link {{ (strpos(Route::currentRouteName(), 'dashboard') == 0) ? '' : 'active' }}">
+                class="nav-link">
                 <i class="menu-icon fas fa-tachometer-alt"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item  {{ (strpos(Route::currentRouteName(), 'categories') == 0) ? '' : 'active' }}">
             <a href="{{ route('ap.categories.index') }}"
-                class="nav-link {{ (strpos(Route::currentRouteName(), 'categories') == 0) ? '' : 'active' }}">
+                class="nav-link">
                 <i class="menu-icon fas fa-book"></i>
                 <span class="menu-title">Kategori</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ (strpos(Route::currentRouteName(), 'items') == 0) ? '' : 'active' }} ">
             <a href="{{ route('ap.items.index') }}"
-                class="nav-link {{ (strpos(Route::currentRouteName(), 'items') == 0) ? '' : 'active' }}">
+                class="nav-link">
                 <i class="menu-icon fab fa-product-hunt"></i>
                 <span class="menu-title">Alat Pancing</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link {{ (strpos(Route::currentRouteName(), 'orders') == 0) ? '' : 'active' }}"
+        <li class="nav-item {{ (strpos(Route::currentRouteName(), 'orders') == 0) ? '' : 'active' }}">
+            <a class="nav-link"
                 href="{{ route('ap.orders.index') }}">
                 <i class="menu-icon fas fa-shopping-basket"></i>
                 <span class="menu-title"> Pesanan</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link {{ (strpos(Route::currentRouteName(), 'contacts') == 0) ? '' : 'active' }}"
+        <li class="nav-item {{ (strpos(Route::currentRouteName(), 'contacts') == 0) ? '' : 'active' }}">
+            <a class="nav-link "
                 href="{{ route('ap.contacts.index') }}">
                 <i class="menu-icon fas fa-inbox"></i>
                 <span class="menu-title">Kotak Pesan</span>
@@ -39,14 +39,14 @@
     <hr>
     <ul class="nav">
         <hr>
-        <li class="nav-item">
-        <a class="nav-link {{ (strpos(Route::currentRouteName(), 'settings') == 0) ? '' : 'active' }}" href="{{ route('ap.settings.index') }}">
+        <li class="nav-item {{ (strpos(Route::currentRouteName(), 'settings') == 0) ? '' : 'active' }}">
+        <a class="nav-link" href="{{ route('ap.settings.index') }}">
                 <i class="menu-icon  fas fa-cog"></i>
                 <span class="menu-title"> Pengaturan</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link {{ (strpos(Route::currentRouteName(), 'change-password') == 0) ? '' : 'active' }}"
+        <li class="nav-item {{ (strpos(Route::currentRouteName(), 'change-password') == 0) ? '' : 'active' }}">
+            <a class="nav-link"
                 href="{{ route('ap.change-password.index') }}">
                 <i class="menu-icon fas fa-user-cog"></i>
                 <span class="menu-title"> Reset Password</span>
