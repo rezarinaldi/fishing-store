@@ -30,15 +30,18 @@ Detail Products | DK Pancing
             <div class="row">
                 <div class="col-lg-8" data-aos="zoom-in">
                     <transition name="slide-fade fade show active" mode="out-in">
-                        <img src="{{ asset('images/items/'.$item->pictures[0]->value) }}" class="w-100 main-image" alt=""/>
+                        <img src="{{ asset('images/items/'.$item->pictures[0]->value) }}" class="w-100 main-image"
+                            alt="" />
                     </transition>
                 </div>
                 <div class="col-lg-2">
                     <div class="row">
                         @foreach($item->pictures as $picture)
-                        <div class="col-3 col-lg-12 mt-2 mt-lg-0 tab-pane fade {{ $loop->first ? 'active' : '' }}" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="col-3 col-lg-12 mt-2 mt-lg-0 tab-pane fade {{ $loop->first ? 'active' : '' }}"
+                            data-aos="zoom-in" data-aos-delay="100">
                             <a href="#">
-                                <img src="{{ asset('images/items/'.$picture->value) }}" class="w-100 thumbnail-image" :class="{ active: index == activePhoto }" alt="" />
+                                <img src="{{ asset('images/items/'.$picture->value) }}" class="w-100 thumbnail-image"
+                                    :class="{ active: index == activePhoto }" alt="" />
                             </a>
                         </div>
                         @endforeach
@@ -68,16 +71,16 @@ Detail Products | DK Pancing
                     <div class="col-lg-2" data-aos="zoom-in">
                         @auth
                         {{-- <form action="{{ route('detail-add', $product->id) }}" method="POST"
-                        enctype="multipart/form-data"> --}}
-                        @csrf
-                        <button type="submit" class="btn btn-success px-4 text-white btn-block mb-3">
-                            <i class="fas fa-shopping-cart"></i> Add Cart
-                        </button>
-                        {{--
+                            enctype="multipart/form-data"> --}}
+                            @csrf
+                            <button type="submit" class="btn btn-success px-4 text-white btn-block mb-3">
+                                <i class="fas fa-shopping-cart"></i> Add Cart
+                            </button>
+                            {{--
                         </form> --}}
                         @else
                         <a href="{{ route('login') }}" class="btn btn-success px-4 text-white btn-block mb-3">
-                            Sign in to Add
+                            Log In to Add
                         </a>
                         @endauth
                     </div>
@@ -97,12 +100,28 @@ Detail Products | DK Pancing
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-8 mt-3 mb-3">
-                        <h5>Customer Review (3)</h5>
+                        <h5>Customers Review (3)</h5>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <ul class="list-unstyled">
+                            @auth
+                            {{-- <form action="{{ route('detail-add', $product->id) }}" method="POST"
+                                enctype="multipart/form-data"> --}}
+                                <textarea class="form-control" name="comment" id="comment" rows="3"
+                                    placeholder="Bismillah"></textarea>
+                                @csrf
+                                <button type="submit" class="btn btn-success px-4 text-white my-3">
+                                    <i class="fas fa-comment"></i> Add Review
+                                </button>
+                                {{--
+                            </form> --}}
+                            @else
+                            <a href="{{ route('login') }}" class="btn btn-success px-4 text-white mb-3">
+                                Log In to Add
+                            </a>
+                            @endauth
                             <li class="media">
                                 <img src="/images/user.png" alt="" class="mr-3 rounded-circle" />
                                 <div class="media-body">
@@ -130,6 +149,11 @@ Detail Products | DK Pancing
                                 </div>
                             </li>
                         </ul>
+                        {{-- @empty
+                        <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
+                            Empty Review
+                        </div>
+                        @endforelse --}}
                     </div>
                 </div>
             </div>
