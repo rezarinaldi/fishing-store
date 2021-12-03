@@ -14,7 +14,7 @@
                 <span class="menu-title">Kategori</span>
             </a>
         </li>
-        <li class="nav-item {{ (strpos(Route::currentRouteName(), 'items') == 0) ? '' : 'active' }} ">
+        <li class="nav-item {{ (strpos(Route::currentRouteName(), 'items') == 0) ? '' : 'active' }}">
             <a href="{{ route('ap.items.index') }}"
                 class="nav-link">
                 <i class="menu-icon fab fa-product-hunt"></i>
