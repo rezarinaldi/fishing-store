@@ -96,11 +96,6 @@ Admin | Produk DK Pancing
                                 <div class="invalid-feedback">{{ $errors->first('discount') }}</div>
                                 @endif
                             </div>
-                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                            <a href="{{ route('ap.items.index') }}" class="btn btn-light">
-                                Batal
-                            </a>
-
                         </div>
                     </div>
                 </div>
