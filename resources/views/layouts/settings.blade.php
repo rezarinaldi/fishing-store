@@ -120,6 +120,9 @@
                 {{-- Content --}}
                 @yield('content')
 
+                {{-- Footer --}}
+                @include('includes.footer')
+
             </div>
         </div>
     </div>
