@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Admin | Dashbord DK Pancing
+Admin | Dashbord {{ config('settings.name') }}
 @endsection
 
 @section('sidebar')
@@ -58,16 +58,7 @@ Admin | Dashbord DK Pancing
                             <p class="card-title">Sales Report</p>
                             <!-- <a href="#" class="text-info">View all</a> -->
                         </div>
-                        <!-- <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p> -->
-                        <!-- <div class="google-chart-container d-flex align-items-center justify-content-center h-100">
-                            <div id="barchart_material" style="display: block; height: 677px; width: 1354px;" width="1218" height="609" class="google-charts"></div>
-                        </div> -->
-                        <div class="container">
-                            <div id="barchart_material" style="width: 900px; height: 500px"></div>
-                        </div>
-
-                        <!-- <canvas id="barChart"></canvas> -->
-                        <!-- <canvas id="bar-chart"></canvas> -->
+                        <div id="linechart" style="width: 1000px; height: 800px"></div>
                     </div>
                 </div>
             </div>
@@ -76,23 +67,30 @@ Admin | Dashbord DK Pancing
 </div>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script src="{{ asset('ap/js/google-charts.js') }}"></script>
+<!-- <script src="{{-- asset('ap/js/google-charts.js') --}}"></script> -->
 <script type="text/javascript">
-    var analytics = <?php echo $quantity; ?>
+        
+    var analytics = <?php echo $quantity; ?>;
+    console.log(analytics);
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
     google.charts.load('current', {
-        'packages': ['bar']
+        'packages': ['corechart']
     });
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(lineChart);
 
-    function drawChart() {
+    function lineChart() {
         var data = google.visualization.arrayToDataTable(analytics);
         var options = {
             title: "Total Sales",
-            width: 600,
-            height: 400,
+            curveType: 'function',
+            legend: {
+                position: 'bottom'
+            }
         };
-        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
-        chart.draw(data, google.charts.Bar.convertOptions(options));
+        var chart = new google.visualization.LineChart(document.getElementById('linechart'));
+        chart.draw(data, options);
     }
 </script>
 @endsection
