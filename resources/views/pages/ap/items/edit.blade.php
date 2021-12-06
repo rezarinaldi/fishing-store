@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Admin | Produk DK Pancing
+Admin | Produk {{ config('settings.name') }}
 @endsection
 
 @section('sidebar')

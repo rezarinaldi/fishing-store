@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Admin | Reset Password DK Pancing
+Admin | Reset Password {{ config('settings.name') }}
 @endsection
 
 @section('sidebar')

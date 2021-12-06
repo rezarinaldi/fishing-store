@@ -1,7 +1,7 @@
 @extends('layouts.settings')
 
 @section('title')
-Transaction | DK Pancing
+Transaction | {{ config('settings.name') }}
 @endsection
 
 @section('content')

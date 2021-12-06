@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Admin | Pesanan DK Pancing
+Admin | Pesanan {{ config('settings.name') }}
 @endsection
 
 @section('sidebar')
@@ -45,7 +45,7 @@ Admin | Pesanan DK Pancing
                                 @if($order->payment_status == 'unpaid')
                                 <span class="badge badge-outline-danger p-3">Belum Bayar</span>
                                 @elseif($order->payment_status == 'paid')
-                                <span class="badge badge-outline-success p-3">SUdah Bayar</span>
+                                <span class="badge badge-outline-success p-3">Sudah Bayar</span>
                                 @endif
                             </h3>
                         </div>

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Admin | Setting DK Pancing
+Admin | Setting {{ config('settings.name') }}
 @endsection
 
 @section('sidebar')
@@ -83,8 +83,7 @@ Admin | Setting DK Pancing
                                         <tr>
                                             <th>Logo Website</th>
                                             <td>
-                                                <img src="{{ asset('images/setting/'.$setting['logo']) }}" width="70%"
-                                                    height="70%">
+                                                <img src="{{ asset('images/setting/'.$setting['logo']) }}" style="width: 500px; height:auto;" class="rounded float-left" >
                                                 <input class="form-control " type="file" id="logo" name="setting[logo]"
                                                     value="{{ old('logo') }}">
                                             </td>
@@ -92,8 +91,7 @@ Admin | Setting DK Pancing
                                         <tr>
                                             <th>Icon Website</th>
                                             <td>
-                                                <img src="{{ asset('images/setting/'.$setting['favicon']) }}"
-                                                    width="70%" height="70%">
+                                                <img src="{{ asset('images/setting/'.$setting['favicon']) }}" style="width: 500px; height:auto;" class="rounded float-left" >
                                                 <input class="form-control " type="file" id="favicon"
                                                     name="setting[favicon]" value="{{ old('favicon') }}">
                                             </td>

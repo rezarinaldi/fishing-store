@@ -1,7 +1,7 @@
 @extends('layouts.settings')
 
 @section('title')
-Account Settings | DK Pancing
+Account Settings | {{ config('settings.name') }}
 @endsection
 
 @section('content')

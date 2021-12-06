@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Categories | DK Pancing
+Categories | {{ config('settings.name') }}
 @endsection
 
 @section('content')
