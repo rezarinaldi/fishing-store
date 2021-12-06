@@ -17,3 +17,4 @@
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('ap/js/select2.js') }}"></script>
 <script src="{{asset('ap/vendors/select2/select2.min.js')}}"></script>
+<script src="{{asset('ap/js/chart.js')}}"></script>
