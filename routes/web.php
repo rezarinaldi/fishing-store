@@ -24,7 +24,8 @@ Route::get('/detail/{slug}', 'DetailController@index')->name('detail');
 
 Route::get('/about', 'AboutController@index')->name('about');
 
-Route::get('/contact', 'ContactController@index')->name('contact');
+Route::get('contact', 'ContactController@index')->name('contact');
+Route::post('contact', 'ContactController@create')->name('contact.create');
 
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
 
