@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Contact | DK Pancing
+Contact | {{ config('settings.name') }}
 @endsection
 
 @section('content')
@@ -16,27 +16,41 @@ Contact | DK Pancing
             </div>
             <div class="row">
                 <div class="col-md-6 contact-form" data-aos="zoom-in">
-                    <form action="#" method="post">
+                @if(session()->get('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div><br />
+                @endif
+                    <form action="{{ route('contact.create') }}" method="post">
+                        @csrf
                         <div class="form-group">
                             <label for="name">Your Name</label>
                             <input type="text" class="form-control @if($errors->has('name')) is-invalid @endif"
-                                id="name" name="name" placeholder="Name">
+                                id="name" name="name" placeholder="Name" value="{{ old('name') }}">
                             @if($errors->has('name'))
                             <div class="invalid-feedback">{{ $errors->first('name') }}</div>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label for="name">Your E-mail</label>
+                            <label for="email">Your E-mail</label>
                             <input type="email" class="form-control @if($errors->has('email')) is-invalid @endif"
-                                id="email" name="name" placeholder="E-mail">
+                                id="email" name="email" placeholder="E-mail" value="{{ old('email') }}">
                             @if($errors->has('email'))
                             <div class="invalid-feedback">{{ $errors->first('email') }}</div>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label for="name">Message</label>
+                            <label for="phone">Phone Number</label>
+                            <input type="text" class="form-control @if($errors->has('phone')) is-invalid @endif"
+                                id="phone" name="phone" placeholder="088409051234" pattern="[0]{1}[8]{1}[0-9]{10}" maxlength="12" value="{{ old('phone') }}">
+                            @if($errors->has('phone'))
+                            <div class="invalid-feedback">{{ $errors->first('phone') }}</div>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
                             <textarea rows="3" class="form-control @if($errors->has('message')) is-invalid @endif"
-                                id="message" name="name" placeholder="Bismillah"></textarea>
+                                id="message" name="message" placeholder="Bismillah">{{ old('message') }}</textarea>
                             @if($errors->has('message'))
                             <div class="invalid-feedback">{{ $errors->first('message') }}</div>
                             @endif
