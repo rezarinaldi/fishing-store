@@ -60,7 +60,7 @@ Detail Products | {{ config('settings.name') }}
                         <div class="price">
                             @php $total = 0 @endphp
                             @if($item->discount > 0)
-                            @php $total += $item['price'] - $item['discount'] @endphp
+                            @php $total += $item['price'] - (($item['price'] * $item['discount']) / 100) @endphp
                             <s>@currency($item->price)</s>
                             @else($item->discount = 0)
                             @php $total += $item['price'] @endphp
@@ -73,9 +73,9 @@ Detail Products | {{ config('settings.name') }}
                         {{-- <form action="{{ route('detail-add', $product->id) }}" method="POST"
                             enctype="multipart/form-data"> --}}
                             @csrf
-                            <button type="submit" class="btn btn-success px-4 text-white btn-block mb-3">
+                            <a class="btn btn-success px-4 text-white btn-block mb-3" href="{{url('add-to-cart/'.$item->id)}}">
                                 <i class="fas fa-shopping-cart"></i> Add Cart
-                            </button>
+                            </a>
                             {{--
                         </form> --}}
                         @else
