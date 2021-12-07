@@ -65,8 +65,8 @@ class ItemController extends Controller
         $dis = $request->discount;
         $price = $request->price;
 
-        if ($dis > $price) {
-            return redirect()->route('ap.items.create')->with('failed', 'Diskon tidak boleh melebihi harga penjualan !');
+        if ($dis > 100) {
+            return redirect()->route('ap.items.create')->with('failed', 'Diskon tidak boleh melebihi 100% !');
         } else {
             $item = Item::create([
                 'category_id' => $request->category_id,
@@ -145,8 +145,8 @@ class ItemController extends Controller
         $dis = $request->discount;
         $price = $request->price;
 
-        if ($dis > $price) {
-            return redirect()->route('ap.items.create')->with('failed', 'Diskon tidak boleh melebihi harga penjualan !');
+        if ($dis > 100) {
+            return redirect()->route('ap.items.create')->with('failed', 'Diskon tidak boleh melebihi 100% !');
         } else {
             $item->update([
                 'category_id' => $request->category_id,
