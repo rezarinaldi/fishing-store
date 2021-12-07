@@ -24,6 +24,8 @@ class CreateUsersTable extends Migration
             $table->bigInteger('phone_number')->nullable();
             $table->longText('address')->nullable();
             $table->string('regency')->nullable(); // kota atau kabupaten
+            $table->string('province')->nullable();
+            $table->string('country')->nullable();
             $table->bigInteger('postal_code')->nullable();
             $table->rememberToken();
             $table->timestamps();
