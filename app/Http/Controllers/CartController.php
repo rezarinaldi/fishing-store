@@ -27,9 +27,10 @@ class CartController extends Controller
         } else {
             $cart[$id] = [
                 "id" => $item->id,
-                "name" => $item->name,
+                "name" => $item->nm_items,
                 "quantity" => 1,
                 "price" => $item->price - ($item->price * $disc / 100),
+                "discount" => $disc,
                 "image" => $item->pictures[0]->value
             ];
         }
@@ -75,14 +76,15 @@ class CartController extends Controller
 
             Order::create([
                 'user_id' => $request->user_id,
-                'product_id' => $request->product_id,
+                'item_id' => $detail['id'],
                 'date' => $request->date,
-                'quantity' => $request->quantity,
-                'total_price' => $request->total_price,
-                'shipping_method' => $request->payment_method,
-                'status' => $request->status
+                'quantity' => $detail['quantity'],
+                'total_price' => $detail['price'],
+                'shipping_method' => $request->shipping_method,
+                'transfers_slip' => $request->transfers_slip,
+                'status' => 'new'
             ]);
         }
-        return view('cart')->with('success', 'Pesanan berhasil dibuat');
+        return view('pages.cart')->with('success', 'Pesanan berhasil dibuat');
     }
 }
