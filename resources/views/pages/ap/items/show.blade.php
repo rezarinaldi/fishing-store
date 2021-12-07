@@ -88,7 +88,7 @@ Admin | Item {{ config('settings.name') }}
                                 <h2 class="mb-0" name="jumlah">
                                     @php $total = 0 @endphp
                                     @if($item->discount > 0)
-                                    @php $total += $item['price'] - $item['discount'] @endphp
+                                    @php $total += $item['price'] - (($item['price'] * $item['discount']) / 100) @endphp
                                     @else($item->discount = 0)
                                     @php $total += $item['price'] @endphp
                                     @endif
