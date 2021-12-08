@@ -18,7 +18,7 @@ use App\Http\Controllers\Ap\UploadImageController;
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/categories', 'CategoryController@index')->name('categories');
-Route::get('/categories/{slug}/{id}', 'CategoryController@detail')->name('categories-detail');
+Route::get('/categories/{id}', 'CategoryController@detail')->name('categories-detail');
 
 Route::get('/detail/{slug}', 'DetailController@index')->name('detail');
 

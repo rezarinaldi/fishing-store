@@ -18,8 +18,7 @@ Categories | {{ config('settings.name') }}
                 @php $incrementCategory = 0 @endphp
                 @forelse ($categories as $category)
                 <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="{{ $incrementCategory+= 100 }}">
-                    <a href="{{-- route('categories-detail', $category->slug) --}}"
-                        class="component-categories d-block">
+                    <a href="{{ route('categories-detail', $category->slug) }}" class="component-categories d-block">
                         <p class="categories-text">
                             {{ $category->nm_category }}
                         </p>
@@ -45,17 +44,17 @@ Categories | {{ config('settings.name') }}
                 @php $incrementProduct = 0 @endphp
                 @forelse ($items as $product)
                 <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up"
-                    data-aos-delay="{{--  $incrementProduct += 100 --}}">
+                    data-aos-delay="{{  $incrementProduct += 100 }}">
                     <a href="/detail/{{ $product->slug }}" class="component-products d-block">
                         <div class="products-thumbnail">
                             <div class="products-image" style="
-                                        /* @if($product->galleries)
-                                            background-image: url('{{-- Storage::url($product->galleries->first()->photos) --}}');
-                                        @else
-                                            background-color: #eee;
-                                        @endif */
-                                        background-image: url('{{ isset($product->pictures[0]) ? asset('images/items/'.$product->pictures[0]->value) : '' }}');
-                                    "></div>
+                                @if($product->pictures)
+                                background-image: url('{{ isset($product->pictures[0]) ? asset('images/items/'.$product->pictures[0]->value) : '' }}');
+                                @else
+                                background-color: #eee;
+                                @endif
+                                ">
+                            </div>
                         </div>
                         <div class="products-text text-center">
                             {{ $product->nm_items }}

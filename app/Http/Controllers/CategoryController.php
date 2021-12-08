@@ -13,7 +13,7 @@ class CategoryController extends Controller
         $categories = Category::all();
         $items = Item::paginate($request->input('limit', 12));
 
-        return view('pages.category',[
+        return view('pages.category', [
             'categories' => $categories,
             'items' => $items
         ]);
@@ -23,9 +23,9 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         $category = Category::where('slug', $slug)->firstOrFail();
-        $items = Item::where('categories_id', $category->id)->paginate($request->input('limit', 12));
+        $items = Item::where('category_id', $category->id)->paginate($request->input('limit', 12));
 
-        return view('pages.category',[
+        return view('pages.category', [
             'categories' => $categories,
             'category' => $category,
             'items' => $items
