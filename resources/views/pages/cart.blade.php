@@ -28,51 +28,67 @@ Cart | {{ config('settings.name') }}
 
     <section class="store-cart">
         <div class="container">
-            <div class="row" data-aos="fade-up" data-aos-delay="100">
-                <div class="col-12 table-responsive">
-                    <table class="table table-borderless table-cart">
-                        <thead>
-                            <tr>
-                                <td>Image</td>
-                                <td>Product Name</td>
-                                <td>Qty</td>
-                                <td>Price</td>
-                                <td>Menu</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{-- @php $totalPrice = 0 @endphp
+            @if(session()->get('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div><br />
+            @endif
+            <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                <div class="row" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-12 table-responsive">
+                        <table class="table table-borderless table-cart">
+                            <thead>
+                                <tr>
+                                    <td>Image</td>
+                                    <td>Product Name</td>
+                                    <td>Qty</td>
+                                    <td>Price</td>
+                                    <td>Menu</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php $total = 0 @endphp
+                                @php $disc = 0 @endphp
+                                @if(session('cart'))
+                                @foreach(session('cart') as $id => $details)
+                                @php $total += $details['price'] * $details['quantity'] @endphp
+                                {{-- @php $totalPrice = 0 @endphp
                             @forelse ($carts as $cart) --}}
-                            <tr>
-                                <td style="width: 25%;">
-                                    {{-- @if($cart->product->galleries) --}}
-                                    <img src="/images/detail-lure4.jpg" alt="" class="cart-image" />
-                                    {{-- @endif --}}
-                                </td>
-                                <td style="width: 25%;">
-                                    <div class="product-title">Yellow Fish Lure</div>
-                                </td>
-                                <td style="width: 25%;">
-                                    <div class="col">
-                                        <div class="input-group input-spinner">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-light" type="button" id="button-plus"> <i
-                                                        class="fa fa-minus"></i> </button>
-                                            </div>
-                                            <input type="text" class="form-control" value="1">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-light" type="button" id="button-minus"> <i
-                                                        class="fa fa-plus"></i> </button>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <input type="number" id="item_id" name="item_id" value="{{ $details['id'] }}" hidden>
+                                        <input type="date" id="date" name="date" value="{{date('Y-m-d')}}" hidden>
+                                        <input type="number" id="user_id" name="user_id" value="{{Auth::user()->id}}" hidden>
+                                        {{-- @if($cart->product->galleries) --}}
+                                        <img src="{{ asset('images/items/'.$details['image']) }}" alt="" class="cart-image" />
+                                        {{-- @endif --}}
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <div class="product-title">
+                                            {{ $details['name'] }}
+                                        </div>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <div class="col">
+                                            <div class="input-group input-spinner">
+                                                <div class="input-group-prepend">
+                                                    <button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
+                                                </div>
+                                                <input type="text" name="quantity" id="quantity" class="form-control" value="1">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td style="width: 25%;">
-                                    <div class="product-title">Rp110.000</div>
-                                </td>
-                                <td style="width: 20%;">
-                                    <form action="#" method="POST">
-                                        {{-- <form action="{{ route('cart-delete', $cart->products_id) }}"
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <div class="product-title">@currency($details['price'])
+                                            <input type="number" id="total_price" name="total_price" value="{{ $details['price'] }}" hidden>
+                                        </div>
+                                    </td>
+                                    <td style="width: 20%;">
+                                        <form action="#" method="POST">
+                                            {{-- <form action="{{ route('cart-delete', $cart->products_id) }}"
                                             method="POST"> --}}
                                             {{-- @method('DELETE')
                                             @csrf --}}
@@ -80,108 +96,108 @@ Cart | {{ config('settings.name') }}
                                                 Remove
                                             </button>
                                         </form>
-                                </td>
-                            </tr>
-                            {{-- @php $totalPrice += $cart->product->price @endphp --}}
-                            {{-- @empty
+                                    </td>
+                                </tr>
+                                {{-- @php $totalPrice += $cart->product->price @endphp --}}
+                                {{-- @empty
                             <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
                                 Empty Basket
                             </div> --}}
-                            {{-- @endforelse --}}
-                        </tbody>
-                    </table>
+                                {{-- @endforelse --}}
+                                @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div class="row" data-aos="fade-up" data-aos-delay="150">
-                <div class="col-12">
-                    <hr />
+                <div class="row" data-aos="fade-up" data-aos-delay="150">
+                    <div class="col-12">
+                        <hr />
+                    </div>
+                    <div class="col-12">
+                        <h2 class="mb-4">Shipping Details</h2>
+                    </div>
                 </div>
-                <div class="col-12">
-                    <h2 class="mb-4">Shipping Details</h2>
-                </div>
-            </div>
-            <form action="#" method="POST" enctype="multipart/form-data">
+                <!-- <form action="#" method="POST" enctype="multipart/form-data"> -->
                 {{-- <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data"> --}}
-                    @csrf
-                    <input type="hidden" name="total_price">
-                    {{-- <input type="hidden" name="total_price" value="{{ $totalPrice }}"> --}}
-                    <div class="row mb-2" data-aos="fade-up" data-aos-delay="200" id="locations">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="address">Address</label>
-                                <input type="text" class="form-control" id="address" name="address"
-                                    value="Jl. Wendit Utara, No. 15" readonly />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="regency">Regency</label>
-                                <input type="text" class="form-control" id="regency" name="regency"
-                                    value="Kabupaten Malang" readonly />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="province">Province</label>
-                                <input type="text" class="form-control" id="province" name="province" value="Jawa Timur"
-                                    readonly />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="postal_code">Postal Code</label>
-                                <input type="text" class="form-control" id="postal_code" name="postal_code"
-                                    value="65154" readonly />
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="country">Country</label>
-                                <input type="text" class="form-control" id="country" name="country" value="Indonesia"
-                                    readonly />
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="phone_number">Mobile</label>
-                                <input type="text" class="form-control" id="phone_number" name="phone_number"
-                                    value="085312345678" readonly />
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="shipping_method">Shipping Method</label>
-                                <select class="form-control" name="shipping_method" id="shipping_method">
-                                    <option value="pick-up">Pick-up</option>
-                                    <option value="delivery">Delivery</option>
-                                </select>
-                            </div>
+                @csrf
+                <input type="hidden" name="total_price">
+                {{-- <input type="hidden" name="total_price" value="{{ $totalPrice }}"> --}}
+                <div class="row mb-2" data-aos="fade-up" data-aos-delay="200" id="locations">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control" id="address" name="address" value="{{ Auth::user()->address }}" readonly />
                         </div>
                     </div>
-                    <div class="row" data-aos="fade-up" data-aos-delay="150">
-                        <div class="col-12">
-                            <hr />
-                        </div>
-                        <div class="col-12">
-                            <h2 class="mb-1">Payment Informations</h2>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="regency">Regency</label>
+                            <input type="text" class="form-control" id="regency" name="regency" value="{{ Auth::user()->regency }}" readonly />
                         </div>
                     </div>
-                    <div class="row" data-aos="fade-up" data-aos-delay="200">
-                        <div class="col-4 col-md-2">
-                            <div class="product-title text-warning">15%</div>
-                            <div class="product-subtitle">Discount</div>
-                        </div>
-                        <div class="col-4 col-md-2">
-                            <div class="product-title text-success">Rp110.000</div>
-                            <div class="product-subtitle">Total</div>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <button type="submit" class="btn btn-success mt-4 px-4 btn-block">
-                                Checkout Now
-                            </button>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="province">Province</label>
+                            <input type="text" class="form-control" id="province" name="province" value="{{ Auth::user()->province }}" readonly />
                         </div>
                     </div>
-                </form>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="postal_code">Postal Code</label>
+                            <input type="text" class="form-control" id="postal_code" name="postal_code" value="{{ Auth::user()->postal_code }}" readonly />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <input type="text" class="form-control" id="country" name="country" value="{{ Auth::user()->country }}" readonly />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="phone_number">Mobile</label>
+                            <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ Auth::user()->phone_number }}" readonly />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="shipping_method">Shipping Method</label>
+                            <select class="form-control" name="shipping_method" id="shipping_method">
+                                <option value="pick-up">Pick-up</option>
+                                <option value="delivery">Delivery</option>
+                            </select>
+                            <input type="text" id="transfers_slip" name="transfers_slip" value="NULL" hidden>
+                        </div>
+                    </div>
+                </div>
+
+                @if(session('cart'))
+                <div class="row" data-aos="fade-up" data-aos-delay="150">
+                    <div class="col-12">
+                        <hr />
+                    </div>
+                    <div class="col-12">
+                        <h2 class="mb-1">Payment Informations</h2>
+                    </div>
+                </div>
+                <div class="row" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-4 col-md-2">
+                        <div class="product-title text-warning">{{--$disc--}}0</div>
+                        <div class="product-subtitle">Discount</div>
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <div class="product-title text-success">@currency($total)</div>
+                        <div class="product-subtitle">Total</div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn btn-success mt-4 px-4 btn-block">
+                            Checkout Now
+                        </button>
+                    </div>
+                </div>
+                @endif
+            </form>
         </div>
     </section>
 </div>

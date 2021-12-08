@@ -93,7 +93,7 @@ Admin | Item {{ config('settings.name') }}
                                             <td>
                                                 @php $total = 0 @endphp
                                                 @if($i->discount > 0)
-                                                @php $total += $i['price'] - $i['discount'] @endphp
+                                                @php $total += $i['price'] - (($i['price'] * $i['discount']) / 100) @endphp
                                                 @else($i->discount = 0)
                                                 @php $total += $i['price'] @endphp
                                                 @endif

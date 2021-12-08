@@ -26,6 +26,11 @@ class Item extends Model
         return $this->hasMany(Order::class);
     }
 
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     protected static function boot()
     {
         parent::boot();
