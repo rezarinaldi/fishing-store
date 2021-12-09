@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use App\Order;
+use App\OrderDetails;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -60,10 +61,20 @@ class CartController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Item $item)
     {
+        
+        $order = Order::create([
+            'user_id' => $request->user_id,
+            'payment_method' => $request->shipping_method,
+            'payment_status' => 'unpaid',
+            'transfers_slip' => $request->transfers_slip,
+            'status' => 'new'
+        ]);
+
         $data = [];
         $cart = session()->get('cart');
+        $quatity = $item['quantity'] - $request->quantity;
 
         foreach ($cart as $detail) {
             // dd($c);
@@ -74,16 +85,19 @@ class CartController extends Controller
             //     ]
             // ];
 
-            Order::create([
-                'user_id' => $request->user_id,
+            OrderDetails::create([
+                'order_id' => $order->id,
                 'item_id' => $detail['id'],
                 'date' => $request->date,
                 'quantity' => $detail['quantity'],
-                'total_price' => $detail['price'],
-                'shipping_method' => $request->shipping_method,
-                'transfers_slip' => $request->transfers_slip,
-                'status' => 'new'
+                'total_price' => $request->total_price,
             ]);
+
+            if ($item->id == $detail['id']) {
+                $item->update([
+                    'quantity' => $item['quantity'] - $detail['quantity']
+                ]);
+            }
         }
         return view('pages.cart')->with('success', 'Pesanan berhasil dibuat');
     }
