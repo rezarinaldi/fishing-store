@@ -21,9 +21,9 @@ class Item extends Model
         return $this->hasMany(Picture::class);
     }
 
-    public function orders()
+    public function orders_detail()
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Order_Detail::class);
     }
 
     public function review()
