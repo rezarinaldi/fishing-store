@@ -101,20 +101,8 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        $request->validate([
-            'date' => 'required',
-            'quantity' => 'required'
-        ],[
-            'date.required' => 'Tanggal harus diisi!',
-            'quantity.required' => 'Banyak pembelian produk harus diisi!'
-        ]);
-
         $order->update([
             'user_id' => $request->user_id,
-            'product_id' => $request->product_id,
-            'date' => $request->date,
-            'quantity' => $request->quantity,
-            'total_price' => $request->total_price,
             'payment_method' => $request->payment_method,
             'payment_status' => $request->payment_status,
             'transfers_slip' => $request->transfers_slip,
