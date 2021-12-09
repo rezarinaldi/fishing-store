@@ -62,7 +62,7 @@ Categories | {{ config('settings.name') }}
                         <div class="products-price text text-center">
                             @php $total = 0 @endphp
                             @if($product->discount > 0)
-                            @php $total += $product['price'] - $product['discount'] @endphp
+                            @php $total += $product['price'] - ($product['price'] * $product['discount'] / 100) @endphp
                             @else($product->discount = 0)
                             @php $total += $product['price'] @endphp
                             @endif
