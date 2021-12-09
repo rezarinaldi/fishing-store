@@ -15,7 +15,7 @@ class AddTransfersSlipToOrdersTable extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             if (!Schema::hasColumn('orders', 'transfers_slip')) {
-                $table->string('transfers_slip')->after('status');
+                $table->string('transfers_slip')->after('status')->nullable();
             };
         });
     }
