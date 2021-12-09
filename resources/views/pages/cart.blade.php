@@ -74,7 +74,7 @@ Cart | {{ config('settings.name') }}
                                                 <div class="input-group-prepend">
                                                     <button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
                                                 </div>
-                                                <input type="text" name="quantity" id="quantity" class="form-control" value="1">
+                                                <input type="text" name="quantity" id="quantity" class="form-control" value="{{ $details['quantity'] }}">
                                                 <div class="input-group-append">
                                                     <button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
                                                 </div>
@@ -83,7 +83,6 @@ Cart | {{ config('settings.name') }}
                                     </td>
                                     <td style="width: 25%;">
                                         <div class="product-title">@currency($details['price'])
-                                            <input type="number" id="total_price" name="total_price" value="{{ $details['price'] }}" hidden>
                                         </div>
                                     </td>
                                     <td style="width: 20%;">
@@ -164,7 +163,7 @@ Cart | {{ config('settings.name') }}
                         <div class="form-group">
                             <label for="shipping_method">Shipping Method</label>
                             <select class="form-control" name="shipping_method" id="shipping_method">
-                                <option value="pick-up">Pick-up</option>
+                                <option value="pick up">Pick-up</option>
                                 <option value="delivery">Delivery</option>
                             </select>
                             <input type="text" id="transfers_slip" name="transfers_slip" value="NULL" hidden>
@@ -188,6 +187,7 @@ Cart | {{ config('settings.name') }}
                     </div>
                     <div class="col-4 col-md-2">
                         <div class="product-title text-success">@currency($total)</div>
+                        <input type="number" id="total_price" name="total_price" value="{{ $total }}" hidden>
                         <div class="product-subtitle">Total</div>
                     </div>
                     <div class="col-6 col-md-3">
