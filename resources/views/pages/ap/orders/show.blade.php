@@ -71,36 +71,41 @@ Admin | Pesanan {{ config('settings.name') }}
                             <h5 class="my-3 text-bold">Kode Pos</h5>
                             <p>{{ $order->user['postal_code'] }}</p>
                             <hr>
+                            <h5 class="my-3 text-bold">Barang yang dipesan</h5>
+                            <ol>
+                                @foreach($order->details as $detail)
+                                <li>{{ $detail->item->nm_items }}</li>
+                                @endforeach
+                            </ol>
+                            <hr>
                         </div>
                         <div class="col-12 col-sm-6">
+                            @foreach($order->details as $detail)
                             <h5 class="text text-bold">Produk yang dibeli</h5>
-                            <p>{{ $order->item['nm_items'] }}</p>
+                            <p>{{ $detail->item->nm_items }}</p>
+                            <img src="{{ asset('images/items/'.$detail->item->pictures[0]->value) }}" class="img-fluid rounded mx-auto d-block" width="30%" height="30%">
                             <hr>
                             <h5 class="text text-bold">Harga</h5>
                             <p>
                                 @php $total = 0 @endphp
-                                @if($order->item['discount'] > 0)
-                                @php $total += $order->item['price'] - $order->item['discount'] @endphp
-                                @else($order->item['discount'] = 0)
-                                @php $total += $order->item['price'] @endphp
+                                @if($detail->item->discount > 0)
+                                @php $total += $detail->item->price - ($detail->item->price * $detail->item->discount / 100) @endphp
+                                @else($detail->item->discount = 0)
+                                @php $total += $detail->item->price @endphp
                                 @endif
                                 @currency($total)
                             </p>
                             <hr>
-                            <p name="diskon" id="diskon">Jumlah : {{ $order->quantity }}
+                            <p name="diskon" id="diskon">Jumlah : {{ $detail->quantity }}
                             </p>
-                            <hr>
+                            <hr><br><br><br>
+                            @endforeach
                             <div class="bg-gray ">
                                 <h2 class="mb-0" name="jumlah">
-                                    @php $tot_prc = 0 @endphp
-                                    @if($order->item['discount'] > 0)
-                                    @php $tot_prc += ($order->item['price'] - $order->item['discount']) * $order['quantity'] @endphp
-                                    @else($order->item['discount'] = 0)
-                                    @php $tot_prc += $order->item['price'] * $order['quantity'] @endphp
-                                    @endif
-                                    @currency($tot_prc)
+                                    @currency($detail->total_price)
                                 </h2>
                             </div>
+                            <hr>
                         </div>
                     </div><br><br>
                     <a href="{{ route('ap.orders.index') }}" class="btn btn-outline-primary">

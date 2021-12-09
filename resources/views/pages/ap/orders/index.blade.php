@@ -79,7 +79,6 @@ Admin | Pesanan {{ config('settings.name') }}
                                         <tr>
                                             <th>No.</th>
                                             <th>Nama Pemesan</th>
-                                            <th>Tanggal</th>
                                             <th>Status Pembayaran</th>
                                             <th>Status Pesanan</th>
                                             <th>Aksi</th>
@@ -90,7 +89,6 @@ Admin | Pesanan {{ config('settings.name') }}
                                         <tr>
                                             <td>{{ ($orders->currentPage()-1) * $orders->perpage() + $key + 1 }}</td>
                                             <td>{{ $o->user['name'] }}</td>
-                                            <td>{{ $o->date }}</td>
                                             <td>
                                                 @if($o->payment_status == 'unpaid')
                                                 <span class="badge badge-outline-danger p-3">Belum Bayar</span>
