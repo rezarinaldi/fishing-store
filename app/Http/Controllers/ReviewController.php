@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
 use App\Review;
 use Illuminate\Http\Request;
 
@@ -24,12 +25,16 @@ class ReviewController extends Controller
      */
     public function create(Request $request)
     {
+        $item = Item::findOrFail($request->item_id);
+        $slug = Item::findOrFail($request->slug);
         Review::created([
             'user_id' => $request->user_id,
             'item_id' => $request->item_id,
             'rate' => '5',
             'comment' => $request->comment
         ]);
+
+        return redirect()->route('detail', $item->slug);
     }
 
     /**
