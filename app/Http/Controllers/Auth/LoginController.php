@@ -29,13 +29,6 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-    // protected function redirectTo(){
-    //     if(Auth::user()->role == 'admin'){
-    //         return '/dashboard';
-    //     } else {
-    //         return '/';
-    //     }
-    // }
 
     /**
      * Create a new controller instance.
@@ -47,22 +40,22 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request)
-    {
-        $input = $request->all();
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+    // public function login(Request $request)
+    // {
+    //     $input = $request->all();
+    //     $this->validate($request, [
+    //         'email' => 'required|email',
+    //         'password' => 'required',
+    //     ]);
 
-        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
-            if(Auth::user()->roles == 'admin') {
-                return redirect('/dashboard');
-            } else {
-                return redirect('/');
-            }
-        } else {
-            return redirect()->route('login')->with('error', 'Email dan Password salah!');
-        }
-    }
+    //     if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+    //         if (Auth::user()->roles == 'admin') {
+    //             return redirect('/dashboard');
+    //         } else {
+    //             return redirect('/');
+    //         }
+    //     } else {
+    //         return redirect()->route('login')->with('error', 'Email dan Password salah!');
+    //     }
+    // }
 }

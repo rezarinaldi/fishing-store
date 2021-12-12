@@ -56,7 +56,6 @@ Admin | Dashbord {{ config('settings.name') }}
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <p class="card-title">Sales Report</p>
-                            <!-- <a href="#" class="text-info">View all</a> -->
                         </div>
                         <div id="linechart" style="width: 1000px; height: 800px"></div>
                     </div>
@@ -67,9 +66,7 @@ Admin | Dashbord {{ config('settings.name') }}
 </div>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<!-- <script src="{{-- asset('ap/js/google-charts.js') --}}"></script> -->
 <script type="text/javascript">
-        
     var analytics = <?php echo $quantity; ?>;
     console.log(analytics);
         google.charts.load('current', {

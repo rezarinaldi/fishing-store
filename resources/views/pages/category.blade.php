@@ -19,6 +19,9 @@ Categories | {{ config('settings.name') }}
                 @forelse ($categories as $category)
                 <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="{{ $incrementCategory+= 100 }}">
                     <a href="{{ route('categories-detail', $category->slug) }}" class="component-categories d-block">
+                        <div class="categories-image">
+                            <img src="/images/success.svg" alt="" class="w-100" />
+                        </div>
                         <p class="categories-text">
                             {{ $category->nm_category }}
                         </p>

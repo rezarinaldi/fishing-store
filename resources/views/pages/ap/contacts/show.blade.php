@@ -14,7 +14,7 @@ Admin | Pesan {{ config('settings.name') }}
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h2><i class="nav-icon fas fa-inbox"></i>Kotak Pesan</h2>
+                        <h2><i class="nav-icon fas fa-inbox"></i> Kotak Pesan</h2>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -45,10 +45,12 @@ Admin | Pesan {{ config('settings.name') }}
                         <div class="col-7">
                             <h2 class="lead"><b>{{ $contact->name }}</b></h2><br>
                             <ul class="ml-4 mb-0 fa-ul text-muted">
-                                <li class="small"><span class="fa-li"><i class="fas fa-envelope"></i></span> {{ $contact->email }}</li>
-                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> {{ $contact->phone }}</li>
+                                <li class="medium"><span class="fa-li"><i class="fas fa-envelope"></i>
+                                    </span><a href="mailto:{{ $contact->email }}">{{ $contact->email }}</a></li>
+                                <li class="medium"><span class="fa-li"><i class="fas fa-lg fa-phone"></i>
+                                    </span><a href="tel:+62{{ $contact->phone }}">{{ $contact->phone }}</a></li>
                             </ul><br>
-                            <p class="text text-sm"><b>Pesan: </b><br>{!! html_entity_decode($contact->message) !!} </p>
+                            <p class=""><b>Pesan: </b><br>{!! html_entity_decode($contact->message) !!} </p>
                         </div>
                     </div><br><br>
                     <a href="{{ route('ap.contacts.index') }}" class="btn btn-outline-primary">

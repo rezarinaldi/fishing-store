@@ -69,9 +69,11 @@
                                         Hi, {{ Auth::user()->name }}
                                     </a>
                                     <div class="dropdown-menu">
+                                        @if(Auth::user()->role == 'admin')
                                         <a href="{{ url('ap\dashboard') }}" class="dropdown-item"><i
                                                 class="fas fa-user-cog"></i> Admin
                                             Panel</a>
+                                        @endif
                                         <a href="{{ route('account') }}" class="dropdown-item"><i
                                                 class="fas fa-cog"></i> Settings</a>
                                         <div class="dropdown-divider"></div>

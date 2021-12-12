@@ -16,11 +16,14 @@ Contact | {{ config('settings.name') }}
             </div>
             <div class="row">
                 <div class="col-md-6 contact-form" data-aos="zoom-in">
-                @if(session()->get('success'))
-                <div class="alert alert-success">
-                    {{ session()->get('success') }}
-                </div><br />
-                @endif
+                    @if(session()->get('success'))
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div><br />
+                    @endif
                     <form action="{{ route('contact.create') }}" method="post">
                         @csrf
                         <div class="form-group">
@@ -42,7 +45,8 @@ Contact | {{ config('settings.name') }}
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
                             <input type="text" class="form-control @if($errors->has('phone')) is-invalid @endif"
-                                id="phone" name="phone" placeholder="088409051234" pattern="[0]{1}[8]{1}[0-9]{10}" maxlength="12" value="{{ old('phone') }}">
+                                id="phone" name="phone" placeholder="088409051234" pattern="[0]{1}[8]{1}[0-9]{10}"
+                                maxlength="12" value="{{ old('phone') }}">
                             @if($errors->has('phone'))
                             <div class="invalid-feedback">{{ $errors->first('phone') }}</div>
                             @endif

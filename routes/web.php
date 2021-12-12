@@ -27,8 +27,6 @@ Route::get('/about', 'AboutController@index')->name('about');
 Route::get('contact', 'ContactController@index')->name('contact');
 Route::post('contact', 'ContactController@create')->name('contact.create');
 
-Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
-
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/cart', 'CartController@index')->name('cart');
     Route::get('add-to-cart/{id}', 'CartController@addCart')->name('add.to.cart');

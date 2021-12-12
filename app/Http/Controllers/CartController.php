@@ -11,9 +11,7 @@ class CartController extends Controller
 {
     public function index()
     {
-        return view('pages.cart', [
-            'item' => Item::get()
-        ]);
+        return view('pages.cart');
     }
 
     public function addCart($id)
@@ -63,13 +61,11 @@ class CartController extends Controller
 
     public function store(Request $request, Item $item)
     {
-        
         $order = Order::create([
             'user_id' => $request->user_id,
-            'payment_method' => $request->shipping_method,
-            'payment_status' => 'unpaid',
-            'transfers_slip' => $request->transfers_slip,
-            'status' => 'new'
+            'shipping_method' => $request->shipping_method,
+            'status' => 'unpaid',
+            'transfers_slip' => $request->transfers_slip
         ]);
 
         $data = [];

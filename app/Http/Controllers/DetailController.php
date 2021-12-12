@@ -8,16 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class DetailController extends Controller
 {
-    // public function index($slug)
-    // {
-    //     $item = Item::where('slug', $slug)->first();
-    //     return view('pages.detail', compact('item'),  [
-    //         'items' => Item::orderBy('created_at', 'DESC')
-    //             ->take(3)
-    //             ->get()
-    //     ]);
-    // }
-
     public function index(Request $request, $id)
     {
         $item = Item::with(['pictures'])->where('slug', $id)->firstOrFail();

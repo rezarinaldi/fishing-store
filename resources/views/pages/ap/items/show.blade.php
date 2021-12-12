@@ -31,11 +31,13 @@ Admin | Item {{ config('settings.name') }}
                     <div class="row">
                         <div class="col-10">
                             <h3 class="card-title text-white">
-                            {{ $item->nm_items }}
+                                {{ $item->nm_items }}
                             </h3>
                         </div>
                         <div class="col-2">
-                            <a href="{{ route('ap.items.edit', $item->id) }}" class="btn btn-outline-light btn-sm float-right" type="button" style="color: #fff;" onmouseover="this.style.color='#404040'" onMouseOut="this.style.color='#fff'">
+                            <a href="{{ route('ap.items.edit', $item->id) }}"
+                                class="btn btn-outline-light btn-sm float-right" type="button" style="color: #fff;"
+                                onmouseover="this.style.color='#404040'" onMouseOut="this.style.color='#fff'">
                                 <i class="fas fa-pencil-alt"></i> Edit
                             </a>
                         </div>
@@ -55,17 +57,20 @@ Admin | Item {{ config('settings.name') }}
                                 @endforeach
                             </div> -->
                                 <div class="carousel-inner">
-                                    
+
                                     @foreach($item->pictures as $picture)
                                     <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                        <img src="{{ asset('images/items/'.$picture->value) }}" class="d-block w-100" width="300px" height="300px" alt="Product Image">
+                                        <img src="{{ asset('images/items/'.$picture->value) }}" class="d-block w-100"
+                                            width="300px" height="300px" alt="Product Image">
                                     </div>
                                     @endforeach
-                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                                        data-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                         <span class="sr-only">Previous</span>
                                     </a>
-                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                                        data-slide="next">
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="sr-only">Next</span>
                                     </a>
@@ -100,11 +105,14 @@ Admin | Item {{ config('settings.name') }}
                     <div class="row p-4 mt-4">
                         <nav class="w-100">
                             <div class="nav nav-tabs" id="product-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Deskripsi</a>
+                                <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab"
+                                    href="#product-desc" role="tab" aria-controls="product-desc"
+                                    aria-selected="true">Deskripsi</a>
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
+                            <div class="tab-pane fade show active" id="product-desc" role="tabpanel"
+                                aria-labelledby="product-desc-tab">
                                 {!! html_entity_decode($item->description) !!}
                             </div>
                         </div>

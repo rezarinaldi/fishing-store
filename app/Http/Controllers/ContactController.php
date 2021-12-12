@@ -17,12 +17,12 @@ class ContactController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required',
+            'phone' => 'required|numeric',
             'message' => 'required',
         ], [
             'name.required' => 'Nama wajib diisi !',
             'email.required' => 'Email wajib diisi ! | Format email salah !',
-            'phone.required' => 'Nomer telepon wajib diisi !',
+            'phone.required' => 'Nomer telepon wajib diisi ! | Gunakan format nomor/angka !',
             'message.required' => 'Pesan Wajib diisi !'
         ]);
 

@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -73,8 +74,13 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function success()
+    /**
+     * @param Request $request
+     * 
+     * @return [type]
+     */
+    public function check(Request $request)
     {
-        return view('auth.success');
+        return User::where('email', $request->email)->count() > 0 ? 'Unavailable' : "Available";
     }
 }

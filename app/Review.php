@@ -7,18 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     protected $fillable = [
-        "user_id", "item_id", "rate", "comment"
+        "user_id", "item_id", "comment"
     ];
 
     protected $guarded = [];
 
-    public function item()
+    public function user_info()
     {
-        return $this->belongsTo(Item::class);
+        return $this->hasOne(User::class);
     }
 
-    public function user()
+    public static function getAllReview()
     {
-        return $this->belongsTo(User::class);
+        return Review::with('user_info')->paginate(10);
+    }
+
+    public static function getAllUserReview()
+    {
+        return Review::where('user_id', auth()->user()->id)->with('user_info')->paginate(10);
     }
 }

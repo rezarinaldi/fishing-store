@@ -59,7 +59,9 @@ Admin | Pesanan {{ config('settings.name') }}
                                                     <span class="fas fa-search"></span>
                                                 </button>
                                             </span>
-                                            <input name="keyword" id="keyword" class="form-control mr-1 mt-2" placeholder="Cari berdasarkan nama produk" value="{{ request('keyword') }}">
+                                            <input name="keyword" id="keyword" class="form-control mr-1 mt-2"
+                                                placeholder="Cari berdasarkan nama produk"
+                                                value="{{ request('keyword') }}">
                                             <a href="{{ route('ap.orders.index') }}" class="mr-1 mt-2">
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-danger" type="button" title="Refresh page">
@@ -79,7 +81,6 @@ Admin | Pesanan {{ config('settings.name') }}
                                         <tr>
                                             <th>No.</th>
                                             <th>Nama Pemesan</th>
-                                            <th>Status Pembayaran</th>
                                             <th>Status Pesanan</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -90,30 +91,32 @@ Admin | Pesanan {{ config('settings.name') }}
                                             <td>{{ ($orders->currentPage()-1) * $orders->perpage() + $key + 1 }}</td>
                                             <td>{{ $o->user['name'] }}</td>
                                             <td>
-                                                @if($o->payment_status == 'unpaid')
-                                                <span class="badge badge-outline-danger p-3">Belum Bayar</span>
-                                                @else
-                                                <span class="badge badge-outline-success p-3">Sudah Bayar</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if($o->status == 'new')
-                                                <span class="badge badge-outline-primary badge-pill p-3">New</span>
+                                                @if($o->status == 'unpaid')
+                                                <span class="badge badge-warning badge-pill p-3">Belum
+                                                    Dibayar</span>
                                                 @elseif($o->status == 'process')
-                                                <span class="badge badge-info badge-outline-pill p-3">Proses</span>
+                                                <span class="badge badge-info badge-pill p-3">Proses</span>
                                                 @elseif($o->status == 'delivered')
-                                                <span class="badge badge-outline-success badge-pill p-3">Mengirim</span>
+                                                <span class="badge badge-primary badge-pill p-3">Mengirim</span>
+                                                @elseif($o->status == 'success')
+                                                <span class="badge badge-success badge-pill p-3">Sukses</span>
                                                 @elseif($o->status == 'cancel')
-                                                <span class="badge badge-outline-danger badge-pill p-3">Batal</span>
+                                                <span class="badge badge-danger badge-pill p-3">Batal</span>
                                                 @endif
                                             </td>
                                             <td>
                                                 <div class="d-flex centered">
-                                                    <a href="{{ route('ap.orders.show', $o->id) }}" class="btn btn-outline-info mr-2" type="button" style="color: #404040;" onmouseover="this.style.color='white'" onMouseOut="this.style.color='#404040'">
+                                                    <a href="{{ route('ap.orders.show', $o->id) }}"
+                                                        class="btn btn-outline-info mr-2" type="button"
+                                                        style="color: #404040;" onmouseover="this.style.color='white'"
+                                                        onMouseOut="this.style.color='#404040'">
                                                         <i class="fas fa-eye"></i> Detail
                                                     </a>
 
-                                                    <a href="{{ route('ap.orders.edit', $o->id) }}" class="btn btn-outline-warning mr-2" type="button" style="color: #404040;" onmouseover="this.style.color='white'" onMouseOut="this.style.color='#404040'">
+                                                    <a href="{{ route('ap.orders.edit', $o->id) }}"
+                                                        class="btn btn-outline-warning mr-2" type="button"
+                                                        style="color: #404040;" onmouseover="this.style.color='white'"
+                                                        onMouseOut="this.style.color='#404040'">
                                                         <i class="fas fa-pencil-alt"></i> Edit
                                                     </a>
                                                 </div>
@@ -125,7 +128,7 @@ Admin | Pesanan {{ config('settings.name') }}
                             </div>
                         </div>
                         {{ $orders->onEachSide(5)->appends([
-                            'keyword' => request('keyword')])->links() 
+                        'keyword' => request('keyword')])->links()
                         }}
                     </div>
                 </div>

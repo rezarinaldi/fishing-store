@@ -33,24 +33,24 @@ Admin | Pesanan {{ config('settings.name') }}
                             <h3 class="card-title text-white">
                                 Pesanan:
                                 {{ $order->user['name'] }} |
-                                @if($order->status == 'new')
-                                <span class="badge badge-outline-light badge-pill p-3">New</span>
+                                @if($order->status == 'unpaid')
+                                <span class="badge badge-outline-light badge-pill p-3">Belum
+                                    Dibayar</span>
                                 @elseif($order->status == 'process')
-                                <span class="badge badge-info badge-outline-pill p-3">Proses</span>
+                                <span class="badge badge-outline-info badge-pill p-3">Proses</span>
                                 @elseif($order->status == 'delivered')
-                                <span class="badge badge-outline-success badge-pill p-3">Mengirim</span>
+                                <span class="badge badge-outline-primary badge-pill p-3">Mengirim</span>
+                                @elseif($order->status == 'success')
+                                <span class="badge badge-outline-success badge-pill p-3">Sukses</span>
                                 @elseif($order->status == 'cancel')
                                 <span class="badge badge-outline-danger badge-pill p-3">Batal</span>
-                                @endif |
-                                @if($order->payment_status == 'unpaid')
-                                <span class="badge badge-outline-danger p-3">Belum Bayar</span>
-                                @elseif($order->payment_status == 'paid')
-                                <span class="badge badge-outline-success p-3">Sudah Bayar</span>
                                 @endif
                             </h3>
                         </div>
                         <div class="col-2">
-                            <a href="{{ route('ap.orders.edit', $order->id) }}" class="btn btn-outline-light btn-sm float-right" type="button" style="color: #fff;" onmouseover="this.style.color='#404040'" onMouseOut="this.style.color='#fff'">
+                            <a href="{{ route('ap.orders.edit', $order->id) }}"
+                                class="btn btn-outline-light btn-sm float-right" type="button" style="color: #fff;"
+                                onmouseover="this.style.color='#404040'" onMouseOut="this.style.color='#fff'">
                                 <i class="fas fa-pencil-alt"></i> Edit
                             </a>
                         </div>
@@ -83,13 +83,15 @@ Admin | Pesanan {{ config('settings.name') }}
                             @foreach($order->details as $detail)
                             <h5 class="text text-bold">Produk yang dibeli</h5>
                             <p>{{ $detail->item->nm_items }}</p>
-                            <img src="{{ asset('images/items/'.$detail->item->pictures[0]->value) }}" class="img-fluid rounded mx-auto d-block" width="30%" height="30%">
+                            <img src="{{ asset('images/items/'.$detail->item->pictures[0]->value) }}"
+                                class="img-fluid rounded mx-auto d-block" width="30%" height="30%">
                             <hr>
                             <h5 class="text text-bold">Harga</h5>
                             <p>
                                 @php $total = 0 @endphp
                                 @if($detail->item->discount > 0)
-                                @php $total += $detail->item->price - ($detail->item->price * $detail->item->discount / 100) @endphp
+                                @php $total += $detail->item->price - ($detail->item->price * $detail->item->discount /
+                                100) @endphp
                                 @else($detail->item->discount = 0)
                                 @php $total += $detail->item->price @endphp
                                 @endif

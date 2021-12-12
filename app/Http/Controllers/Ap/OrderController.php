@@ -103,8 +103,7 @@ class OrderController extends Controller
     {
         $order->update([
             'user_id' => $request->user_id,
-            'payment_method' => $request->payment_method,
-            'payment_status' => $request->payment_status,
+            'shipping_method' => $request->shipping_method,
             'transfers_slip' => $request->transfers_slip,
             'status' => $request->status
         ]);

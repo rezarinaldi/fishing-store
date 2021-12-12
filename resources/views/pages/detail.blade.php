@@ -29,6 +29,14 @@ Detail Products | {{ config('settings.name') }}
         <div class="container">
             <div class="row">
                 <div class="col-lg-8" data-aos="zoom-in">
+                    @if(session()->get('success'))
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div><br />
+                    @endif
                     <transition name="slide-fade fade show active" mode="out-in">
                         <img src="{{ asset('images/items/'.$item->pictures[0]->value) }}" class="w-100 main-image"
                             alt="" />
@@ -70,14 +78,11 @@ Detail Products | {{ config('settings.name') }}
                     </div>
                     <div class="col-lg-2" data-aos="zoom-in">
                         @auth
-                        {{-- <form action="{{ route('detail-add', $product->id) }}" method="POST"
-                            enctype="multipart/form-data"> --}}
-                            @csrf
-                            <a class="btn btn-success px-4 text-white btn-block mb-3" href="{{url('add-to-cart/'.$item->id)}}">
-                                <i class="fas fa-shopping-cart"></i> Add Cart
-                            </a>
-                            {{--
-                        </form> --}}
+                        @csrf
+                        <a class="btn btn-success px-4 text-white btn-block mb-3"
+                            href="{{url('add-to-cart/'.$item->id)}}">
+                            <i class="fas fa-shopping-cart"></i> Add Cart
+                        </a>
                         @else
                         <a href="{{ route('login') }}" class="btn btn-success px-4 text-white btn-block mb-3">
                             Log In to Add
@@ -107,16 +112,15 @@ Detail Products | {{ config('settings.name') }}
                     <div class="col-12 col-lg-8">
                         <ul class="list-unstyled">
                             @auth
-                            {{-- <form action="{{ route('detail-add', $product->id) }}" method="POST"
-                                enctype="multipart/form-data"> --}}
+                            <form action="{{ route('review.store', $product->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 <textarea class="form-control" name="comment" id="comment" rows="3"
                                     placeholder="Bismillah"></textarea>
                                 @csrf
                                 <button type="submit" class="btn btn-success px-4 text-white my-3">
                                     <i class="fas fa-comment"></i> Add Review
                                 </button>
-                                {{--
-                            </form> --}}
+                            </form>
                             @else
                             <a href="{{ route('login') }}" class="btn btn-success px-4 text-white mb-3">
                                 Log In to Add

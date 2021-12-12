@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        "user_id", "payment_method", "payment_status", "status"
+        "user_id", "shipping_method", "status", 'transfers_slip'
     ];
 
     protected $guarded = [];
@@ -20,5 +20,10 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getReview()
+    {
+        return $this->hasMany(User::class)->with('user_info')->orderBy('id', 'DESC');
     }
 }

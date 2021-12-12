@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('title')
-Log In | DK Pancing
+Log In | {{ config('settings.name') }}
 @endsection
 
 @section('content')

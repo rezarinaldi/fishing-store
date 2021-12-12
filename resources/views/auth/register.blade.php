@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('title')
-Register | DK Pancing
+Register | {{ config('settings.name') }}
 @endsection
 
 @section('content')
@@ -32,8 +32,9 @@ Register | DK Pancing
                         </div>
                         <div class="form-group">
                             <label>E-mail Address</label>
-                            <input v-model="email" id="email" type="email"
-                                class="form-control @error('email') is-invalid @enderror" name="email"
+                            <input v-model="email" @change="checkForEmailAvailability()" id="email" type="email"
+                                class="form-control @error('email') is-invalid @enderror"
+                                :class="{ 'is-invalid': this.email_unavailable }" name="email"
                                 value="{{ old('email') }}" required autocomplete="email">
                             @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -44,7 +45,7 @@ Register | DK Pancing
                         <div class="form-group">
                             <p>Gender</p>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" @error('gender') is-invalid @enderror"
+                                <input type="radio" class="custom-control-input @error('gender') is-invalid @enderror"
                                     name="gender" id="male" v-model="gender" value="male" {{ old('gender')=='male'
                                     ? 'checked' : '' }} required />
                                 <label for="male" class="custom-control-label">
@@ -52,7 +53,7 @@ Register | DK Pancing
                                 </label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" @error('gender') is-invalid @enderror"
+                                <input type="radio" class="custom-control-input @error('gender') is-invalid @enderror"
                                     name="gender" id="female" v-model="gender" value="female" {{ old('gender')=='female'
                                     ? 'checked' : '' }} required />
                                 <label for="female" class="custom-control-label">
@@ -81,7 +82,7 @@ Register | DK Pancing
                             <input id="password-confirm" type="password" class="form-control"
                                 name="password_confirmation" required autocomplete="new-password">
                         </div>
-                        <button type="submit" class="btn btn-success btn-block mt-4">
+                        <button type="submit" class="btn btn-success btn-block mt-4" :disabled="this.email_unavailable">
                             <i class="far fa-registered"></i> Register Now
                         </button>
                         <a href="{{ route('login') }}" class="btn btn-signup btn-block mt-2 mb-5">
@@ -94,3 +95,61 @@ Register | DK Pancing
     </div>
 </div>
 @endsection
+
+@push('addon-script')
+<script src="/vendor/vue/vue.js"></script>
+<script src="https://unpkg.com/vue-toasted"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    Vue.use(Toasted);
+
+      var register = new Vue({
+        el: "#register",
+        mounted() {
+          AOS.init();
+       
+        },
+        methods: {
+            checkForEmailAvailability: function () {
+                var self = this;
+                axios.get('{{ route('api-register-check') }}', {
+                        params: {
+                            email: this.email
+                        }
+                    })
+                    .then(function (response) {
+                        if(response.data == 'Available') {
+                            self.$toasted.show(
+                                "E-mail ini tersedia! Anda dapat mendaftarkan e-mail ini!", {
+                                    position: "top-center",
+                                    className: "rounded",
+                                    duration: 1000,
+                                }
+                            );
+                            self.email_unavailable = false;
+                        } else {
+                            self.$toasted.error(
+                                "Maaf, tampaknya e-mail sudah terdaftar pada sistem kami.", {
+                                    position: "top-center",
+                                    className: "rounded",
+                                    duration: 1000,
+                                }
+                            );
+                            self.email_unavailable = true;
+                        }
+                        // handle success
+                        console.log(response.data);
+                    })
+            }
+        },
+        data() {
+            return {
+                name: "",
+                email: "",
+                gender: "",
+                email_unavailable: false
+            }
+        },
+      });
+</script>
+@endpush

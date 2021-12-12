@@ -30,7 +30,6 @@ class ReviewController extends Controller
         Review::created([
             'user_id' => $request->user_id,
             'item_id' => $request->item_id,
-            'rate' => '5',
             'comment' => $request->comment
         ]);
 
