@@ -23,6 +23,6 @@ class AccountController extends Controller
 
         $item->update($data);
 
-        return redirect()->route($redirect);
+        return redirect()->route($redirect)->with('success', 'Akun profil berhasil diubah!');
     }
 }

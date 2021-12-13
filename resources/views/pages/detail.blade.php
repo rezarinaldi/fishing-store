@@ -105,59 +105,27 @@ Detail Products | {{ config('settings.name') }}
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-8 mt-3 mb-3">
-                        <h5>Customers Review (3)</h5>
+                        <h4>Customers Review</h4>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 col-lg-8">
+                        @forelse ($review as $rv)
                         <ul class="list-unstyled">
-                            @auth
-                            <form action="{{ route('review.store', $product->id) }}" method="POST"
-                                enctype="multipart/form-data">
-                                <textarea class="form-control" name="comment" id="comment" rows="3"
-                                    placeholder="Bismillah"></textarea>
-                                @csrf
-                                <button type="submit" class="btn btn-success px-4 text-white my-3">
-                                    <i class="fas fa-comment"></i> Add Review
-                                </button>
-                            </form>
-                            @else
-                            <a href="{{ route('login') }}" class="btn btn-success px-4 text-white mb-3">
-                                Log In to Add
-                            </a>
-                            @endauth
                             <li class="media">
                                 <img src="/images/user.png" alt="" class="mr-3 rounded-circle" />
                                 <div class="media-body">
-                                    <h5 class="mt-2 mb-1">Rein</h5>
-                                    I thought it was not good for fishing. I really happy
-                                    to decided buy this product last week now feels like
-                                    homey.
-                                </div>
-                            </li>
-                            <li class="media">
-                                <img src="/images/user.png" alt="" class="mr-3 rounded-circle" />
-                                <div class="media-body">
-                                    <h5 class="mt-2 mb-1">April</h5>
-                                    Color is great with the minimalist concept. I do really satisfied with
-                                    this.
-                                </div>
-                            </li>
-                            <li class="media">
-                                <img src="/images/user.png" alt="" class="mr-3 rounded-circle" />
-                                <div class="media-body">
-                                    <h5 class="mt-2 mb-1">Shiny</h5>
-                                    When I saw at first, it was really awesome to have with.
-                                    Just let me know if there is another upcoming product like
-                                    this.
+                                    <h4 class="mt-2">{{$rv->user['name']}}</h4>
+                                    <h5 class="mb-2">{{ $rv->created_at }}</h5>
+                                    {!! html_entity_decode($rv->comment) !!}
                                 </div>
                             </li>
                         </ul>
-                        {{-- @empty
+                        @empty
                         <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
                             Empty Review
                         </div>
-                        @endforelse --}}
+                        @endforelse
                     </div>
                 </div>
             </div>

@@ -42,7 +42,15 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::get('/setting/transactions/{id}', 'TransactionController@details')
     //     ->name('transaction-detail');
     // Route::post('/setting/transactions/{id}', 'TransactionController@update')
-    //     ->name('transaction-update');
+
+    Route::get('/setting/reviews', 'ReviewController@index')
+        ->name('review');
+    Route::post('/setting/reviews', 'ReviewController@store')
+        ->name('review-store');
+    Route::get('/setting/reviews/{id}', 'ReviewController@details')
+        ->name('review-details');
+    Route::post('/setting/reviews/{id}', 'ReviewController@update')
+        ->name('review-update');
 
     Route::get('/setting/account', 'AccountController@index')
         ->name('account');

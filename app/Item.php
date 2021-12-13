@@ -28,7 +28,7 @@ class Item extends Model
 
     public function review()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class)->orderBy('id', 'DESC');
     }
 
     protected static function boot()

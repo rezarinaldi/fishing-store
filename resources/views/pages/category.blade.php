@@ -62,6 +62,9 @@ Categories | {{ config('settings.name') }}
                         <div class="products-text text-center">
                             {{ $product->nm_items }}
                         </div>
+                        <div class="products-price text-center">
+                            Stock: ({{ $product->quantity }})
+                        </div>
                         <div class="products-price text text-center">
                             @php $total = 0 @endphp
                             @if($product->discount > 0)

@@ -1,7 +1,7 @@
 @extends('layouts.settings')
 
 @section('title')
-Transaction | {{ config('settings.name') }}
+Transactions | {{ config('settings.name') }}
 @endsection
 
 @section('content')

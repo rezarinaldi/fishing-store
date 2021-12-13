@@ -21,9 +21,4 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function getReview()
-    {
-        return $this->hasMany(User::class)->with('user_info')->orderBy('id', 'DESC');
-    }
 }

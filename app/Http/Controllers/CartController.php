@@ -55,7 +55,7 @@ class CartController extends Controller
                 unset($cart[$request->id]);
                 session()->put('cart', $cart);
             }
-            session()->flas('success', 'Produk telah dihapus!');
+            session()->flash('success', 'Produk telah dihapus!');
         }
     }
 

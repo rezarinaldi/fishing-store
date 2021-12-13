@@ -13,6 +13,14 @@ Account Settings | {{ config('settings.name') }}
             <p class="dashboard-subtitle">
                 Update your current profile
             </p>
+            @if(session()->get('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div><br />
+            @endif
         </div>
         <div class="dashboard-content">
             <div class="row">

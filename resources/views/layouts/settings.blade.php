@@ -32,6 +32,10 @@
                         class="list-group-item list-group-item-action {{ (request()->is('setting/transactions*')) ? 'active' : '' }} ">
                         Transactions
                     </a>
+                    <a href="{{ route('review') }}"
+                        class="list-group-item list-group-item-action {{ (request()->is('setting/reviews*')) ? 'active' : '' }} ">
+                        Reviews
+                    </a>
                     <a href="{{ route('account') }}"
                         class="list-group-item list-group-item-action {{ (request()->is('setting/account*')) ? 'active' : '' }} ">
                         My Account

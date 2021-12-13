@@ -15,25 +15,13 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $items = Item::with(['pictures', 'category'])->get();
+        $reviews = Review::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
-    {
-        $item = Item::findOrFail($request->item_id);
-        $slug = Item::findOrFail($request->slug);
-        Review::created([
-            'user_id' => $request->user_id,
-            'item_id' => $request->item_id,
-            'comment' => $request->comment
+        return view('pages.review', [
+            'items' => $items,
+            'reviews' => $reviews
         ]);
-
-        return redirect()->route('detail', $item->slug);
     }
 
     /**
@@ -44,7 +32,23 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'item_id' => 'required',
+            'comment' => 'required',
+        ], [
+            'item_id.required' => 'Item wajib diisi!',
+            'comment.required' => 'Komentar review wajib diisi!'
+        ]);
+
+        // $item = Item::findOrFail($request->item_id);
+        // $slug = Item::findOrFail($request->slug);
+        Review::create([
+            'user_id' => $request->user_id,
+            'item_id' => $request->item_id,
+            'comment' => $request->comment
+        ]);
+
+        return redirect()->route('review')->with('success', 'Review Anda berhasil ditambahkan!');
     }
 
     /**
@@ -53,20 +57,15 @@ class ReviewController extends Controller
      * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function show(Review $review)
+    public function details(Request $request, $id)
     {
-        //
-    }
+        $items = Item::with(['pictures', 'category'])->get();
+        $review = Review::with(['item', 'user'])->findOrFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Review  $review
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Review $review)
-    {
-        //
+        return view('pages.review-detail', [
+            'items' => $items,
+            'review' => $review
+        ]);
     }
 
     /**
@@ -76,9 +75,15 @@ class ReviewController extends Controller
      * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Review $review)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $review = Review::findOrFail($id);
+
+        $review->update($data);
+
+        return redirect()->route('review')->with('success', 'Review Anda berhasil diubah!');
     }
 
     /**
@@ -87,7 +92,7 @@ class ReviewController extends Controller
      * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy()
     {
         //
     }

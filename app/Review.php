@@ -12,18 +12,13 @@ class Review extends Model
 
     protected $guarded = [];
 
-    public function user_info()
+    public function item()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(Item::class);
     }
 
-    public static function getAllReview()
+    public function user()
     {
-        return Review::with('user_info')->paginate(10);
-    }
-
-    public static function getAllUserReview()
-    {
-        return Review::where('user_id', auth()->user()->id)->with('user_info')->paginate(10);
+        return $this->belongsTo(User::class);
     }
 }

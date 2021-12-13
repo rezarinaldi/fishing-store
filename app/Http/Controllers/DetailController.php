@@ -4,28 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Item;
-use Illuminate\Support\Facades\Auth;
+use App\Review;
 
 class DetailController extends Controller
 {
-    public function index(Request $request, $id)
+    public function index(Request $request, $id, Review $review)
     {
         $item = Item::with(['pictures'])->where('slug', $id)->firstOrFail();
+        $review = Review::all();
 
         return view('pages.detail', [
-            'item' => $item
+            'item' => $item,
+            'review' => $review
         ]);
     }
-
-    // public function add(Request $request, $id)
-    // {
-    //     $data = [
-    //         'products_id' => $id,
-    //         'users_id' => Auth::user()->id
-    //     ];
-
-    //     Cart::create($data);
-
-    //     return redirect()->route('cart');
-    // }
 }
