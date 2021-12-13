@@ -27,7 +27,7 @@ Type **fishing-store.test** in your browser
 
 Documentation for Valet can be found on the [Laravel website](https://laravel.com/docs/valet)
 
-12. Users log in:
+12. Accounts for log in:
 
 -   Admin Email/Password: admin@gmail.com/admin123456
 -   User Email/Password: bella@gmail.com/bella123456
