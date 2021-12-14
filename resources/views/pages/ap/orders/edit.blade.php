@@ -96,7 +96,7 @@ Admin | Pesanan {{ config('settings.name') }}
                             <div class="form-group">
                                 <label for="status">Status Pembayaran</label>
                                 <select class="form-control form-select-lg mb-3" aria-label="Default select example" id="status" name="status" value="{{ $order->status }}">
-                                    @foreach(["new" => "Baru", "process" => "Proses Pengemasan", "delivered" => "Proses Kirim", "cancel" => "Batal"] AS $status => $s)
+                                    @foreach(["unpaid" => "Belum Dibayar", "process" => "Proses Pengemasan", "delivered" => "Proses Kirim", "cancel" => "Batal", "success" => "Sukses"] AS $status => $s)
                                     <option value="{{ $status }}" {{ old("status", $order->status) == $status ? "selected" : "" }}>{{ $s }}</option>
                                     @endforeach
                                 </select>
