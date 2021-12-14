@@ -63,6 +63,7 @@ Reviews | {{ config('settings.name') }}
             <div class="row mt-4">
                 <div class="col-12">
                     @forelse ($reviews as $rv)
+                    @if($rv->user_id == Auth::user()->id)
                     <a href="{{ route('review-details', $rv->id) }}" class="card card-list d-block">
                         <div class="card-body">
                             <div class="row">
@@ -81,6 +82,7 @@ Reviews | {{ config('settings.name') }}
                             </div>
                         </div>
                     </a>
+                    @endif
                     @empty
                     <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
                         No Reviews Found

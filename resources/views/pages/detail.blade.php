@@ -37,22 +37,20 @@ Detail Products | {{ config('settings.name') }}
                         </button>
                     </div><br />
                     @endif
-                    <transition name="slide-fade fade show active" mode="out-in">
-                        <img src="{{ asset('images/items/'.$item->pictures[0]->value) }}" class="w-100 main-image"
+                    <transition name="slide-fade" mode="out-in">
+                        <img :src="photos[activePhoto].url" :key="photos[activePhoto].id" class="w-100 main-image"
                             alt="" />
                     </transition>
                 </div>
                 <div class="col-lg-2">
                     <div class="row">
-                        @foreach($item->pictures as $picture)
-                        <div class="col-3 col-lg-12 mt-2 mt-lg-0 tab-pane fade {{ $loop->first ? 'active' : '' }}"
+                        <div class="col-3 col-lg-12 mt-2 mt-lg-0" v-for="(photo, index) in photos" :key="photo.id"
                             data-aos="zoom-in" data-aos-delay="100">
-                            <a href="#">
-                                <img src="{{ asset('images/items/'.$picture->value) }}" class="w-100 thumbnail-image"
+                            <a href="#" @click="changeActive(index)">
+                                <img :src="photo.url" class="w-100 thumbnail-image"
                                     :class="{ active: index == activePhoto }" alt="" />
                             </a>
                         </div>
-                        @endforeach
                     </div>
                 </div>
             </div>
@@ -151,24 +149,24 @@ Detail Products | {{ config('settings.name') }}
     var picture = new Vue({
         el: "#picture",
         mounted() {
-            AOS.init();
+          AOS.init();
         },
         data: {
-            activePhoto: 3,
-            photos: [
-                @foreach ($item->pictures as $picture)
+          activePhoto: 0,
+          photos: [
+            @foreach ($item->pictures as $picture)
             {
               id: {{ $picture->id }},
-              url: "{{ asset('images/items/'.$picture->value) }}",
+              url: "{{ asset('/images/items/'.$picture->value) }}",
             },
             @endforeach
-            ],
+          ],
         },
         methods: {
-            changeActive(id) {
-                this.activePhoto = id;
-            },
+          changeActive(id) {
+            this.activePhoto = id;
+          },
         },
-    });
+      });
 </script>
 @endpush
