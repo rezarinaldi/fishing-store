@@ -111,6 +111,7 @@ Detail Products | {{ config('settings.name') }}
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         @forelse ($review as $rv)
+                        @if($rv->item_id == $item->id)
                         <ul class="list-unstyled">
                             <li class="media">
                                 <img src="/images/user.png" alt="" class="mr-3 rounded-circle" />
@@ -121,6 +122,7 @@ Detail Products | {{ config('settings.name') }}
                                 </div>
                             </li>
                         </ul>
+                        @endif
                         @empty
                         <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
                             Empty Review
