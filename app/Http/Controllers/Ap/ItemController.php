@@ -158,28 +158,22 @@ class ItemController extends Controller
             ]);
 
             $images = $request->images;
-            
-            if ($request->has('images[]') != "") {
-                foreach ($images as $image) {
-                    $nmFile = $image->getClientOriginalName();
-                    $value = $image->move(public_path('/images/items/'), $nmFile);
-                    Picture::create([
-                        'item_id' => $item->id,
-                        'value' => $nmFile
-                    ]);
-                }
-            } else {
+            if ($request->has('images[]') == '') {
                 // dd($images);
-                // foreach ($images as $image) {
-                    
-                //     $nmFile = $image->getClientOriginalName();
-                //     $value = $image->move(public_path('/images/items/'), $nmFile);
-                //     Picture::create([
-                //         'item_id' => $item->id,
-                //         'value' => $nmFile
-                //     ]);
-                // }
-            }
+                if($images == ''){
+
+                } else{
+                    // dd($images);
+                    foreach ($images as $image) {
+                        $nmFile = $image->getClientOriginalName();
+                        $value = $image->move(public_path('/images/items/'), $nmFile);
+                        Picture::create([
+                            'item_id' => $item->id,
+                            'value' => $nmFile
+                        ]);
+                    }
+                }
+            } 
             return redirect()->route('ap.items.edit', $item)->with('success', 'Sukses merubah produk !');
         }
     }
