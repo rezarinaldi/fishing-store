@@ -11,7 +11,7 @@ Reviews | {{ config('settings.name') }}
         <div class="dashboard-heading">
             <h2 class="dashboard-title">Reviews</h2>
             <p class="dashboard-subtitle">
-                Review item/product yang telah Anda beli
+                Review item/product yang ada di toko kami, hehe 😊
             </p>
             @if(session()->get('success'))
             <div class="alert alert-success">

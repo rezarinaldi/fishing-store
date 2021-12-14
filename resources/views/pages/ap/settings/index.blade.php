@@ -31,6 +31,9 @@ Admin | Setting {{ config('settings.name') }}
                         @if(session()->get('success'))
                         <div class="alert alert-success">
                             {{ session()->get('success') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div><br />
                         @endif
                         <div class="card">
@@ -83,7 +86,8 @@ Admin | Setting {{ config('settings.name') }}
                                         <tr>
                                             <th>Logo Website</th>
                                             <td>
-                                                <img src="{{ asset('images/setting/'.$setting['logo']) }}" style="width: 500px; height:auto;" class="rounded float-left" >
+                                                <img src="{{ asset('images/setting/'.$setting['logo']) }}"
+                                                    style="width: 500px; height:auto;" class="rounded float-left">
                                                 <input class="form-control " type="file" id="logo" name="setting[logo]"
                                                     value="{{ old('logo') }}">
                                             </td>
@@ -91,7 +95,8 @@ Admin | Setting {{ config('settings.name') }}
                                         <tr>
                                             <th>Icon Website</th>
                                             <td>
-                                                <img src="{{ asset('images/setting/'.$setting['favicon']) }}" style="width: 500px; height:auto;" class="rounded float-left" >
+                                                <img src="{{ asset('images/setting/'.$setting['favicon']) }}"
+                                                    style="width: 500px; height:auto;" class="rounded float-left">
                                                 <input class="form-control " type="file" id="favicon"
                                                     name="setting[favicon]" value="{{ old('favicon') }}">
                                             </td>

@@ -63,26 +63,35 @@ Detail Products | {{ config('settings.name') }}
         <section class="store-heading">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-4">
                         <h1>{{ $item->nm_items }}</h1>
                         <div class="price">
-                            @php $total = 0 @endphp
-                            @if($item->discount > 0)
-                            @php $total += $item['price'] - (($item['price'] * $item['discount']) / 100) @endphp
-                            <s>@currency($item->price)</s>
-                            @else($item->discount = 0)
-                            @php $total += $item['price'] @endphp
-                            @endif
-                            <p><b>@currency($total)</p></b>
+                            Stock: ({{ $item->quantity }})
                         </div>
+                    </div>
+                    <div class="col-lg-2 price">
+                        @php $total = 0 @endphp
+                        @if($item->discount > 0)
+                        @php $total += $item['price'] - (($item['price'] * $item['discount']) / 100) @endphp
+                        <s>@currency($item->price)</s>
+                        @else($item->discount = 0)
+                        @php $total += $item['price'] @endphp
+                        @endif
+                        <p><b>@currency($total)</p></b>
                     </div>
                     <div class="col-lg-2" data-aos="zoom-in">
                         @auth
                         @csrf
+                        @if ($item->quantity > 0)
                         <a class="btn btn-success px-4 text-white btn-block mb-3"
                             href="{{url('add-to-cart/'.$item->id)}}">
-                            <i class="fas fa-shopping-cart"></i> Add Cart
+                            Add to Cart
                         </a>
+                        @elseif ($item->quantity == 0)
+                        <button class="btn btn-success px-4 text-white btn-block mb-3" disabled="disabled">
+                            Out of Stock
+                        </button>
+                        @endif
                         @else
                         <a href="{{ route('login') }}" class="btn btn-success px-4 text-white btn-block mb-3">
                             Log In to Add

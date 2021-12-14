@@ -34,7 +34,6 @@ Admin | Pesan {{ config('settings.name') }}
                                 Pesan
                             </h3>
                         </div>
-
                     </div>
                 </div>
                 <div class="card-body">

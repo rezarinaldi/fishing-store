@@ -24,24 +24,6 @@ Admin | Pesan {{ config('settings.name') }}
                     </div>
                 </div>
         </section>
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        @if(session()->get('success'))
-                        <div class="alert alert-success">
-                            {{ session()->get('success') }}
-                        </div>
-                        @endif
-                        @if(session()->get('failed'))
-                        <div class="alert alert-warning">
-                            {{ session()->get('failed') }}
-                        </div>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </section>
         <div class="row">
             <div class="col-lg-10 grid-margin stretch-card">
                 <div class="card">
@@ -56,7 +38,9 @@ Admin | Pesan {{ config('settings.name') }}
                                                     <span class="fas fa-search"></span>
                                                 </button>
                                             </span>
-                                            <input name="keyword" id="keyword" class="form-control mr-1 mt-2" placeholder="Cari berdasarkan nama pengirim atau email pengirim" value="{{ request('keyword') }}">
+                                            <input name="keyword" id="keyword" class="form-control mr-1 mt-2"
+                                                placeholder="Cari berdasarkan nama pengirim atau email pengirim"
+                                                value="{{ request('keyword') }}">
                                             <a href="{{ route('ap.contacts.index') }}" class="mr-1 mt-2">
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-danger" type="button" title="Refresh page">
@@ -84,13 +68,17 @@ Admin | Pesan {{ config('settings.name') }}
                                     @foreach($contacts as $key => $c)
                                     <tbody>
                                         <tr>
-                                            <td>{{ ($contacts->currentPage()-1) * $contacts->perpage() + $key + 1 }}</td>
+                                            <td>{{ ($contacts->currentPage()-1) * $contacts->perpage() + $key + 1 }}
+                                            </td>
                                             <td>{{ $c->name }}</td>
                                             <td>{{ $c->email }} </td>
                                             <td>{{ Str::limit($c->message, 50) }} </td>
                                             <td>
                                                 <div class="d-flex centered">
-                                                    <a href="{{ route('ap.contacts.show', $c->id) }}" class="btn btn-outline-info mr-2" type="button" style="color: #404040;" onmouseover="this.style.color='white'" onMouseOut="this.style.color='#404040'">
+                                                    <a href="{{ route('ap.contacts.show', $c->id) }}"
+                                                        class="btn btn-outline-info mr-2" type="button"
+                                                        style="color: #404040;" onmouseover="this.style.color='white'"
+                                                        onMouseOut="this.style.color='#404040'">
                                                         <i class="fas fa-eye"></i> Lihat
                                                     </a>
                                                 </div>
@@ -102,7 +90,7 @@ Admin | Pesan {{ config('settings.name') }}
                             </div>
                         </div>
                         {{ $contacts->onEachSide(5)->appends([
-                            'keyword' => request('keyword')])->links() 
+                        'keyword' => request('keyword')])->links()
                         }}
                     </div>
                 </div>
