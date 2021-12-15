@@ -33,6 +33,6 @@ class ContactController extends Controller
             'message' => $request->message
         ]);
 
-        return redirect()->route('contact')->with('success', 'Pesan sukses di kirim!');
+        return redirect()->route('contact')->with('success', 'Pesan berhasil dikirim!');
     }
 }

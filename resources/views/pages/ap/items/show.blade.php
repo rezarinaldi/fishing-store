@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Admin | Item {{ config('settings.name') }}
+Admin | Detail Produk {{ config('settings.name') }}
 @endsection
 
 @section('sidebar')
@@ -86,7 +86,8 @@ Admin | Item {{ config('settings.name') }}
                             <h5 class="text text-bold">Harga Asli</h5>
                             <p>@currency($item->price)</p>
                             <hr>
-                            <p name="diskon" id="diskon">Besar diskon: @currency($item->discount)
+                            <p name="diskon" id="diskon">
+                                Besar diskon: {{ $item->discount }}%
                             </p>
                             <hr>
                             <div class="bg-gray ">

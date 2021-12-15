@@ -16,12 +16,9 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->references("id")->on("users");
-            $table->foreignId("item_id")->references("id")->on("items");
-            $table->datetime("date");
-            $table->integer("quantity");
-            $table->integer("total_price");
             $table->enum('shipping_method', ['pick-up', 'delivery']);
             $table->enum('status', ['unpaid', 'process', 'delivered', 'success', 'cancel']);
+            $table->text('transfers_slip')->nullable();
             $table->timestamps();
         });
     }

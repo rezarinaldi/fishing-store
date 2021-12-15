@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Admin | Kategori {{ config('settings.name') }}
+Admin | Ubah Kategori {{ config('settings.name') }}
 @endsection
 
 @section('sidebar')

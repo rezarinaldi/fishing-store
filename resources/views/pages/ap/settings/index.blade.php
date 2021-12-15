@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Admin | Setting {{ config('settings.name') }}
+Admin | Pengaturan {{ config('settings.name') }}
 @endsection
 
 @section('sidebar')
@@ -14,12 +14,12 @@ Admin | Setting {{ config('settings.name') }}
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h2><i class="nav-icon fas fa-cog"></i>Setting</h2>
+                        <h2><i class="nav-icon fas fa-cog"></i> Pengaturan</h2>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Setting</li>
+                            <li class="breadcrumb-item active">Pengaturan</li>
                         </ol>
                     </div>
                 </div>

@@ -10,6 +10,14 @@ Home | {{ config('settings.name') }}
         <div class="container">
             <div class="row">
                 <div class="col-xxl-8 px-4 py-5" data-aos="zoom-in">
+                    @if(session()->get('success'))
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div><br />
+                    @endif
                     <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                         <div class="col-10 col-sm-8 col-lg-6">
                             <img src="/images/banner.jpg" class="d-block mx-lg-auto img-fluid rounded" alt="banner"

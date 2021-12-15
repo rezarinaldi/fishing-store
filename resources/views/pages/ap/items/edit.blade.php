@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Admin | Detail Produk {{ config('settings.name') }}
+Admin | Ubah Produk {{ config('settings.name') }}
 @endsection
 
 @section('sidebar')

@@ -18,8 +18,8 @@ class CreateOrderDetailsTable extends Migration
             $table->foreignId("order_id")->references('id')->on('orders');
             $table->foreignId("item_id")->references('id')->on('items');
             $table->datetime("date");
-            $table->integer("quantity");
-            $table->integer("total_price");
+            $table->integer("quantity")->length(4);
+            $table->integer("total_price")->length(10);
             $table->timestamps();
         });
     }

@@ -99,7 +99,7 @@ Detail Products | {{ config('settings.name') }}
                 </div>
             </div>
         </section>
-        <section class="store-description">
+        <section class="store-description" data-aos="zoom-out">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-8">
@@ -108,15 +108,25 @@ Detail Products | {{ config('settings.name') }}
                 </div>
             </div>
         </section>
-        <section class="store-review">
+
+        <section class="store-review" data-aos="fade-zoom-in">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-lg-8 mt-3 mb-3">
+                    <div class="col-12 col-lg-8 mt-3">
                         <h4>Customers Review</h4>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 col-lg-8">
+                        @auth
+                        <a href="{{ route('review') }}" class="btn btn-success px-4 text-white mt-2 mb-4">
+                            Add Review
+                        </a>
+                        @else
+                        <a href="{{ route('login') }}" class="btn btn-success px-4 text-white mt-2 mb-4">
+                            Log In to Add
+                        </a>
+                        @endauth
                         @forelse ($review as $rv)
                         @if($rv->item_id == $item->id)
                         <ul class="list-unstyled">

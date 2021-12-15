@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Admin | Pesanan {{ config('settings.name') }}
+Admin | Ubah Pesanan {{ config('settings.name') }}
 @endsection
 
 @section('sidebar')
@@ -30,7 +30,8 @@ Admin | Pesanan {{ config('settings.name') }}
                 <div class="card">
                     <div class="card-body text text-black">
                         <h4 class="card-title">Ubah Pesanan</h4>
-                        <form class="forms-sample" action="{{ route('ap.orders.update',$order->id) }}" method="post" enctype="multipart/form-data">
+                        <form class="forms-sample" action="{{ route('ap.orders.update',$order->id) }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             @if(session()->get('success'))
@@ -48,7 +49,9 @@ Admin | Pesanan {{ config('settings.name') }}
                             </div>
                             <div class="form-group">
                                 <label for="user_id">Nama Pemesan</label>
-                                <select class="form-control js-example-basic-single w-100" aria-label="Default select example" id="user_id" name="user_id" value="{{ $order->user['id'] }}">
+                                <select class="form-control js-example-basic-single w-100"
+                                    aria-label="Default select example" id="user_id" name="user_id"
+                                    value="{{ $order->user['id'] }}">
                                     @foreach($user as $u)
                                     @if($u->id == $order->user['id'])
                                     <option class="text text-black" value={{ $u->id }} selected>{{ $u->name}}</option>
@@ -66,38 +69,49 @@ Admin | Pesanan {{ config('settings.name') }}
                             </div>
                             <div class="form-group">
                                 <label for="date">Tanggal Pesan</label>
-                                <input type="text" class="form-control @if($errors->has('date')) is-invalid @endif" id="date" name="date" value="{{ $order->created_at }}" readonly>
+                                <input type="text" class="form-control @if($errors->has('date')) is-invalid @endif"
+                                    id="date" name="date" value="{{ $order->created_at }}" readonly>
                                 @if($errors->has('date'))
                                 <div class="invalid-feedback">{{ $errors->first('date') }}</div>
                                 @endif
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="payment_method">Metode Pembayaran</label>
-                                <select class="form-control form-select-lg mb-3" aria-label="Default select example" id="payment_method" name="payment_method" value="{{ $order->payment_method }}">
-                                    @foreach(["pick up" => "Diambil", "sending" => "Mengirim"] AS $payment_method => $pm)
-                                    <option value="{{ $payment_method }}" {{ old("payment_method", $order->payment_method) == $payment_method ? "selected" : "" }}>{{ $pm }}</option>
+                                <select class="form-control form-select-lg mb-3" aria-label="Default select example"
+                                    id="payment_method" name="payment_method" value="{{ $order->payment_method }}">
+                                    @foreach(["pick up" => "Diambil", "sending" => "Mengirim"] AS $payment_method =>
+                                    $pm)
+                                    <option value="{{ $payment_method }}" {{ old("payment_method", $order->
+                                        payment_method) == $payment_method ? "selected" : "" }}>{{ $pm }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="payment_status">Status Pembayaran</label>
-                                <select class="form-control form-select-lg mb-3" aria-label="Default select example" id="payment_status" name="payment_status" value="{{ $order->payment_status }}">
-                                    @foreach(["paid" => "Sudah dibayar", "unpaid" => "Belum dibayar"] AS $payment_status => $ps)
-                                    <option value="{{ $payment_status }}" {{ old("payment_status", $order->payment_status) == $payment_status ? "selected" : "" }}>{{ $ps }}</option>
+                                <select class="form-control form-select-lg mb-3" aria-label="Default select example"
+                                    id="payment_status" name="payment_status" value="{{ $order->payment_status }}">
+                                    @foreach(["paid" => "Sudah dibayar", "unpaid" => "Belum dibayar"] AS $payment_status
+                                    => $ps)
+                                    <option value="{{ $payment_status }}" {{ old("payment_status", $order->
+                                        payment_status) == $payment_status ? "selected" : "" }}>{{ $ps }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="transfers_slip">Bukti Pembayaran</label>
-                                <input type="text" class="form-control" id="transfers_slip" name="transfers_slip" value="{{ $order->transfers_slip }}" readonly>
+                                <input type="text" class="form-control" id="transfers_slip" name="transfers_slip"
+                                    value="{{ $order->transfers_slip }}" readonly>
 
                             </div>
                             <div class="form-group">
                                 <label for="status">Status Pembayaran</label>
-                                <select class="form-control form-select-lg mb-3" aria-label="Default select example" id="status" name="status" value="{{ $order->status }}">
-                                    @foreach(["unpaid" => "Belum Dibayar", "process" => "Proses Pengemasan", "delivered" => "Proses Kirim", "cancel" => "Batal", "success" => "Sukses"] AS $status => $s)
-                                    <option value="{{ $status }}" {{ old("status", $order->status) == $status ? "selected" : "" }}>{{ $s }}</option>
+                                <select class="form-control form-select-lg mb-3" aria-label="Default select example"
+                                    id="status" name="status" value="{{ $order->status }}">
+                                    @foreach(["unpaid" => "Belum Dibayar", "process" => "Proses Pengemasan", "delivered"
+                                    => "Proses Kirim", "cancel" => "Batal", "success" => "Sukses"] AS $status => $s)
+                                    <option value="{{ $status }}" {{ old("status", $order->status) == $status ?
+                                        "selected" : "" }}>{{ $s }}</option>
                                     @endforeach
                                 </select>
                             </div>

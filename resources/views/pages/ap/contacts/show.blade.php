@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Admin | Pesan {{ config('settings.name') }}
+Admin | Detail Pesan {{ config('settings.name') }}
 @endsection
 
 @section('sidebar')

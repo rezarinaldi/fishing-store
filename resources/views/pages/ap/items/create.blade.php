@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Admin | Item {{ config('settings.name') }}
+Admin | Tambah Produk {{ config('settings.name') }}
 @endsection
 
 @section('sidebar')

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Item;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -19,7 +18,7 @@ class HomeController extends Controller
         $categories = Category::take(6)->get();
         $items = Item::with('pictures')->take(8)->get();
 
-        return view('pages.home',[
+        return view('pages.home', [
             'categories' => $categories,
             'items' => $items
         ]);

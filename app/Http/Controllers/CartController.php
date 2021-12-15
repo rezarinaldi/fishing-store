@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Item;
 use App\Order;
 use App\OrderDetails;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
     public function index()
     {
-        return view('pages.cart');
+        $carts = Cart::with(['item.pictures', 'user'])->where('user_id', Auth::user()->id)->get();
+
+        return view('pages.cart', [
+            'carts' => $carts
+        ]);
     }
 
     public function addCart($id)
@@ -20,6 +26,13 @@ class CartController extends Controller
         $disc = $item->discount;
 
         $cart = session()->get('cart', []);
+
+        $keranjang = [
+            'item_id' => $id,
+            'user_id' => Auth::user()->id
+        ];
+
+        Cart::create($keranjang);
 
         if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
@@ -70,7 +83,7 @@ class CartController extends Controller
 
         $data = [];
         $cart = session()->get('cart');
-        $quatity = $item['quantity'] - $request->quantity;
+        $quantity = $item['quantity'] - $request->quantity;
 
         foreach ($cart as $detail) {
             // dd($c);
@@ -89,12 +102,15 @@ class CartController extends Controller
                 'total_price' => $request->total_price,
             ]);
 
-            if ($item->id == $detail['id']) {
-                $item->update([
-                    'quantity' => $item['quantity'] - $detail['quantity']
-                ]);
-            }
+            $product = Item::find($detail['id']);
+            $product->decrement('quantity', $detail['quantity']);
         }
-        return view('pages.cart')->with('success', 'Pesanan berhasil dibuat');
+
+        // Delete cart data
+        Cart::with(['item', 'user'])
+            ->where('user_id', Auth::user()->id)
+            ->delete();
+
+        return redirect()->route('home')->with('success', 'Pesanan berhasil dibuat!');
     }
 }

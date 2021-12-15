@@ -61,7 +61,7 @@ Reviews | {{ config('settings.name') }}
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-12">
+                <div class="col-10">
                     @forelse ($reviews as $rv)
                     @if($rv->user_id == Auth::user()->id)
                     <a href="{{ route('review-details', $rv->id) }}" class="card card-list d-block">
