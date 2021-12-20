@@ -16,8 +16,8 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->foreignId("category_id")->references("id")->on("categories");
-            $table->string("nm_items", 30);
-            $table->string("slug", 30)->unique();
+            $table->string("nm_items", 100);
+            $table->string("slug", 100)->unique();
             $table->longText("description");
             $table->integer("quantity")->length(4);
             $table->integer("price")->length(8);
