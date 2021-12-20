@@ -45,17 +45,14 @@ Admin | Tambah Produk {{ config('settings.name') }}
                             </div>
                             <div class="form-group">
                                 <label for="nm_category">Nama Produk</label>
-                                <input type="text" class="form-control @if($errors->has('nm_items')) is-invalid @endif"
-                                    id="nm_items" name="nm_items" placeholder="Nama Produk"
-                                    value="{{ old('nm_items') }}">
+                                <input type="text" class="form-control @if($errors->has('nm_items')) is-invalid @endif" id="nm_items" name="nm_items" placeholder="Nama Produk" value="{{ old('nm_items') }}">
                                 @if($errors->has('nm_items'))
                                 <div class="invalid-feedback">{{ $errors->first('nm_items') }}</div>
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label for="nm_category">Kategori Produk</label>
-                                <select class="form-control form-select-lg mb-3" aria-label="Default select example"
-                                    id="category_id" name="category_id" value="{{ old('category_id') }}">
+                                <select class="form-control form-select-lg mb-3" aria-label="Default select example" id="category_id" name="category_id" value="{{ old('category_id') }}">
                                     @foreach($category as $c)
                                     <option value={{ $c->id }}>{{ $c->nm_category }}</option>
                                     @endforeach
@@ -66,35 +63,28 @@ Admin | Tambah Produk {{ config('settings.name') }}
                             </div>
                             <div class="form-group">
                                 <label for="description">Deskripsi Produk</label>
-                                <textarea
-                                    class="ckeditor form-control @if($errors->has('description')) is-invalid @endif"
-                                    id="description" name="description" placeholder="Produk ini ..."
-                                    rows="15">{{ old('description') }}</textarea>
+                                <textarea class="ckeditor form-control @if($errors->has('description')) is-invalid @endif" id="description" name="description" placeholder="Produk ini ..." rows="15">{{ old('description') }}</textarea>
                                 @if($errors->has('description'))
                                 <div class="invalid-feedback">{{ $errors->first('description') }}</div>
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label for="quantity">Jumlah Produk</label>
-                                <input type="number"
-                                    class="form-control @if($errors->has('quantity')) is-invalid @endif" id="quantity"
-                                    name="quantity" placeholder="0" value="{{ old('quantity') }}">
+                                <input type="number" class="form-control @if($errors->has('quantity')) is-invalid @endif" id="quantity" name="quantity" placeholder="0" value="{{ old('quantity') }}">
                                 @if($errors->has('quantity'))
                                 <div class="invalid-feedback">{{ $errors->first('quantity') }}</div>
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label for="price">Harga Produk</label>
-                                <input type="number" class="form-control @if($errors->has('price')) is-invalid @endif"
-                                    id="price" name="price" placeholder="120000" value="{{ old('price') }}">
+                                <input type="number" class="form-control @if($errors->has('price')) is-invalid @endif" id="price" name="price" placeholder="120000" value="{{ old('price') }}">
                                 @if($errors->has('price'))
                                 <div class="invalid-feedback">{{ $errors->first('price') }}</div>
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label for="discount">Diskon Produk</label>
-                                <input type="text" class="form-control @if($errors->has('discount')) is-invalid @endif"
-                                    id="discount" name="discount" placeholder="0" value="{{ old('discount') }}">
+                                <input type="text" class="form-control @if($errors->has('discount')) is-invalid @endif" id="discount" name="discount" placeholder="0" value="{{ old('discount') }}">
                                 @if($errors->has('discount'))
                                 <div class="invalid-feedback">{{ $errors->first('discount') }}</div>
                                 @endif
@@ -111,16 +101,17 @@ Admin | Tambah Produk {{ config('settings.name') }}
                                     <table class="table table-borderless" id="field">
                                         <tr>
                                             <td><input type="file" name="images[]" class="form-control"></td>
-                                            <td><button class="btn btn-success" type="button"><i
-                                                        class="fas fa-plus"></i></button></td>
+                                            <td><button class="btn btn-success" type="button"><i class="fas fa-plus"></i></button></td>
                                         </tr>
                                     </table>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                            <a href="{{ route('ap.items.index') }}" class="btn btn-light">
-                                Batal
-                            </a>
+                            <div class="col-auto m-4">
+                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <a href="{{ route('ap.items.index') }}" class="btn btn-light">
+                                    Batal
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
