@@ -27,13 +27,15 @@ Transaction Details | {{ config('settings.name') }}
                                     <div class="row">
                                         <div class="col-12 col-md-6">
                                             <div class="product-title">Customer Name</div>
-                                            <div class="product-subtitle">Reza Rinaldi
+                                            <div class="product-subtitle">{{Auth::user()->name}}
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="product-title">Product Name</div>
                                             <div class="product-subtitle">
-                                                Yellow Fish Lure
+                                                @foreach($transaction->details as $detail)
+                                                <li>{{ $detail->item->nm_items }}</li>
+                                                @endforeach
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -41,13 +43,13 @@ Transaction Details | {{ config('settings.name') }}
                                                 Date of Transaction
                                             </div>
                                             <div class="product-subtitle">
-                                                12 Desember, 2021
+                                                {{-- $transaction->created_at->toDateString() --}}
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="product-title">Status</div>
-                                            <div class="product-subtitle text-danger">
-                                                Delivered
+                                            <div class="product-subtitle">
+                                                {{ $transaction->status }}
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -55,8 +57,7 @@ Transaction Details | {{ config('settings.name') }}
                                                 Total Amount
                                             </div>
                                             <div class="product-subtitle">
-                                                Rp128.000
-                                                {{-- Rp{{ number_format($transaction->transaction->total_price) }} --}}
+                                                {{--@currency($transaction->details->total_price)--}}
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -64,7 +65,7 @@ Transaction Details | {{ config('settings.name') }}
                                                 Mobile
                                             </div>
                                             <div class="product-subtitle">
-                                                085312345678
+                                            0{{Auth::user()->phone_number}}
                                             </div>
                                         </div>
                                     </div>
@@ -72,77 +73,76 @@ Transaction Details | {{ config('settings.name') }}
                             </div>
                             <form action="#" method="POST" enctype="multipart/form-data">
                                 {{-- <form action="{{ route('dashboard-transaction-update', $transaction->id) }}"
-                                    method="POST" enctype="multipart/form-data"> --}}
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-12 mt-4">
-                                            <h5>Shipping Information</h5>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="row">
-                                                <div class="col-12 col-md-6">
-                                                    <div class="product-title">Address</div>
-                                                    <div class="product-subtitle">
-                                                        Jl. Wendit Utara, No. 15
-                                                    </div>
+                                method="POST" enctype="multipart/form-data"> --}}
+                                @csrf
+                                <div class="row">
+                                    <div class="col-12 mt-4">
+                                        <h5>Shipping Information</h5>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">Address</div>
+                                                <div class="product-subtitle">
+                                                {{Auth::user()->address}}
                                                 </div>
-                                                <div class="col-12 col-md-6">
-                                                    <div class="product-title">Regency</div>
-                                                    <div class="product-subtitle">
-                                                        Kabupaten Malang
-                                                    </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">Regency</div>
+                                                <div class="product-subtitle">
+                                                {{Auth::user()->regency}}
                                                 </div>
-                                                <div class="col-12 col-md-6">
-                                                    <div class="product-title">Province</div>
-                                                    <div class="product-subtitle">
-                                                        East Java
-                                                    </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">Province</div>
+                                                <div class="product-subtitle">
+                                                {{Auth::user()->province}}
                                                 </div>
-                                                <div class="col-12 col-md-6">
-                                                    <div class="product-title">Postal Code</div>
-                                                    <div class="product-subtitle">
-                                                        65154
-                                                    </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">Postal Code</div>
+                                                <div class="product-subtitle">
+                                                {{Auth::user()->postal_code}}
                                                 </div>
-                                                <div class="col-12 col-md-6">
-                                                    <div class="product-title">Country</div>
-                                                    <div class="product-subtitle">
-                                                        Indonesia
-                                                    </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">Country</div>
+                                                <div class="product-subtitle">
+                                                {{Auth::user()->country}}
                                                 </div>
-                                                <div class="col-12 col-md-6">
-                                                    <div class="product-title">Shipping Method</div>
-                                                    <div class="product-subtitle">
-                                                        Delivery
-                                                    </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">Shipping Method</div>
+                                                <div class="product-subtitle">
+                                                {{ $transaction->shipping_method }}
                                                 </div>
-                                                {{-- <template v-if="status == 'SHIPPING'"> --}}
-                                                    <div class="col-md-3">
-                                                        <div class="product-title">Transfer Slip</div>
-                                                        <input type="file" class="form-control" name="transfer-slip"
-                                                            v-model="transfer-slip" />
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <button type="submit" class="btn btn-success btn-block mt-4">
-                                                            Upload
-                                                        </button>
-                                                    </div>
-                                                    {{--
+                                            </div>
+                                            {{-- <template v-if="status == 'SHIPPING'"> --}}
+                                            <div class="col-md-3">
+                                                <div class="product-title">Transfer Slip</div>
+                                                <input type="file" class="form-control" name="transfer-slip" v-model="transfer-slip" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="submit" class="btn btn-success btn-block mt-4">
+                                                    Upload
+                                                </button>
+                                            </div>
+                                            {{--
                                                 </template> --}}
-                                                <div class="col-12 col-md-3">
-                                                    <img src="/images/transfer-slip.jpg" class="w-100 mb-3" alt="" />
-                                                </div>
+                                            <div class="col-12 col-md-3">
+                                                <img src="/images/transfer-slip.jpg" class="w-100 mb-3" alt="" />
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <button type="submit" class="btn btn-success btn-lg">
-                                                Save Now
-                                            </button>
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-success btn-lg">
+                                            Save Now
+                                        </button>
                                     </div>
-                                </form>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
