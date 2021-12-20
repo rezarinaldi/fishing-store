@@ -37,7 +37,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/setting/transactions', 'TransactionController@index')
         ->name('transaction');
-    Route::get('/setting/transaction-details', 'TransactionController@details') // mek gae nampilne
+    Route::get('/setting/transaction-details/{id}', 'TransactionController@details') // mek gae nampilne
         ->name('transaction-detail');
     // Route::get('/setting/transactions/{id}', 'TransactionController@details')
     //     ->name('transaction-detail');
