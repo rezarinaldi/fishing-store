@@ -23,25 +23,37 @@ Transactions | {{ config('settings.name') }}
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                            aria-labelledby="pills-home-tab">
-                            {{-- @foreach ($sellTransactions as $transaction) --}}
-                            <a href="{{ route('transaction-detail') }}" {{-- <a
-                                href="{{ route('transaction-detail', $transaction->id) }}" --}}
-                                class="card card-list d-block">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                            @foreach ($sellTransactions as $transaction)
+                            @if($transaction->user_id = Auth::user()->id)
+                            <a href="{{ route('transaction-detail', $transaction->id) }}" class="card card-list d-block">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-1">
-                                            <img src="/images/detail-lure4.jpg" class="w-50" />
-                                        </div>
-                                        <div class="col-md-4">
-                                            Yellow Fish Lure
+                                        <!-- <div class="col-md-1">
+                                            <img src="{{-- asset('images/items/'.$transaction->details->item->pictures[0]->value) --}}" class="w-50" />
+                                        </div> -->
+                                        <div class="col-md-3">
+                                            {{Auth::user()->name}}
                                         </div>
                                         <div class="col-md-3">
-                                            Delivered
+                                            {{$transaction->shipping_method}}
+                                        </div>
+                                        <div class="col-md-2">
+                                            @if($transaction->status == 'unpaid')
+                                            <span class="badge badge-warning badge-pill p-3">Belum
+                                                Dibayar</span>
+                                            @elseif($transaction->status == 'process')
+                                            <span class="badge badge-info badge-pill p-3">Proses</span>
+                                            @elseif($transaction->status == 'delivered')
+                                            <span class="badge badge-primary badge-pill p-3">Mengirim</span>
+                                            @elseif($transaction->status == 'success')
+                                            <span class="badge badge-success badge-pill p-3">Sukses</span>
+                                            @elseif($transaction->status == 'cancel')
+                                            <span class="badge badge-danger badge-pill p-3">Batal</span>
+                                            @endif
                                         </div>
                                         <div class="col-md-3">
-                                            12 Desember, 2021
+                                            {{$transaction->created_at->format('d-m-Y') }}
                                         </div>
                                         <div class="col-md-1 d-none d-md-block">
                                             <img src="/images/setting-arrow-right.svg" alt="" />
@@ -49,7 +61,8 @@ Transactions | {{ config('settings.name') }}
                                     </div>
                                 </div>
                             </a>
-                            {{-- @endforeach --}}
+                            @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>
