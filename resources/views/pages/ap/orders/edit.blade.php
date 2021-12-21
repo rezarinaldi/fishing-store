@@ -77,24 +77,24 @@ Admin | Ubah Pesanan {{ config('settings.name') }}
                             </div>
 
                             <div class="form-group">
-                                <label for="payment_method">Metode Pembayaran</label>
+                                <label for="payment_method">Metode Pengiriman</label>
                                 <select class="form-control form-select-lg mb-3" aria-label="Default select example"
-                                    id="payment_method" name="payment_method" value="{{ $order->payment_method }}">
-                                    @foreach(["pick up" => "Diambil", "sending" => "Mengirim"] AS $payment_method =>
+                                    id="shipping_method" name="shipping_method" value="{{ $order->shipping_method }}">
+                                    @foreach(["pick-up" => "Diambil", "delivery" => "Dikirim"] AS $shipping_method =>
                                     $pm)
-                                    <option value="{{ $payment_method }}" {{ old("payment_method", $order->
-                                        payment_method) == $payment_method ? "selected" : "" }}>{{ $pm }}</option>
+                                    <option value="{{ $shipping_method }}" {{ old("shipping_method", $order->
+                                        shipping_method) == $shipping_method ? "selected" : "" }}>{{ $pm }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="payment_status">Status Pembayaran</label>
+                                <label for="status">Status Pembayaran</label>
                                 <select class="form-control form-select-lg mb-3" aria-label="Default select example"
-                                    id="payment_status" name="payment_status" value="{{ $order->payment_status }}">
-                                    @foreach(["paid" => "Sudah dibayar", "unpaid" => "Belum dibayar"] AS $payment_status
+                                    id="status" name="status" value="{{ $order->status }}">
+                                    @foreach(["unpaid" => "Belum dibayar", "process" => "Proses Pengemasan", "delivered" => "Proses Pengiriman", "success" => "Sudah Sampai", "cancel" => "Batal"] AS $status
                                     => $ps)
-                                    <option value="{{ $payment_status }}" {{ old("payment_status", $order->
-                                        payment_status) == $payment_status ? "selected" : "" }}>{{ $ps }}</option>
+                                    <option value="{{ $status }}" {{ old("status", $order->
+                                        status) == $status ? "selected" : "" }}>{{ $ps }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -103,17 +103,6 @@ Admin | Ubah Pesanan {{ config('settings.name') }}
                                 <input type="text" class="form-control" id="transfers_slip" name="transfers_slip"
                                     value="{{ $order->transfers_slip }}" readonly>
 
-                            </div>
-                            <div class="form-group">
-                                <label for="status">Status Pembayaran</label>
-                                <select class="form-control form-select-lg mb-3" aria-label="Default select example"
-                                    id="status" name="status" value="{{ $order->status }}">
-                                    @foreach(["unpaid" => "Belum Dibayar", "process" => "Proses Pengemasan", "delivered"
-                                    => "Proses Kirim", "cancel" => "Batal", "success" => "Sukses"] AS $status => $s)
-                                    <option value="{{ $status }}" {{ old("status", $order->status) == $status ?
-                                        "selected" : "" }}>{{ $s }}</option>
-                                    @endforeach
-                                </select>
                             </div>
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
                             <a href="{{ route('ap.orders.index') }}" class="btn btn-light">
