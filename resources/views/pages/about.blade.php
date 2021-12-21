@@ -26,7 +26,15 @@ About | {{ config('settings.name') }}
                         mengetahui apakah masih menggunakan nomor tersebut atau sudah ganti. Karena owner dari toko alat
                         pancing tersebut, sudah lama tidak mengelola dan meng-update data-data di google map. Untuk cara
                         lain, mungkin bisa menghubungi melalui e-mail disamping: <b><a
-                                href="mailto:{{ config('settings.email') }}">{{ config('settings.email') }}</a></b>.</p>
+                                href="mailto:{{ config('settings.email') }}">{{ config('settings.email') }}</a></b>.
+                    </p>
+
+                    <p>Nomor Rekening:
+                        <br>
+                        1090088866648 | A.n DK pancing
+                        <br>
+                        <img src="/images/BSI_logo.png" alt="bank_dkpancing">
+                    </p>
 
                     <p>Developed by:</p>
                     <ol type='1'>
