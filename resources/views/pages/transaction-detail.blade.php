@@ -9,7 +9,7 @@ Transaction Details | {{ config('settings.name') }}
 <div class="section-content section-dashboard-home" data-aos="fade-up">
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Transactions Details</h2>
+            <h2 class="dashboard-title">Transaction Details</h2>
             <p class="dashboard-subtitle">
                 Detail transaksi pembelian Anda
             </p>
@@ -29,7 +29,8 @@ Transaction Details | {{ config('settings.name') }}
                             @endif
                             <div class="row">
                                 <div class="col-12 col-md-4">
-                                    <img src="{{ asset('images/'.config('settings.favicon')) }}" class="w-100 mb-3" alt="" />
+                                    <img src="{{ asset('images/'.config('settings.favicon')) }}" class="w-100 mb-3"
+                                        alt="" />
                                 </div>
                                 <div class="col-12 col-md-8">
                                     <div class="row">
@@ -51,7 +52,7 @@ Transaction Details | {{ config('settings.name') }}
                                                 Date of Transaction
                                             </div>
                                             <div class="product-subtitle">
-                                                {{ $transaction->created_at->toDateString() }}
+                                                {{ $transaction->created_at->format('d-m-Y') }}
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -79,7 +80,6 @@ Transaction Details | {{ config('settings.name') }}
                                                 @foreach($transaction->details as $detail)
                                                 @currency($detail->total_price)
                                                 @endforeach
-
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -93,8 +93,8 @@ Transaction Details | {{ config('settings.name') }}
                                     </div>
                                 </div>
                             </div>
-                                <form action="{{ route('dashboard-transaction-update', $transaction->id) }}"
-                                method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('dashboard-transaction-update', $transaction->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-12 mt-4">
@@ -106,7 +106,8 @@ Transaction Details | {{ config('settings.name') }}
                                                 <div class="product-title">Address</div>
                                                 <div class="product-subtitle">
                                                     {{Auth::user()->address}}
-                                                    <input type="number" id="user_id" name="user_id" value="{{Auth::user()->id}}" hidden>
+                                                    <input type="number" id="user_id" name="user_id"
+                                                        value="{{Auth::user()->id}}" hidden>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
@@ -136,33 +137,34 @@ Transaction Details | {{ config('settings.name') }}
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Shipping Method</div>
                                                 <div class="product-subtitle">
-                                                    {{ $transaction->shipping_method }}
+                                                    @if($transaction->shipping_method == 'pick-up')
+                                                    Diambil
+                                                    @elseif($transaction->shipping_method == 'delivery')
+                                                    Dikirim
+                                                    @endif
                                                 </div>
-                                                <input type="text" class="form-control" name="shipping_method" id="transfer_slip" value="{{ $transaction->shipping_method }}" hidden />
+                                                <input type="text" class="form-control" name="shipping_method"
+                                                    id="shipping_method" value="{{ $transaction->shipping_method }}"
+                                                    hidden />
                                             </div>
-                                            {{-- <template v-if="status == 'SHIPPING'"> --}}
                                             <div class="col-md-3">
                                                 <div class="product-title">Transfer Slip</div>
-                                                <input type="file" class="form-control" name="transfer_slip" v-model="transfer_slip" />
+                                                <input type="file" class="form-control" name="transfers_slip"
+                                                    id="transfers_slip" />
                                             </div>
                                             <div class="col-md-2">
                                                 <button type="submit" class="btn btn-success btn-block mt-4">
                                                     Upload
                                                 </button>
                                             </div>
-                                            {{--
-                                                </template> --}}
                                             <div class="col-12 col-md-3">
-                                                <img src="/images/transfer-slip.jpg" class="w-100 mb-3" alt="" />
+                                                <a href="{{ asset('images/transfers_slip/'.$transaction->transfers_slip) }}"
+                                                    target="__blank">
+                                                    <img src="{{ asset('images/transfers_slip/'.$transaction->transfers_slip) }}"
+                                                        class="w-100" alt="transfer_slip" />
+                                                </a>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <button type="submit" class="btn btn-success btn-lg">
-                                            Save Now
-                                        </button>
                                     </div>
                                 </div>
                             </form>

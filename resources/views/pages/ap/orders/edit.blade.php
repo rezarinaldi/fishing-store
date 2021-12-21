@@ -91,7 +91,8 @@ Admin | Ubah Pesanan {{ config('settings.name') }}
                                 <label for="status">Status Pembayaran</label>
                                 <select class="form-control form-select-lg mb-3" aria-label="Default select example"
                                     id="status" name="status" value="{{ $order->status }}">
-                                    @foreach(["unpaid" => "Belum dibayar", "process" => "Proses Pengemasan", "delivered" => "Proses Pengiriman", "success" => "Sudah Sampai", "cancel" => "Batal"] AS $status
+                                    @foreach(["unpaid" => "Belum dibayar", "process" => "Proses Pengemasan", "delivered"
+                                    => "Proses Pengiriman", "success" => "Sudah Sampai", "cancel" => "Batal"] AS $status
                                     => $ps)
                                     <option value="{{ $status }}" {{ old("status", $order->
                                         status) == $status ? "selected" : "" }}>{{ $ps }}</option>
@@ -100,9 +101,13 @@ Admin | Ubah Pesanan {{ config('settings.name') }}
                             </div>
                             <div class="form-group">
                                 <label for="transfers_slip">Bukti Pembayaran</label>
-                                <input type="text" class="form-control" id="transfers_slip" name="transfers_slip"
+                                <input type="text" class="form-control mb-3" id="transfers_slip" name="transfers_slip"
                                     value="{{ $order->transfers_slip }}" readonly>
-
+                                <a href="{{ asset('images/transfers_slip/'.$transaction->transfers_slip) }}"
+                                    target="__blank">
+                                    <img src="{{ asset('images/transfers_slip/'.$order->transfers_slip) }}"
+                                        width="250px" alt="transfer_slip" />
+                                </a>
                             </div>
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
                             <a href="{{ route('ap.orders.index') }}" class="btn btn-light">

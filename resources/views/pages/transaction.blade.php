@@ -23,10 +23,12 @@ Transactions | {{ config('settings.name') }}
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                            aria-labelledby="pills-home-tab">
                             @foreach ($sellTransactions as $transaction)
                             @if($transaction->user_id == Auth::user()->id)
-                            <a href="{{ route('transaction-detail', $transaction->id) }}" class="card card-list d-block">
+                            <a href="{{ route('transaction-detail', $transaction->id) }}"
+                                class="card card-list d-block">
                                 <div class="card-body">
                                     <div class="row">
                                         <!-- <div class="col-md-1">
@@ -36,7 +38,11 @@ Transactions | {{ config('settings.name') }}
                                             {{Auth::user()->name}}
                                         </div>
                                         <div class="col-md-3">
-                                            {{$transaction->shipping_method}}
+                                            @if($transaction->shipping_method == 'pick-up')
+                                            Diambil
+                                            @elseif($transaction->shipping_method == 'delivery')
+                                            Dikirim
+                                            @endif
                                         </div>
                                         <div class="col-md-2">
                                             @if($transaction->status == 'unpaid')
@@ -53,7 +59,7 @@ Transactions | {{ config('settings.name') }}
                                             @endif
                                         </div>
                                         <div class="col-md-3">
-                                            {{$transaction->created_at->format('d-m-Y') }}
+                                            {{$transaction->created_at->format('d-m-Y')}}
                                         </div>
                                         <div class="col-md-1 d-none d-md-block">
                                             <img src="/images/setting-arrow-right.svg" alt="" />

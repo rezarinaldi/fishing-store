@@ -29,14 +29,14 @@ class TransactionController extends Controller
             'transfers_slip.required' => 'Bukti pembayaran harus di upload'
         ]);
 
-        $image = $request->transfer_slip;
+        $image = $request->transfers_slip;
 
         if ($request->has('image') == '') {
             if ($image == '') {
                 //
             } else {
                 $nmFile = $image->getClientOriginalName();
-                $value = $image->move(public_path('/images/items/'), $nmFile);
+                $value = $image->move(public_path('/images/transfers_slip/'), $nmFile);
 
                 $transaction->update([
                     'user_id' => $request->user_id,

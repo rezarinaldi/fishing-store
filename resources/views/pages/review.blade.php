@@ -74,7 +74,7 @@ Reviews | {{ config('settings.name') }}
                                     {!! html_entity_decode($rv->comment) !!}
                                 </div>
                                 <div class="col-md-3">
-                                    {{$rv->created_at}}
+                                    {{$rv->created_at->format('d-m-Y')}}
                                 </div>
                                 <div class="col-md-1 d-none d-md-block">
                                     <img src="/images/setting-arrow-right.svg" alt="" />
