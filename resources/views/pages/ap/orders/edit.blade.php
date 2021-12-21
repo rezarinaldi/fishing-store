@@ -103,7 +103,7 @@ Admin | Ubah Pesanan {{ config('settings.name') }}
                                 <label for="transfers_slip">Bukti Pembayaran</label>
                                 <input type="text" class="form-control mb-3" id="transfers_slip" name="transfers_slip"
                                     value="{{ $order->transfers_slip }}" readonly>
-                                <a href="{{ asset('images/transfers_slip/'.$transaction->transfers_slip) }}"
+                                <a href="{{ asset('images/transfers_slip/'.$order->transfers_slip) }}"
                                     target="__blank">
                                     <img src="{{ asset('images/transfers_slip/'.$order->transfers_slip) }}"
                                         width="250px" alt="transfer_slip" />
