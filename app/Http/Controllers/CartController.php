@@ -74,6 +74,10 @@ class CartController extends Controller
 
     public function store(Request $request, Item $item)
     {
+        $request->validate([
+            'shipping_method.required' => 'Shipping method harus dipilih'
+        ]);
+        
         $order = Order::create([
             'user_id' => $request->user_id,
             'shipping_method' => $request->shipping_method,
