@@ -27,11 +27,10 @@ Transaction Details | {{ config('settings.name') }}
                                 </button>
                             </div>
                             @endif
-                            
-
                             <div class="row">
                                 <div class="col-12 col-md-4">
-                                    <img src="{{ asset('images/'.config('settings.favicon')) }}" class="w-100 mb-3" alt="" />
+                                    <img src="{{ asset('images/'.config('settings.favicon')) }}" class="w-100 mb-3"
+                                        alt="" />
                                 </div>
                                 <div class="col-12 col-md-8">
                                     <div class="row">
@@ -94,19 +93,27 @@ Transaction Details | {{ config('settings.name') }}
                                     </div>
                                 </div>
                             </div>
-                            <form action="{{ route('dashboard-transaction-update', $transaction->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('dashboard-transaction-update', $transaction->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-12 mt-4">
-                                        <h5>Shipping Information</h5> Transfer ke : 1090088866648 | A.n DK pancing | BSI <br><br>
+                                    @if($transaction->shipping_method == 'delivery')
+                                    <div class="col-12 my-4">
+                                        <h5>Shipping Information</h5> Transfer ke : 1090088866648 | A.n DK pancing | BSI
                                     </div>
+                                    @elseif($transaction->shipping_method == 'pick-up')
+                                    <div class="col-12 mt-4">
+                                        <h5>Shipping Information</h5>
+                                    </div>
+                                    @endif
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Address</div>
                                                 <div class="product-subtitle">
                                                     {{Auth::user()->address}}
-                                                    <input type="number" id="user_id" name="user_id" value="{{Auth::user()->id}}" hidden>
+                                                    <input type="number" id="user_id" name="user_id"
+                                                        value="{{Auth::user()->id}}" hidden>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
@@ -142,11 +149,15 @@ Transaction Details | {{ config('settings.name') }}
                                                     Dikirim
                                                     @endif
                                                 </div>
-                                                <input type="text" class="form-control" name="shipping_method" id="shipping_method" value="{{ $transaction->shipping_method }}" hidden />
+                                                <input type="text" class="form-control" name="shipping_method"
+                                                    id="shipping_method" value="{{ $transaction->shipping_method }}"
+                                                    hidden />
                                             </div>
+                                            @if($transaction->shipping_method == 'delivery')
                                             <div class="col-md-3">
                                                 <div class="product-title">Transfer Slip</div>
-                                                <input type="file" class="form-control" name="transfers_slip" id="transfers_slip" />
+                                                <input type="file" class="form-control" name="transfers_slip"
+                                                    id="transfers_slip" />
                                             </div>
                                             <div class="col-md-2">
                                                 <button type="submit" class="btn btn-success btn-block mt-4">
@@ -154,10 +165,13 @@ Transaction Details | {{ config('settings.name') }}
                                                 </button>
                                             </div>
                                             <div class="col-12 col-md-3">
-                                                <a href="{{ asset('images/transfers_slip/'.$transaction->transfers_slip) }}" target="__blank">
-                                                    <img src="{{ asset('images/transfers_slip/'.$transaction->transfers_slip) }}" class="w-100" alt="transfer_slip" />
+                                                <a href="{{ asset('images/transfers_slip/'.$transaction->transfers_slip) }}"
+                                                    target="__blank">
+                                                    <img src="{{ asset('images/transfers_slip/'.$transaction->transfers_slip) }}"
+                                                        class="w-100" alt="transfer_slip" />
                                                 </a>
                                             </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
