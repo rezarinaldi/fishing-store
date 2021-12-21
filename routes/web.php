@@ -37,11 +37,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/setting/transactions', 'TransactionController@index')
         ->name('transaction');
-    Route::get('/setting/transaction-details/{id}', 'TransactionController@details') // mek gae nampilne
+    Route::get('setting/transaction-details/{transaction}', 'TransactionController@details')
         ->name('transaction-detail');
     // Route::get('/setting/transactions/{id}', 'TransactionController@details')
     //     ->name('transaction-detail');
-    // Route::post('/setting/transactions/{id}', 'TransactionController@update')
+    Route::post('/setting/transactions/{transaction}', 'TransactionController@update')->name('dashboard-transaction-update');
 
     Route::get('/setting/reviews', 'ReviewController@index')
         ->name('review');
