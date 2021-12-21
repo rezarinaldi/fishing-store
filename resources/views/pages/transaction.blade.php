@@ -25,7 +25,7 @@ Transactions | {{ config('settings.name') }}
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                             @foreach ($sellTransactions as $transaction)
-                            @if($transaction->user_id = Auth::user()->id)
+                            @if($transaction->user_id == Auth::user()->id)
                             <a href="{{ route('transaction-detail', $transaction->id) }}" class="card card-list d-block">
                                 <div class="card-body">
                                     <div class="row">
