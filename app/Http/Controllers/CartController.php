@@ -77,44 +77,72 @@ class CartController extends Controller
         $request->validate([
             'shipping_method.required' => 'Shipping method harus dipilih'
         ]);
-        
-        $order = Order::create([
-            'user_id' => $request->user_id,
-            'shipping_method' => $request->shipping_method,
-            'status' => 'unpaid',
-            'transfers_slip' => $request->transfers_slip
-        ]);
 
-        $data = [];
-        $cart = session()->get('cart');
-        $quantity = $item['quantity'] - $request->quantity;
-
-        foreach ($cart as $detail) {
-            // dd($c);
-            // $data['details'] = [
-            //     [
-            //         'product_id' => $detail['id'],
-            //         'quantity' => $detail['quantity']
-            //     ]
-            // ];
-
-            OrderDetails::create([
-                'order_id' => $order->id,
-                'item_id' => $detail['id'],
-                'date' => $request->date,
-                'quantity' => $detail['quantity'],
-                'total_price' => $request->total_price,
+        $sm = $request->shipping_method;
+        if($sm == 'pick-up'){
+            $order = Order::create([
+                'user_id' => $request->user_id,
+                'shipping_method' => $request->shipping_method,
+                'status' => 'process',
+                'transfers_slip' => $request->transfers_slip
             ]);
-
-            $product = Item::find($detail['id']);
-            $product->decrement('quantity', $detail['quantity']);
+    
+            $data = [];
+            $cart = session()->get('cart');
+            $quantity = $item['quantity'] - $request->quantity;
+    
+            foreach ($cart as $detail) {
+    
+                OrderDetails::create([
+                    'order_id' => $order->id,
+                    'item_id' => $detail['id'],
+                    'date' => $request->date,
+                    'quantity' => $detail['quantity'],
+                    'total_price' => $request->total_price,
+                ]);
+    
+                $product = Item::find($detail['id']);
+                $product->decrement('quantity', $detail['quantity']);
+            }
+    
+            // Delete cart data
+            Cart::with(['item', 'user'])
+                ->where('user_id', Auth::user()->id)
+                ->delete();
+    
+            return redirect()->route('home')->with('success', 'Pesanan berhasil dibuat!');
+        } else{
+            $order = Order::create([
+                'user_id' => $request->user_id,
+                'shipping_method' => $request->shipping_method,
+                'status' => 'unpaid',
+                'transfers_slip' => $request->transfers_slip
+            ]);
+    
+            $data = [];
+            $cart = session()->get('cart');
+            $quantity = $item['quantity'] - $request->quantity;
+    
+            foreach ($cart as $detail) {
+    
+                OrderDetails::create([
+                    'order_id' => $order->id,
+                    'item_id' => $detail['id'],
+                    'date' => $request->date,
+                    'quantity' => $detail['quantity'],
+                    'total_price' => $request->total_price,
+                ]);
+    
+                $product = Item::find($detail['id']);
+                $product->decrement('quantity', $detail['quantity']);
+            }
+    
+            // Delete cart data
+            Cart::with(['item', 'user'])
+                ->where('user_id', Auth::user()->id)
+                ->delete();
+    
+            return redirect()->route('home')->with('success', 'Pesanan berhasil dibuat!');
         }
-
-        // Delete cart data
-        Cart::with(['item', 'user'])
-            ->where('user_id', Auth::user()->id)
-            ->delete();
-
-        return redirect()->route('home')->with('success', 'Pesanan berhasil dibuat!');
     }
 }
