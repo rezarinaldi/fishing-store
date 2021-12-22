@@ -99,6 +99,7 @@ Admin | Ubah Pesanan {{ config('settings.name') }}
                                     @endforeach
                                 </select>
                             </div>
+                            @if($order->shipping_method == 'delivery')
                             <div class="form-group">
                                 <label for="transfers_slip">Bukti Pembayaran</label>
                                 <input type="text" class="form-control mb-3" id="transfers_slip" name="transfers_slip"
@@ -109,6 +110,7 @@ Admin | Ubah Pesanan {{ config('settings.name') }}
                                         width="250px" alt="transfer_slip" />
                                 </a>
                             </div>
+                            @endif
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
                             <a href="{{ route('ap.orders.index') }}" class="btn btn-light">
                                 Batal
