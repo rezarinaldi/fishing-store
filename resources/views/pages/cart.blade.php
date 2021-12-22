@@ -43,7 +43,7 @@ Cart | {{ config('settings.name') }}
                                     <td>Product Name</td>
                                     <td>Qty</td>
                                     <td>Price</td>
-                                    <td>Menu</td>
+                                    <!-- <td>Menu</td> -->
                                 </tr>
                             </thead>
                             <tbody>
