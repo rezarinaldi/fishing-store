@@ -64,7 +64,7 @@ class CartController extends Controller
     {
         if ($request->id) {
             $cart = session()->get('cart');
-            if (isset($cart[$request->idate])) {
+            if (isset($cart[$request->id])) {
                 unset($cart[$request->id]);
                 session()->put('cart', $cart);
             }
@@ -79,20 +79,20 @@ class CartController extends Controller
         ]);
 
         $sm = $request->shipping_method;
-        if($sm == 'pick-up'){
+        if ($sm == 'pick-up') {
             $order = Order::create([
                 'user_id' => $request->user_id,
                 'shipping_method' => $request->shipping_method,
                 'status' => 'process',
                 'transfers_slip' => $request->transfers_slip
             ]);
-    
+
             $data = [];
             $cart = session()->get('cart');
             $quantity = $item['quantity'] - $request->quantity;
-    
+
             foreach ($cart as $detail) {
-    
+
                 OrderDetails::create([
                     'order_id' => $order->id,
                     'item_id' => $detail['id'],
@@ -100,31 +100,31 @@ class CartController extends Controller
                     'quantity' => $detail['quantity'],
                     'total_price' => $request->total_price,
                 ]);
-    
+
                 $product = Item::find($detail['id']);
                 $product->decrement('quantity', $detail['quantity']);
             }
-    
+
             // Delete cart data
             Cart::with(['item', 'user'])
                 ->where('user_id', Auth::user()->id)
                 ->delete();
-    
+
             return redirect()->route('home')->with('success', 'Pesanan berhasil dibuat!');
-        } else{
+        } else {
             $order = Order::create([
                 'user_id' => $request->user_id,
                 'shipping_method' => $request->shipping_method,
                 'status' => 'unpaid',
                 'transfers_slip' => $request->transfers_slip
             ]);
-    
+
             $data = [];
             $cart = session()->get('cart');
             $quantity = $item['quantity'] - $request->quantity;
-    
+
             foreach ($cart as $detail) {
-    
+
                 OrderDetails::create([
                     'order_id' => $order->id,
                     'item_id' => $detail['id'],
@@ -132,16 +132,16 @@ class CartController extends Controller
                     'quantity' => $detail['quantity'],
                     'total_price' => $request->total_price,
                 ]);
-    
+
                 $product = Item::find($detail['id']);
                 $product->decrement('quantity', $detail['quantity']);
             }
-    
+
             // Delete cart data
             Cart::with(['item', 'user'])
                 ->where('user_id', Auth::user()->id)
                 ->delete();
-    
+
             return redirect()->route('home')->with('success', 'Pesanan berhasil dibuat!');
         }
     }
