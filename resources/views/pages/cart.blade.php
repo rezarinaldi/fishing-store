@@ -43,7 +43,7 @@ Cart | {{ config('settings.name') }}
                                     <td>Product Name</td>
                                     <td>Qty</td>
                                     <td>Price</td>
-                                    <!-- <td>Menu</td> -->
+                                    <td>Menu</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,13 +54,10 @@ Cart | {{ config('settings.name') }}
                                 @php $total += $details['price'] * $details['quantity'] @endphp
                                 <tr>
                                     <td style="width: 25%;">
-                                        <input type="number" id="item_id" name="item_id" value="{{ $details['id'] }}"
-                                            hidden>
+                                        <input type="number" id="item_id" name="item_id" value="{{ $details['id'] }}" hidden>
                                         <input type="date" id="date" name="date" value="{{date('Y-m-d')}}" hidden>
-                                        <input type="number" id="user_id" name="user_id" value="{{Auth::user()->id}}"
-                                            hidden>
-                                        <img src="{{ asset('images/items/'.$details['image']) }}" alt=""
-                                            class="cart-image" />
+                                        <input type="number" id="user_id" name="user_id" value="{{Auth::user()->id}}" hidden>
+                                        <img src="{{ asset('images/items/'.$details['image']) }}" alt="" class="cart-image" />
                                     </td>
                                     <td style="width: 25%;">
                                         <div class="product-title">
@@ -73,7 +70,10 @@ Cart | {{ config('settings.name') }}
                                                 <button class="btn btn-light" type="button" id="button-plus"> <i
                                                         class="fa fa-minus"></i> </button>
                                             </div> --}}
-                                            {{ $details['quantity'] }}
+                                            {{-- $details['quantity'] --}}
+
+                                            <input type="number" name="quantity" value="{{ $details['quantity'] }}" class="form-control update-cart" />
+
                                             {{-- <div class="input-group-append">
                                                 <button class="btn btn-light" type="button" id="button-minus"> <i
                                                         class="fa fa-plus"></i> </button>
@@ -85,9 +85,9 @@ Cart | {{ config('settings.name') }}
                                         </div>
                                     </td>
                                     <td style="width: 20%;">
-                                        {{-- <a href="#" class="btn btn-remove-cart">
-                                            Remove
-                                        </a> --}}
+                                    <button type="button" class="btn btn-remove-cart">Remove</button>
+                                    
+                                        
                                     </td>
                                 </tr>
                                 @empty
@@ -114,43 +114,37 @@ Cart | {{ config('settings.name') }}
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" class="form-control" id="address" name="address"
-                                value="{{ Auth::user()->address }}" readonly />
+                            <input type="text" class="form-control" id="address" name="address" value="{{ Auth::user()->address }}" readonly />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="regency">Regency</label>
-                            <input type="text" class="form-control" id="regency" name="regency"
-                                value="{{ Auth::user()->regency }}" readonly />
+                            <input type="text" class="form-control" id="regency" name="regency" value="{{ Auth::user()->regency }}" readonly />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="province">Province</label>
-                            <input type="text" class="form-control" id="province" name="province"
-                                value="{{ Auth::user()->province }}" readonly />
+                            <input type="text" class="form-control" id="province" name="province" value="{{ Auth::user()->province }}" readonly />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="postal_code">Postal Code</label>
-                            <input type="text" class="form-control" id="postal_code" name="postal_code"
-                                value="{{ Auth::user()->postal_code }}" readonly />
+                            <input type="text" class="form-control" id="postal_code" name="postal_code" value="{{ Auth::user()->postal_code }}" readonly />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="country">Country</label>
-                            <input type="text" class="form-control" id="country" name="country"
-                                value="{{ Auth::user()->country }}" readonly />
+                            <input type="text" class="form-control" id="country" name="country" value="{{ Auth::user()->country }}" readonly />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="phone_number">Mobile</label>
-                            <input type="text" class="form-control" id="phone_number" name="phone_number"
-                                value="{{ Auth::user()->phone_number }}" readonly />
+                            <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ Auth::user()->phone_number }}" readonly />
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -211,4 +205,49 @@ Cart | {{ config('settings.name') }}
         </div>
     </section>
 </div>
+
+<script type="text/javascript">
+
+    $(".update-cart").change(function(e) {
+        e.preventDefault();
+        var ele = $(this);
+        $.ajax({
+            url: '{{ url('update.cart') }}',
+            method: "patch",
+            data: {
+                _token: '{{ csrf_token() }}',
+                id: ele.parents("tr").attr("data-id"),
+                quantity: ele.parents("tr").find(".quantity").val()
+            },
+            success: function(response) {
+                window.location.reload();
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+            }
+        });
+    });
+
+    $(".btn-remove-cart").click(function(e) {
+        e.preventDefault();
+        var ele = $(this);
+        if (confirm("Anda yakin untuk menghapus produk dari keranjang?")) {
+            $.ajax({
+                url: '{{ url('remove.from.cart') }}',
+                method: "delete",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: ele.parents("tr").attr("data-id")
+                },
+                success: function(response) {
+                    window.location.reload();
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
+                }
+            });
+        }
+    });
+</script>
+
 @endsection
