@@ -54,7 +54,7 @@ class CartController extends Controller
     {
         if ($request->id && $request->quantity) {
             $cart = session()->get('cart');
-            $cart[$request->id]["quatity"] = $request->quantity;
+            $cart[$request->id]["quantity"] = $request->quantity;
             session()->put('cart', $cart);
             session()->flash('success', 'Berhasil memperbarui keranjang');
         }
