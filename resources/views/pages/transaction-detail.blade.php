@@ -99,7 +99,7 @@ Transaction Details | {{ config('settings.name') }}
                                 <div class="row">
                                     @if($transaction->shipping_method == 'delivery')
                                     <div class="col-12 my-4">
-                                        <h5>Shipping Information</h5> Transfer ke : 1090088866648 | A.n DK pancing | BSI
+                                        <h5>Shipping Information</h5> Transfer ke : 1090088866648 | A.n DK Pancing | BSI
                                     </div>
                                     @elseif($transaction->shipping_method == 'pick-up')
                                     <div class="col-12 mt-4">

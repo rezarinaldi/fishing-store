@@ -31,20 +31,10 @@ About | {{ config('settings.name') }}
 
                     <p>Nomor Rekening:
                         <br>
-                        1090088866648 | A.n DK pancing
+                        1090088866648 | A.n DK Pancing
                         <br>
                         <img src="/images/BSI_logo.png" alt="bank_dkpancing">
                     </p>
-
-                    <p>Developed by:</p>
-                    <ol type='1'>
-                        <a href="https://github.com/b-bella99" target="__blank">
-                            <li>Bella Setyowati - 1841720004</li>
-                        </a>
-                        <a href="https://github.com/rezarinaldi" target="__blank">
-                            <li>Reza Rinaldi - 1841720078</li>
-                        </a>
-                    </ol>
                 </div>
             </div>
     </section>
