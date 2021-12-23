@@ -52,7 +52,7 @@ Cart | {{ config('settings.name') }}
                                 @if(session('cart'))
                                 @forelse(session('cart') as $id => $details)
                                 @php $total += $details['price'] * $details['quantity'] @endphp
-                                <tr>
+                                <tr data-id="{{ $id }}">
                                     <td style="width: 25%;">
                                         <input type="number" id="item_id" name="item_id" value="{{ $details['id'] }}" hidden>
                                         <input type="date" id="date" name="date" value="{{date('Y-m-d')}}" hidden>
@@ -72,7 +72,7 @@ Cart | {{ config('settings.name') }}
                                             </div> --}}
                                             {{-- $details['quantity'] --}}
 
-                                            <input type="number" name="quantity" value="{{ $details['quantity'] }}" class="form-control update-cart" />
+                                            <input type="number" name="quantity" value="{{ $details['quantity'] }}" class="form-control quantity update-cart" />
 
                                             {{-- <div class="input-group-append">
                                                 <button class="btn btn-light" type="button" id="button-minus"> <i
@@ -207,6 +207,11 @@ Cart | {{ config('settings.name') }}
 </div>
 
 <script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     $(".update-cart").change(function(e) {
         e.preventDefault();
