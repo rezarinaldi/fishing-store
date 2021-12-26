@@ -16,7 +16,10 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::take(6)->get();
-        $items = Item::with('pictures')->take(8)->get();
+        $items = Item::with('pictures')
+            ->take(8)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view('pages.home', [
             'categories' => $categories,

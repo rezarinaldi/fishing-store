@@ -37,11 +37,17 @@ Admin | Ubah Pesanan {{ config('settings.name') }}
                             @if(session()->get('success'))
                             <div class="alert alert-success">
                                 <span class="text text-sm">{{ session()->get('success') }}</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                             @endif
                             @if(session()->get('failed'))
                             <div class="alert alert-warning">
                                 <span class="text text-sm">{{ session()->get('failed') }}</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                             @endif
                             <div class="form-group">
@@ -104,8 +110,7 @@ Admin | Ubah Pesanan {{ config('settings.name') }}
                                 <label for="transfers_slip">Bukti Pembayaran</label>
                                 <input type="text" class="form-control mb-3" id="transfers_slip" name="transfers_slip"
                                     value="{{ $order->transfers_slip }}" readonly>
-                                <a href="{{ asset('images/transfers_slip/'.$order->transfers_slip) }}"
-                                    target="__blank">
+                                <a href="{{ asset('images/transfers_slip/'.$order->transfers_slip) }}" target="__blank">
                                     <img src="{{ asset('images/transfers_slip/'.$order->transfers_slip) }}"
                                         width="250px" alt="transfer_slip" />
                                 </a>
