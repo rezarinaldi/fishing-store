@@ -26,7 +26,7 @@ Home | {{ config('settings.name') }}
                         <div class="col-lg-6">
                             <h1 class="display-5 font-weight-bold mb-3">{{ config('settings.name') }}, toko alat
                                 pancing terlengkap, semua yang dibutuhkan ada di sini.</h1>
-                            <p class="lead">{{ config('settings.description') }} di Toko {{ config('settings.name') }}
+                            <p class="lead">{{ config('settings.description') }} di Toko {{ config('settings.name') }}.
                             </p>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                                 <a href="#buy-now" class="btn btn-success nav-link px-4 text-white"><i
